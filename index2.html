@@ -1765,7 +1765,6 @@ Respondé SOLO con un JSON válido sin texto extra, sin bloques de código, sin 
         body: JSON.stringify({
           contents: [{ parts: [{ text: prompt }] }],
           generationConfig: { temperature: 0.7, maxOutputTokens: 2048 },
-          thinkingConfig: { thinkingBudget: 0 }
         })
       }
     );
