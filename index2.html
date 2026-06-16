@@ -1771,12 +1771,17 @@ Respondé SOLO en JSON válido, sin texto extra, sin markdown. Formato:
     }
 
     const data = await res.json();
+    console.log('FULL RESPONSE:', JSON.stringify(data).substring(0, 1000));
     const finishReason = data.candidates?.[0]?.finishReason;
+    console.log('FINISH REASON:', finishReason);
     if (finishReason === 'MAX_TOKENS') throw new Error('La respuesta fue cortada. Reducí la cantidad de recetas o intentá de nuevo.');
     const partes = data.candidates?.[0]?.content?.parts || [];
+    console.log('PARTES:', partes.length, partes.map(p => Object.keys(p)));
     const texto = partes.filter(p => p.text).map(p => p.text).join('');
+    console.log('TEXTO (500 chars):', texto.substring(0, 500));
     const match = texto.match(/\[\s*\{[\s\S]*\}\s*\]/);
-    if (!match) throw new Error('Gemini no devolvió un JSON válido. Intentá de nuevo.');
+    console.log('MATCH:', !!match, match ? match[0].substring(0,100) : 'null');
+    if (!match) throw new Error('Sin JSON. Texto recibido: ' + texto.substring(0, 300));
     const recetas = JSON.parse(match[0]);
     renderResultsIA(recetas);
 
