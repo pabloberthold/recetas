@@ -1764,7 +1764,7 @@ Respondé SOLO en JSON válido, sin texto extra, sin markdown. Formato:
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           contents: [{ parts: [{ text: prompt }] }],
-          generationConfig: { temperature: 0.7, maxOutputTokens: 2048 },
+          generationConfig: { temperature: 0.5, maxOutputTokens: 8192 },
         })
       }
     );
@@ -1775,15 +1775,12 @@ Respondé SOLO en JSON válido, sin texto extra, sin markdown. Formato:
     }
 
     const data = await res.json();
-    console.log('RAW GEMINI RESPONSE:', JSON.stringify(data, null, 2));
+    const finishReason = data.candidates?.[0]?.finishReason;
+    if (finishReason === 'MAX_TOKENS') throw new Error('La respuesta fue cortada. Reducí la cantidad de recetas o intentá de nuevo.');
     const partes = data.candidates?.[0]?.content?.parts || [];
-    console.log('PARTS COUNT:', partes.length);
-    partes.forEach((p, i) => console.log('PART', i, ':', JSON.stringify(p).substring(0, 300)));
     const texto = partes.filter(p => p.text).map(p => p.text).join('');
-    console.log('TEXTO COMPLETO:', texto.substring(0, 500));
     const match = texto.match(/\[\s*\{[\s\S]*\}\s*\]/);
-    console.log('MATCH FOUND:', !!match);
-    if (!match) throw new Error('Sin JSON. Respuesta: ' + texto.substring(0, 200));
+    if (!match) throw new Error('Gemini no devolvió un JSON válido. Intentá de nuevo.');
     const recetas = JSON.parse(match[0]);
     renderResultsIA(recetas);
 
