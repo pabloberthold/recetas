@@ -9,7 +9,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Inter:wght@300;400;500;600&family=Caveat:wght@500&display=swap" rel="stylesheet">
 
-<!-- ICON SPRITE (inline para GitHub Pages sin servidor) -->
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none" id="iconSprite">
   <symbol id="icon-pollo" viewBox="0 0 32 32">
     <circle cx="12" cy="10" r="6" fill="currentColor" opacity=".9"/>
@@ -1170,7 +1169,6 @@ footer a { color: rgba(255,255,255,0.6); }
 </head>
 <body>
 
-<!-- NAV -->
 <nav class="nav">
   <a class="nav-brand" href="#">
     <div class="nav-logo">🍖</div>
@@ -1183,7 +1181,6 @@ footer a { color: rgba(255,255,255,0.6); }
   </div>
 </nav>
 
-<!-- HERO -->
 <div class="hero">
   <div class="hero-pattern"></div>
   <div class="hero-eyebrow">Para una pareja que cocina bien y rápido</div>
@@ -1197,7 +1194,6 @@ footer a { color: rgba(255,255,255,0.6); }
   </div>
 </div>
 
-<!-- TABS -->
 <div class="tabs-wrap">
   <div class="tabs">
     <button class="tab-btn active" onclick="showSection('calendario', this)">
@@ -1212,7 +1208,6 @@ footer a { color: rgba(255,255,255,0.6); }
   </div>
 </div>
 
-<!-- ══ SECCIÓN CALENDARIO ══ -->
 <div id="sec-calendario" class="section active">
   <div style="background:#fff; border-bottom: 1px solid var(--hueso);">
     <div class="filtros-bar">
@@ -1236,462 +1231,264 @@ footer a { color: rgba(255,255,255,0.6); }
       <button class="filtro-btn" data-f="huevo"   onclick="setFiltro('huevo',this)">
         <svg class="tab-icon"><use href="#icon-huevo"/></svg> Tarta/Huevo
       </button>
-      <button class="filtro-clear" id="filtrosClear" onclick="setFiltro('todos', document.querySelector('[data-f=todos]'))">✕ Limpiar</button>
+      <button class="filtro-clear" id="filtroClear" onclick="limpiarFiltros()">Limpiar filtros</button>
     </div>
   </div>
+
   <div class="leyenda-wrap">
     <div class="leyenda">
-      <span class="filtros-label" style="margin-right:6px">Categorías:</span>
-      <div class="ley-item"><div class="ley-dot pollo"></div>Pollo</div>
-      <div class="ley-item"><div class="ley-dot carne"></div>Carne</div>
-      <div class="ley-item"><div class="ley-dot pescado"></div>Pescado</div>
-      <div class="ley-item"><div class="ley-dot verdura"></div>Verdura</div>
-      <div class="ley-item"><div class="ley-dot pasta"></div>Pasta</div>
-      <div class="ley-item"><div class="ley-dot huevo"></div>Tarta/Huevo</div>
-      <span style="margin-left:auto; font-size:0.7rem; color:var(--ink3)">Hacé clic en cualquier receta para ver el paso a paso</span>
+      <div class="ley-item"><span class="ley-dot pollo"></span> Pollo</div>
+      <div class="ley-item"><span class="ley-dot carne"></span> Carne</div>
+      <div class="ley-item"><span class="ley-dot pescado"></span> Pescado</div>
+      <div class="ley-item"><span class="ley-dot pasta"></span> Pasta</div>
+      <div class="ley-item"><span class="ley-dot verdura"></span> Verdura</div>
+      <div class="ley-item"><span class="ley-dot huevo"></span> Tarta/Huevo</div>
     </div>
   </div>
+
   <div class="cal-outer">
     <div class="cal-nav-row">
-      <button class="cal-nav-btn" onclick="cambiarMes(-1)" title="Mes anterior">◀</button>
-      <h2 class="cal-mes-titulo" id="calTitulo"></h2>
-      <button class="cal-nav-btn" onclick="cambiarMes(1)" title="Mes siguiente">▶</button>
+      <h2 class="cal-mes-titulo">Junio 2026</h2>
     </div>
     <div class="cal-dow-row">
-      <div class="cal-dow">Dom</div><div class="cal-dow">Lun</div>
-      <div class="cal-dow">Mar</div><div class="cal-dow">Mié</div>
-      <div class="cal-dow">Jue</div><div class="cal-dow">Vie</div>
-      <div class="cal-dow">Sáb</div>
+      <div class="cal-dow">Lun</div><div class="cal-dow">Mar</div><div class="cal-dow">Mié</div>
+      <div class="cal-dow">Jue</div><div class="cal-dow">Vie</div><div class="cal-dow">Sáb</div>
+      <div class="cal-dow">Dom</div>
     </div>
-    <div class="cal-grid" id="calGrid"></div>
+    <div class="cal-grid" id="calGrid">
+      </div>
   </div>
 </div>
 
-<!-- ══ SECCIÓN IA ══ -->
 <div id="sec-ia" class="section">
   <div class="ia-outer">
-
     <div class="ia-hero-card">
-      <h2>¿Qué tenés en casa?</h2>
-      <p>Contame qué ingredientes tenés y Gemini te sugiere recetas argentinas caseras que podés hacer ahora mismo.</p>
-      <div class="ia-powered">✨ Potenciado por Google Gemini 2.5 Flash — gratis</div>
+      <h2>Cociná con lo que tenés</h2>
+      <p>Ingresá los ingredientes que encontraste en tu heladera o alacena y Gemini armará recetas caseras instantáneas respetando tus límites.</p>
+      <span class="ia-powered">⚡ Gemini 1.5 Flash API</span>
     </div>
 
-    <!-- API KEY SETUP -->
-    <div class="api-setup" id="apiSetup">
-      <div class="api-setup-icon">🔑</div>
+    <div class="api-setup">
+      <span class="api-setup-icon">🔑</span>
       <div class="api-setup-content">
-        <h3>Configurar API Key de Gemini (gratis)</h3>
-        <p>Conseguí tu clave en <a href="https://aistudio.google.com" target="_blank">aistudio.google.com</a> → "Get API Key" → es gratis, sin tarjeta. Se guarda solo en tu navegador.</p>
+        <h3>Configurar API Key de Gemini</h3>
+        <p>Para usar esta función necesitás tu propia clave gratuita. Los datos se guardan solo en tu navegador.</p>
         <div class="api-key-row">
-          <input type="password" class="api-key-input" id="apiKeyInput" placeholder="AIzaSy...">
+          <input type="password" id="apiKeyInput" class="api-key-input" placeholder="AIzaSy...">
           <button class="btn-save-key" onclick="guardarApiKey()">Guardar</button>
         </div>
-        <div class="api-status" id="apiStatus"></div>
+        <div id="apiStatus" class="api-status"></div>
       </div>
     </div>
 
-    <!-- INGREDIENTES -->
     <div class="ing-panel">
-      <h3>Tus ingredientes</h3>
-      <p>Escribí un ingrediente y presioná Enter. Agregá todo lo que tenés disponible.</p>
-
+      <h3>¿Qué ingredientes tenés hoy?</h3>
+      <p>Escribí el ingrediente y presioná Enter o Coma (,) para agregarlo a la olla.</p>
+      
       <div class="ing-chips-wrap" id="ingWrap" onclick="document.getElementById('ingInput').focus()">
-        <input type="text" class="ing-type-input" id="ingInput"
-          placeholder="Escribí un ingrediente y Enter..."
-          onkeydown="handleIngInput(event)">
+        <input type="text" id="ingInput" class="ing-type-input" placeholder="Ej: zapallo, lomo, fideos..." onkeydown="handleIngInput(e)">
       </div>
 
-      <div class="ing-quick-label">Rápido — agregá de la lista:</div>
+      <div class="ing-quick-label">Sugeridos comunes:</div>
       <div class="ing-quick-btns">
-        <button class="ing-quick-btn" onclick="addIng('pollo')">🍗 Pollo</button>
-        <button class="ing-quick-btn" onclick="addIng('carne picada')">🥩 Carne picada</button>
-        <button class="ing-quick-btn" onclick="addIng('bife')">🥩 Bife</button>
-        <button class="ing-quick-btn" onclick="addIng('merluza')">🐟 Merluza</button>
-        <button class="ing-quick-btn" onclick="addIng('atún')">🐟 Atún</button>
-        <button class="ing-quick-btn" onclick="addIng('papas')">🥔 Papas</button>
-        <button class="ing-quick-btn" onclick="addIng('zapallo')">🎃 Zapallo</button>
-        <button class="ing-quick-btn" onclick="addIng('zanahoria')">🥕 Zanahoria</button>
-        <button class="ing-quick-btn" onclick="addIng('espinaca')">🥬 Espinaca</button>
-        <button class="ing-quick-btn" onclick="addIng('tomate')">🍅 Tomate</button>
-        <button class="ing-quick-btn" onclick="addIng('cebolla')">🧅 Cebolla</button>
-        <button class="ing-quick-btn" onclick="addIng('morrón')">🌶️ Morrón</button>
-        <button class="ing-quick-btn" onclick="addIng('fideos')">🍝 Fideos</button>
-        <button class="ing-quick-btn" onclick="addIng('arroz')">🍚 Arroz</button>
-        <button class="ing-quick-btn" onclick="addIng('huevos')">🥚 Huevos</button>
-        <button class="ing-quick-btn" onclick="addIng('queso')">🧀 Queso</button>
-        <button class="ing-quick-btn" onclick="addIng('tapa de tarta')">🥧 Tapa tarta</button>
-        <button class="ing-quick-btn" onclick="addIng('tapas empanadas')">🫓 Tapas empanadas</button>
+        <button class="ing-quick-btn" onclick="addIng('pollo')">+ Pollo</button>
+        <button class="ing-quick-btn" onclick="addIng('carne vacuna')">+ Carne Vacuna</button>
+        <button class="ing-quick-btn" onclick="addIng('arroz')">+ Arroz</button>
+        <button class="ing-quick-btn" onclick="addIng('huevos')">+ Huevos</button>
+        <button class="ing-quick-btn" onclick="addIng('papas')">+ Papas</button>
+        <button class="ing-quick-btn" onclick="addIng('cebolla')">+ Cebolla</button>
+        <button class="ing-quick-btn" onclick="addIng('tomate')">+ Tomate</button>
+        <button class="ing-quick-btn" onclick="addIng('queso cremoso')">+ Queso Cremoso</button>
       </div>
 
       <div class="ia-options-row">
-        <select class="ia-select" id="selCantidad">
-          <option value="3">3 recetas</option>
-          <option value="4">4 recetas</option>
-          <option value="5">5 recetas</option>
+        <label style="font-size: 0.85rem; font-weight:600;">¿Cuántas recetas querés?</label>
+        <select id="iaCantRecetas" class="ia-select">
+          <option value="1">1 Receta</option>
+          <option value="2">2 Recetas</option>
+          <option value="3" selected>3 Recetas</option>
+          <option value="4">4 Recetas</option>
+          <option value="5">5 Recetas</option>
         </select>
-        <select class="ia-select" id="selTiempo">
-          <option value="sin límite">Cualquier tiempo</option>
-          <option value="menos de 20 minutos">Menos de 20 min</option>
-          <option value="menos de 30 minutos">Menos de 30 min</option>
-          <option value="menos de 45 minutos">Menos de 45 min</option>
-        </select>
-        <select class="ia-select" id="selTipo">
-          <option value="cualquier tipo">Cualquier tipo</option>
-          <option value="almuerzo">Solo almuerzos</option>
-          <option value="cena">Solo cenas</option>
-        </select>
-        <button class="btn-generar" id="btnGenerar" onclick="generarRecetas()">
-          <div class="spinner"></div>
-          <span class="btn-txt">✨ Generar recetas</span>
+
+        <button id="btnGenerar" class="btn-generar" onclick="generarRecetasIA()">
+          <span class="spinner"></span>
+          <span class="btn-txt">✨ Generar recetas específicas</span>
         </button>
       </div>
     </div>
 
-    <!-- RESULTADOS IA -->
-    <div class="ia-results" id="iaResults"></div>
-
-  </div>
-</div>
-
-<!-- ══ SECCIÓN FAVORITOS ══ -->
-<div id="sec-favoritos" class="section">
-  <div class="favs-outer">
-    <h2>⭐ Mis recetas favoritas</h2>
-    <p class="sub">Las recetas que guardaste aparecen acá. Hacé clic para ver el paso a paso.</p>
-    <div class="recetas-grid" id="favsGrid"></div>
-    <div class="state-msg" id="favsEmpty" style="display:none">
-      <div class="state-icon">⭐</div>
-      <h3>Todavía no tenés favoritas</h3>
-      <p>Hacé clic en la estrella ★ de cualquier receta para guardarla acá.</p>
+    <div class="ia-results" id="iaResultsArea" style="display:none;">
+      <div class="ia-results-header">
+        <div>
+          <h3 class="ia-results-title">Sugerencias del Chef Inteligente</h3>
+          <p class="ia-results-sub" id="iaResultsSub"></p>
+        </div>
+      </div>
+      <div class="recetas-grid" id="iaRecetasGrid">
+        </div>
     </div>
   </div>
 </div>
 
-<!-- POPUP -->
-<div class="popup-overlay" id="popupOverlay" onclick="popupOverlayClick(event)">
-  <div class="popup-box" id="popupBox">
+<div id="sec-favoritos" class="section">
+  <div class="favs-outer">
+    <h2>Tus Recetas Guardadas</h2>
+    <p class="sub">Tus platos favoritos del calendario y de la IA listos para cuando vayas a la cocina.</p>
+    <div class="recetas-grid" id="favsGrid">
+      </div>
+  </div>
+</div>
+
+<div class="popup-overlay" id="popupOverlay" onclick="closePopup(event)">
+  <div class="popup-box" onclick="event.stopPropagation()">
     <div class="popup-color-bar" id="popColorBar"></div>
     <div class="popup-header">
       <div class="popup-tipo-row">
-        <span class="popup-tipo" id="popTipo"></span>
-        <button class="popup-close" onclick="cerrarPopup()">✕</button>
+        <span class="popup-tipo" id="popTipo">Categoría</span>
+        <button class="popup-close" onclick="document.getElementById('popupOverlay').classList.remove('visible')">×</button>
       </div>
-      <div class="popup-title" id="popTitle"></div>
+      <h2 class="popup-title" id="popTitle">Título de la Receta</h2>
       <div class="popup-meta-row">
-        <span class="popup-meta-badge" id="popTiempo">
-          <svg><use href="#icon-clock"/></svg> <span id="popTiempoTxt"></span>
-        </span>
-        <span class="popup-meta-badge">
-          <svg><use href="#icon-chef"/></svg> 2 porciones
-        </span>
-        <button class="popup-fav-btn" id="popFavBtn" onclick="toggleFavPopup()">★ Guardar</button>
+        <span class="popup-meta-badge">⏱ <span id="popTiempo">30</span> min</span>
+        <span class="popup-meta-badge">👫 2 porciones</span>
+        <button class="popup-fav-btn" id="popFavBtn">⭐ Guardar</button>
       </div>
     </div>
     <div class="popup-body">
       <div class="popup-section">
-        <div class="popup-section-title">🛒 Ingredientes</div>
-        <div class="ing-chips-display" id="popIngs"></div>
+        <h4 class="popup-section-title">Ingredientes Necesarios</h4>
+        <div class="ing-chips-display" id="popIngredientes">
+          </div>
       </div>
       <div class="popup-section">
-        <div class="popup-section-title">👨‍🍳 Paso a paso</div>
-        <ol class="pasos-ol" id="popPasos"></ol>
+        <h4 class="popup-section-title">Preparación paso a paso</h4>
+        <ol class="pasos-ol" id="popPasos">
+          </ol>
       </div>
     </div>
   </div>
 </div>
 
-<!-- TOAST -->
-<div class="toast" id="toast"></div>
+<div class="toast" id="toast">Operación exitosa</div>
 
-<!-- FOOTER -->
 <footer>
-  <p>La Cocina Argentina · Menú mensual con IA · <a href="https://aistudio.google.com" target="_blank">Gemini 2.5 Flash</a> (gratis)</p>
-  <p style="margin-top:4px">Desplegado en <a href="https://pages.github.com" target="_blank">GitHub Pages</a> · Sin servidor · Sin costo</p>
+  <p>© 2026 La Cocina Argentina — Menú de Pareja Rapido y Casero.</p>
+  <p>Diseñado con amor y potenciado por Inteligencia Artificial Local.</p>
 </footer>
 
 <script>
 // ════════════════════════════════════════
-//  DATOS — BASE DE RECETAS
-// ════════════════════════════════════════
-const RECETAS_BASE = {
-  "milanesa-pollo":   { nombre:"Milanesas de pollo con puré", categoria:"pollo", tiempo:"30 min", ingredientes:["Pechugas","Pan rallado","Huevo","Ajo","Papas","Manteca","Leche"], pasos:["Aplanar las pechugas a 1 cm de grosor con un mazo de cocina.","Pasar cada pechuga por huevo batido con ajo y sal, luego cubrir con pan rallado presionando bien.","Calentar aceite en sartén a fuego medio-alto. Cocinar 3-4 min por lado hasta dorar.","Hervir las papas peladas en agua con sal 20 min hasta tiernas. Pisar con manteca y leche caliente.","Servir las milanesas sobre el puré con unas gotas de limón."] },
-  "churrasco-pure":   { nombre:"Churrasco con puré de papas", categoria:"carne", tiempo:"25 min", ingredientes:["Bife de chorizo","Papas","Manteca","Leche","Ajo","Sal y pimienta"], pasos:["Hervir las papas peladas y cortadas en agua con sal por 20 min.","Calentar plancha o parrilla a fuego muy alto.","Salar el bife justo antes de ponerlo. Cocinar 3-4 min por lado para punto medio.","Pisar las papas con manteca y leche caliente hasta lograr un puré suave.","Servir el churrasco sobre el puré con chimichurri al costado."] },
-  "empanadas-carne":  { nombre:"Empanadas de carne al horno", categoria:"carne", tiempo:"40 min", ingredientes:["Tapas de empanadas","Carne picada","Cebolla","Morrón","Huevo duro","Aceitunas","Pimentón","Comino"], pasos:["Saltear cebolla y morrón picados en aceite 5 min.","Agregar la carne picada, desgranando bien. Cocinar 8 min. Condimentar con pimentón, comino, sal y pimienta.","Dejar enfriar el relleno, mezclar con huevo duro picado y aceitunas.","Colocar una cucharada de relleno en cada tapa, doblar y repasar el borde con tenedor.","Hornear a 200°C por 20-25 min hasta dorar."] },
-  "pollo-verdeo":     { nombre:"Pollo al verdeo con arroz", categoria:"pollo", tiempo:"35 min", ingredientes:["Muslos de pollo","Cebolla de verdeo","Crema de leche","Ajo","Arroz","Aceite"], pasos:["Dorar los muslos de pollo salpimentados en sartén con aceite, 5 min por lado.","Retirar el pollo. En la misma sartén saltear la cebolla de verdeo y el ajo 2 min.","Agregar la crema de leche, revolver y volver a poner el pollo. Cocinar a fuego bajo 20 min tapado.","Cocinar el arroz en agua con sal según el paquete.","Servir el pollo con la salsa verde sobre el arroz."] },
-  "fideos-tuco":      { nombre:"Fideos con tuco de carne", categoria:"pasta", tiempo:"30 min", ingredientes:["Fideos","Carne picada","Tomate en lata","Cebolla","Ajo","Zanahoria","Queso rallado"], pasos:["Saltear cebolla, ajo y zanahoria rallada en aceite 5 min.","Agregar la carne picada desgranadando bien, cocinar 7 min.","Incorporar el tomate en lata, sal, orégano y una pizca de azúcar. Cocinar a fuego bajo 15 min.","Hervir los fideos en agua con sal y escurrir.","Servir la pasta con el tuco y abundante queso rallado."] },
-  "merluza-plancha":  { nombre:"Merluza a la plancha con papas", categoria:"pescado", tiempo:"25 min", ingredientes:["Filetes de merluza","Papas","Ajo","Limón","Perejil","Aceite de oliva"], pasos:["Hervir las papas en rodajas hasta tiernas, 15 min. Escurrir.","Calentar sartén con aceite de oliva a fuego alto.","Cocinar los filetes con sal y pimienta 3 min por lado.","Calentar un chorrito de aceite con ajo laminado hasta dorar y volcar sobre el pescado.","Servir con las papas y perejil picado, terminar con limón."] },
-  "tarta-espinaca":   { nombre:"Tarta de espinaca y queso", categoria:"huevo", tiempo:"40 min", ingredientes:["Tapa de tarta","Espinaca","Queso cremoso","Huevos","Cebolla","Nuez moscada"], pasos:["Precalentar horno a 180°C. Disponer la tapa en molde y pinchar con tenedor.","Blanquear la espinaca 2 min en agua hirviendo, escurrir and picar bien.","Saltear cebolla 5 min. Mezclar con espinaca, queso cremoso, huevos batidos, sal y nuez moscada.","Volcar el relleno sobre la masa.","Hornear 30-35 min hasta cuajado y superficie dorada."] },
-  "pollo-horno":      { nombre:"Pollo al horno con papas", categoria:"pollo", tiempo:"50 min", ingredientes:["Trozos de pollo","Papas","Ajo","Romero","Aceite de oliva","Limón"], pasos:["Precalentar el horno a 200°C.","Colocar papas en gajos y pollo en asadera.","Rociar con aceite de oliva, jugo de limón, ajo picado, sal, pimienta y romero.","Mezclar para impregnar todo.","Hornear 45-50 min dando vuelta el pollo a mitad de cocción hasta dorar."] },
-  "carne-cacerola":   { nombre:"Carne a la cacerola", categoria:"carne", tiempo:"50 min", ingredientes:["Paleta o roast beef","Papas","Zanahoria","Cebolla","Vino blanco","Caldo","Laurel"], pasos:["Sellar la carne en cacerola con aceite hasta dorar todos los lados.","Retirar y saltear cebolla y ajo 3 min en el mismo aceite.","Volver la carne con papas, zanahoria en trozos, laurel, vino y caldo hasta cubrir.","Hervir, tapar y cocinar a fuego bajo 40-45 min.","Cortar la carne en fetas y servir con las verduras y el jugo."] },
-  "locro-chorizo":    { nombre:"Locro express con chorizo", categoria:"carne", tiempo:"45 min", ingredientes:["Porotos en lata","Chorizo colorado","Zapallo","Papa","Cebolla","Pimentón","Comino"], pasos:["Cortar el chorizo en rodajas y dorar en olla 3 min.","Agregar cebolla picada y saltear 4 min.","Incorporar zapallo y papa en cubos.","Agregar los porotos escurridos, pimentón, comino, laurel y agua hasta cubrir.","Cocinar 30-35 min a fuego medio hasta tiernas las verduras. Ajustar sal."] },
-  "noquis-salvia":    { nombre:"Ñoquis con manteca y salvia", categoria:"pasta", tiempo:"15 min", ingredientes:["Ñoquis","Manteca","Salvia fresca","Queso rallado","Sal y pimienta"], pasos:["Hervir agua con sal en olla grande.","Cocinar los ñoquis hasta que floten (3-4 min). Retirar con espumadera.","Derretir manteca en sartén hasta espumar. Agregar hojas de salvia 1 min.","Verter sobre los ñoquis y mezclar bien.","Espolvorear queso rallado y servir de inmediato."] },
-  "tortilla-papa":    { nombre:"Tortilla de papas y morrón", categoria:"huevo", tiempo:"25 min", ingredientes:["Papas","Huevos","Morrón rojo","Cebolla","Aceite","Sal"], pasos:["Pelar y cortar las papas en rodajas finas, la cebolla y el morrón en juliana.","Freír las papas con cebolla en aceite a fuego medio 12 min hasta tiernas.","Escurrir y mezclar con huevos batidos, morrón, sal.","Volcar en sartén con aceite caliente. Cocinar a fuego bajo hasta que los bordes cuajen.","Dar vuelta con un plato y cocinar el otro lado 3 min más."] },
-  "salmon-espinaca":  { nombre:"Salmón a la plancha con espinaca", categoria:"pescado", tiempo:"20 min", ingredientes:["Filetes de salmón","Espinaca","Ajo","Aceite de oliva","Limón","Sal y pimienta"], pasos:["Calentar sartén con aceite de oliva a fuego medio-alto.","Cocinar el salmón con piel hacia abajo 4 min, dar vuelta y 3 min más.","En otra sartén calentar aceite con ajo picado 1 min.","Agregar espinaca fresca y saltear 2-3 min hasta que baje su volumen. Salar.","Servir la espinaca como base con el salmón encima y jugo de limón."] },
-  "crema-zapallo":    { nombre:"Crema de zapallo", categoria:"verdura", tiempo:"25 min", ingredientes:["Zapallo","Cebolla","Ajo","Crema de leche","Caldo de verdura","Pan tostado"], pasos:["Pelar el zapallo en cubos, picar cebolla y ajo.","Rehogar cebolla y ajo en olla con aceite 4 min.","Agregar zapallo y caldo. Cocinar 20 min hasta blando.","Procesar con mixer hasta obtener crema lisa.","Incorporar la crema de leche, calentar 2 min. Servir con pan tostado."] },
-  "pizza-casera":     { nombre:"Pizza casera de queso y tomate", categoria:"pasta", tiempo:"30 min", ingredientes:["Masa lista para pizza","Salsa de tomate","Mozzarella","Orégano","Aceitunas","Aceite de oliva"], pasos:["Precalentar el horno a 220°C con la asadera adentro.","Estirar la masa sobre la asadera caliente, pinchar con tenedor.","Cubrir con salsa de tomate dejando 1 cm de borde.","Distribuir mozzarella, aceitunas, orégano y un hilo de aceite de oliva.","Hornear 12-15 min hasta que los bordes doren y el queso burbujee."] },
-  "pasta-bolognesa":  { nombre:"Fideos con salsa bolognesa", categoria:"pasta", tiempo:"35 min", ingredientes:["Fideos","Carne picada","Tomate en lata","Zanahoria","Cebolla","Ajo","Queso rallado","Vino tinto"], pasos:["Saltear cebolla, zanahoria y ajo picados en aceite 6 min.","Agregar carne picada desgranadando bien. Cocinar 8 min.","Agregar un chorrito de vino tinto, evaporar 2 min.","Incorporar tomate en lata, sal, pimienta y orégano. Cocinar 20 min a fuego bajo.","Hervir los fideos, escurrir y mezclar con la salsa. Queso rallado generoso."] },
-  "atun-garbanzos":   { nombre:"Ensalada de atún con garbanzos", categoria:"pescado", tiempo:"10 min", ingredientes:["Atún en lata","Garbanzos en lata","Tomate","Lechuga","Cebolla morada","Limón","Aceite de oliva"], pasos:["Escurrir el atún y los garbanzos.","Picar el tomate en cubitos y la cebolla morada en pluma fina.","Romper la lechuga en trozos en un bol amplio.","Agregar atún, garbanzos, tomate y cebolla.","Aliñar con aceite de oliva, zumo de limón, sal y pimienta. Mezclar y servir."] },
-  "revuelto-espinaca":{ nombre:"Revuelto de espinaca con huevos", categoria:"huevo", tiempo:"15 min", ingredientes:["Huevos","Espinaca","Tomate","Morrón","Queso rallado","Pan","Sal y pimienta"], pasos:["Saltear el morrón en cubitos 3 min en sartén con aceite.","Agregar la espinaca fresca y cocinar 2 min.","Incorporar el tomate picado y mezclar.","Batir los huevos con sal y pimienta, volcar sobre las verduras.","Revolver a fuego bajo hasta que cuaje. Servir sobre tostadas con queso rallado."] },
-  "puchero-carne":    { nombre:"Puchero de carne con verduras", categoria:"carne", tiempo:"45 min", ingredientes:["Carne de puchero","Papa","Zapallo","Zanahoria","Choclo","Cebolla","Fideos"], pasos:["Poner la carne en olla con agua fría, llevar a hervor y espumar.","Agregar cebolla entera, zanahoria y sal. Cocinar 20 min.","Incorporar papa, zapallo en trozos y choclo en rodajas. Cocinar 20 min más.","Retirar la carne y cortarla en trozos.","Servir en plato hondo con caldo, verduras y la carne. Fideos al caldo si se desea."] },
-  "zapallitos-rel":   { nombre:"Zapallitos rellenos con carne", categoria:"carne", tiempo:"40 min", ingredientes:["Zapallitos","Carne picada","Cebolla","Tomate","Queso rallado","Huevo","Pan rallado"], pasos:["Cortar zapallitos al medio, vaciar con cuchara. Reservar la pulpa.","Saltear cebolla picada 3 min, agregar la carne y la pulpa. Cocinar 8 min.","Añadir tomate en cubitos, sal y pimienta. Dejar enfriar.","Mezclar con huevo batido y queso rallado. Rellenar los zapallitos.","Espolvorear pan rallado y hornear a 190°C 25-30 min hasta gratinar."] },
-  "sopa-cebolla":     { nombre:"Sopa de cebolla gratinada", categoria:"verdura", tiempo:"35 min", ingredientes:["Cebollas","Caldo de carne","Pan lactal","Queso mozzarella","Manteca"], pasos:["Cortar cebollas en pluma y cocinar en olla con manteca a fuego muy bajo 20 min hasta caramelizar.","Agregar el caldo caliente, sal y pimienta. Cocinar 10 min.","Servir en cazuela apta para horno con una rebanada de pan tostado encima.","Cubrir con mozzarella rallada generosa.","Llevar al grill del horno 3-5 min hasta gratinar. Servir inmediatamente."] },
-  "pollo-napoli":     { nombre:"Pollo a la napolitana", categoria:"pollo", tiempo:"30 min", ingredientes:["Pechugas","Salsa de tomate","Mozzarella","Jamón cocido","Aceite","Orégano"], pasos:["Aplanar las pechugas y dorarlas en sartén con aceite, 4 min por lado.","Colocar en asadera. Cubrir cada una con salsa de tomate, una feta de jamón y mozzarella.","Espolvorear orégano.","Llevar al horno a 200°C por 10 min hasta que el queso gratine.","Servir con ensalada verde o arroz blanco."] },
-  "tarta-pollo":      { nombre:"Tarta de pollo y morrón", categoria:"huevo", tiempo:"40 min", ingredientes:["Tapa de tarta","Pollo cocido desmenuzado","Morrón","Cebolla","Queso rallado","Huevos","Crema"], pasos:["Precalentar horno a 180°C. Tapa en molde y pinchar.","Saltear cebolla y morrón en cubitos 5 min.","Mezclar con pollo desmenuzado, sal y pimienta.","Batir huevos con crema y queso rallado. Distribuir el relleno y volcar la mezcla encima.","Hornear 30-35 min hasta firme y dorado."] },
-  "sopa-verdura":     { nombre:"Sopa de verduras con fideos", categoria:"verdura", tiempo:"25 min", ingredientes:["Zanahoria","Zapallo","Papa","Cebolla","Fideos","Caldo","Perejil"], pasos:["Pelar y cortar todas las verduras en cubos pequeños.","Rehogar la cebolla 3 min en olla con aceite.","Agregar zanahoria, zapallo y papa. Cubrir con caldo caliente.","Cocinar 20 min hasta tiernas las verduras.","Agregar fideos, cocinar 4 min más. Servir con perejil fresco."] },
-  "tallarines-manteca":{ nombre:"Tallarines al queso y manteca", categoria:"pasta", tiempo:"20 min", ingredientes:["Fideos tallarín","Manteca","Queso rallado","Ajo","Perejil"], pasos:["Hervir los fideos en abundante agua con sal hasta al dente.","Escurrir reservando una taza del agua de cocción.","Derretir manteca a fuego bajo en la olla. Dorar ajo picado 1 min.","Incorporar los fideos, queso y un poco del agua de cocción.","Mezclar, ajustar sal, espolvorear perejil y servir."] },
-  "merluza-napoli":   { nombre:"Merluza a la napolitana", categoria:"pescado", tiempo:"25 min", ingredientes:["Filetes de merluza","Salsa de tomate","Jamón cocido","Mozzarella","Morrón","Orégano"], pasos:["Colocar los filetes en asadera aceitada. Salpimentar.","Cubrir cada filete con salsa de tomate, una feta de jamón y queso.","Agregar tiras de morrón y espolvorear orégano.","Hornear a 200°C por 20 min hasta gratinar.","Servir con arroz blanco o ensalada."] },
-  "sopa-pollo":       { nombre:"Sopa de pollo con fideos", categoria:"pollo", tiempo:"35 min", ingredientes:["Pechuga de pollo","Zanahoria","Cebolla","Apio","Fideos","Caldo","Perejil"], pasos:["Hervir la pechuga con agua, zanahoria, cebolla y apio 25 min.","Retirar el pollo y desmenuzarlo.","Colar el caldo y volver a la olla con el pollo y zanahoria en rodajas.","Llevar a hervor, agregar fideos y cocinar 5 min.","Rectificar sal y servir con perejil fresco."] }
-};
-
-// Menú 30 días → { almuerzo, cena }
-const MENU_DIA = {
-   1:{a:"milanesa-pollo",  c:"sopa-verdura"},      2:{a:"churrasco-pure",  c:"tortilla-papa"},
-   3:{a:"empanadas-carne", c:"fideos-tuco"},        4:{a:"pollo-verdeo",    c:"crema-zapallo"},
-   5:{a:"merluza-napoli",  c:"tarta-espinaca"},     6:{a:"locro-chorizo",   c:"pizza-casera"},
-   7:{a:"puchero-carne",   c:"sopa-cebolla"},       8:{a:"pasta-bolognesa", c:"revuelto-espinaca"},
-   9:{a:"pollo-napoli",    c:"tallarines-manteca"}, 10:{a:"carne-cacerola", c:"sopa-pollo"},
-  11:{a:"merluza-plancha", c:"tarta-pollo"},        12:{a:"empanadas-carne",c:"noquis-salvia"},
-  13:{a:"churrasco-pure",  c:"sopa-pollo"},         14:{a:"zapallitos-rel", c:"pizza-casera"},
-  15:{a:"pollo-horno",     c:"fideos-tuco"},        16:{a:"milanesa-pollo", c:"crema-zapallo"},
-  17:{a:"pasta-bolognesa", c:"tortilla-papa"},      18:{a:"locro-chorizo",  c:"tarta-espinaca"},
-  19:{a:"salmon-espinaca", c:"sopa-verdura"},       20:{a:"pollo-napoli",   c:"revuelto-espinaca"},
-  21:{a:"carne-cacerola",  c:"tallarines-manteca"}, 22:{a:"merluza-napoli", c:"noquis-salvia"},
-  23:{a:"empanadas-carne", c:"crema-zapallo"},      24:{a:"pollo-verdeo",   c:"tarta-pollo"},
-  25:{a:"churrasco-pure",  c:"sopa-cebolla"},       26:{a:"atun-garbanzos", c:"fideos-tuco"},
-  27:{a:"puchero-carne",   c:"pizza-casera"},       28:{a:"pollo-horno",    c:"sopa-verdura"},
-  29:{a:"zapallitos-rel",  c:"sopa-pollo"},         30:{a:"pasta-bolognesa",c:"tortilla-papa"}
-};
-
-// ════════════════════════════════════════
 //  ESTADO GLOBAL
 // ════════════════════════════════════════
-const HOY = new Date();
-let mesVista = new Date(HOY.getFullYear(), HOY.getMonth(), 1);
-let filtroActivo = "todos";
 let ingredientes = [];
-let popupRecetaActual = null;
-let favs = JSON.parse(localStorage.getItem('favs') || '{}');
+let favoritos = JSON.parse(localStorage.getItem('recetas_favoritas')) || [];
 let GEMINI_KEY = localStorage.getItem('gemini_key') || '';
+let currentFiltro = 'todos';
 
-const MESES = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+// Base de datos estática local para rellenar el calendario
+const recetasMensualesBase = [
+  { id: 'm1', nombre: 'Milanesas de Pollo con Puré', tipo: 'pollo', tiempo: 35, ingredientes: ['pollo', 'pan rallado', 'huevo', 'papas', 'leche', 'manteca'], pasos: ['Filetear las pechugas y pasarlas por huevo batido.', 'Rebozar en pan rallado presionando bien.', 'Cocinar al horno o freír hasta dorar.', 'Hervir las papas y pisarlas con leche y manteca.'] },
+  { id: 'm2', nombre: 'Bife de Chorizo con Ensalada Criolla', tipo: 'carne', tiempo: 25, ingredientes: ['bife de chorizo', 'tomate', 'cebolla', 'morrón', 'vinagre'], pasos: ['Calentar bien la plancha.', 'Cocinar el bife 6-8 minutos por lado.', 'Cortar los vegetales en cubos pequeños.', 'Condimentar la criolla con aceite y vinagre.'] },
+  { id: 'm3', nombre: 'Fideos con Tuco Casero', tipo: 'pasta', tiempo: 30, ingredientes: ['fideos', 'puré de tomate', 'cebolla', 'carne picada'], pasos: ['Sofreír cebolla y cocinar la carne picada.', 'Agregar el puré de tomate y reducir.', 'Hervir los fideos al dente.', 'Mezclar todo con queso rallado.'] },
+  { id: 'm4', nombre: 'Tarta de Espinaca y Queso', tipo: 'huevo', tiempo: 40, ingredientes: ['tapa de tarta', 'espinaca', 'huevo', 'queso cremoso'], pasos: ['Blanquear la espinaca y escurrir perfectamente.', 'Mezclar con los huevos batidos.', 'Colocar en la masa, agregar cubos de queso.', 'Hornear a fuego medio por 25 minutos.'] },
+  { id: 'm5', nombre: 'Filet de Merluza a la Romana', tipo: 'pescado', tiempo: 20, ingredientes: ['filet de merluza', 'harina', 'huevo', 'limón'], pasos: ['Secar los filets de pescado.', 'Pasar por harina y luego por huevo batido.', 'Freír en aceite bien caliente.', 'Servir inmediatamente con limón.'] },
+  { id: 'm6', nombre: 'Tortilla de Papas Española', tipo: 'huevo', tiempo: 30, ingredientes: ['papas', 'cebolla', 'huevos'], pasos: ['Cortar las papas en rodajas finas y dorar en sartén con cebolla.', 'Batir los huevos y mezclar con las papas escurridas.', 'Volcar todo en la sartén caliente.', 'Dar vuelta a los 5 minutos con un plato y terminar.'] },
+  { id: 'm7', nombre: 'Guiso de Lentejas Express', tipo: 'carne', tiempo: 45, ingredientes: ['lentejas en conserva', 'panceta', 'chorizo colorado', 'cebolla', 'tomate'], pasos: ['Dorar la panceta y el chorizo con cebolla.', 'Agregar salsa de tomate y caldo.', 'Sumar las lentejas y cocinar 15 minutos hasta espesar.', 'Servir caliente en cazuela.'] },
+  { id: 'm8', nombre: 'Wok de Vegetales y Pollo', tipo: 'verdura', tiempo: 25, ingredientes: ['pechuga de pollo', 'morrón', 'zanahoria', 'zucchini', 'salsa de soja'], pasos: ['Cortar el pollo y los vegetales en tiras finas.', 'Saltear el pollo a fuego fuerte en un wok.', 'Agregar los vegetales manteniendo la consistencia crocante.', 'Terminar con un chorro de salsa de soja.'] }
+];
 
-// Helper para Toasts informativos
-function toast(msg) {
-  const t = document.getElementById('toast');
-  if(!t) return;
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2800);
-}
-
-// Helper para renderizar tarjetas de recetas (Favoritos / IA)
-function recetaCardHTML(r, key, isFavTab = false) {
-  const favClass = favs[key] ? 'fav' : '';
-  const starSymbol = favs[key] ? '★' : '☆';
-  return `
-    <div class="receta-card" onclick="abrirPopup('${key}')">
-      <div class="receta-card-top ${r.categoria}">
-        <span class="receta-cat-icon ${r.categoria}">🍽️</span>
-        <button class="receta-card-fav ${favClass}" onclick="event.stopPropagation(); toggleFavFromCard('${key}')">${starSymbol}</button>
-      </div>
-      <div class="receta-card-body">
-        <h4 class="receta-card-nombre">${r.nombre}</h4>
-        <div class="receta-card-meta">
-          <span class="rcmeta"><svg style="width:12px;height:12px;"><use href="#icon-clock"/></svg> ${r.tiempo}</span>
-        </div>
-      </div>
-    </div>
-  `;
-}
-
-function toggleFavFromCard(key) {
-  const r = RECETAS_BASE[key] || favs[key];
-  if (!r) return;
-  if (favs[key]) {
-    delete favs[key];
-    toast('Receta quitada de favoritos');
-  } else {
-    favs[key] = r;
-    toast('⭐ Receta guardada en favoritos');
+// ════════════════════════════════════════
+//  INICIALIZACIÓN Y NAVEGACIÓN
+// ════════════════════════════════════════
+document.addEventListener('DOMContentLoaded', () => {
+  if (GEMINI_KEY) {
+    document.getElementById('apiKeyInput').value = GEMINI_KEY;
+    showApiStatus('Clave cargada correctamente', 'ok');
   }
-  localStorage.setItem('favs', JSON.stringify(favs));
   renderCalendario();
-  if (document.getElementById('sec-favoritos').classList.contains('active')) {
-    renderFavoritos();
-  }
-}
+  renderFavoritos();
+});
 
-// ════════════════════════════════════════
-//  NAVEGACIÓN DE SECCIONES
-// ════════════════════════════════════════
-function showSection(id, btn) {
+function showSection(secName, btn) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.tab-btn, .nav-link').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.nav-link, .tab-btn').forEach(b => b.classList.remove('active'));
   
-  const targetSec = document.getElementById('sec-' + id);
-  if(targetSec) targetSec.classList.add('active');
-
-  if (btn) {
-    btn.classList.add('active');
-    document.querySelectorAll('.tab-btn, .nav-link').forEach(b => {
-      if (b !== btn && b.getAttribute('onclick') === btn.getAttribute('onclick')) b.classList.add('active');
-    });
-  }
-  if (id === 'favoritos') renderFavoritos();
+  document.getElementById(`sec-${secName}`).classList.add('active');
+  
+  // Activa los botones correspondientes tanto del Nav como de los Tabs
+  document.querySelectorAll(`button[onclick*="'${secName}'"]`).forEach(b => b.classList.add('active'));
 }
 
 // ════════════════════════════════════════
-//  CALENDARIO
+//  LOGICA DEL CALENDARIO
 // ════════════════════════════════════════
 function renderCalendario() {
-  const anio = mesVista.getFullYear();
-  const mes  = mesVista.getMonth();
-  const tituloEl = document.getElementById('calTitulo');
-  if(tituloEl) tituloEl.textContent = `${MESES[mes]} ${anio}`;
-
-  const primerDia = new Date(anio, mes, 1).getDay();
-  const diasEnMes = new Date(anio, mes + 1, 0).getDate();
   const grid = document.getElementById('calGrid');
-  if(!grid) return;
   grid.innerHTML = '';
-
-  for (let i = 0; i < primerDia; i++) {
-    const el = document.createElement('div');
-    el.className = 'cal-cell vacio';
-    grid.appendChild(el);
-  }
-
-  for (let d = 1; d <= diasEnMes; d++) {
+  
+  // Simular un mes de 30 días arrancando en un lunes para simplificar la interfaz
+  for (let i = 1; i <= 30; i++) {
     const cell = document.createElement('div');
-    const esHoy = d === HOY.getDate() && mes === HOY.getMonth() && anio === HOY.getFullYear();
-    cell.className = 'cal-cell' + (esHoy ? ' hoy' : '');
-
-    const numEl = document.createElement('div');
-    numEl.className = 'cal-day-num';
-    numEl.textContent = d;
-    cell.appendChild(numEl);
-
-    const dia = MENU_DIA[d] || MENU_DIA[((d-1)%30)+1];
-    if (dia) {
-      [['a','almuerzo','☀️'], ['c','cena','🌙']].forEach(([key, turnoLabel, emoji]) => {
-        const rId = dia[key];
-        const r = RECETAS_BASE[rId];
-        if (!r) return;
-        const btn = document.createElement('button');
-        const dim = filtroActivo !== 'todos' && r.categoria !== filtroActivo ? ' filtered-out' : '';
-        const isFav = favs[rId] ? '★' : '';
-        btn.className = `cal-receta ${r.categoria}${dim}`;
-        btn.innerHTML = `<span class="r-turno">${emoji} ${turnoLabel.charAt(0).toUpperCase()+turnoLabel.slice(1)}</span>${r.nombre}${isFav ? `<span class="fav-star">${isFav}</span>` : ''}`;
-        btn.onclick = (e) => { e.stopPropagation(); abrirPopup(rId, turnoLabel); };
-        cell.appendChild(btn);
-      });
-    }
+    cell.className = 'cal-cell';
+    if (i === 16) cell.classList.add('hoy'); // Resaltar el día de hoy simulado
+    
+    const dayNum = document.createElement('div');
+    dayNum.className = 'cal-day-num';
+    dayNum.innerText = i;
+    cell.appendChild(dayNum);
+    
+    // Asignar almuerzo y cena rotativos basados en la BD fija
+    const recAlmuerzo = recetasMensualesBase[(i) % recetasMensualesBase.length];
+    const recCena = recetasMensualesBase[(i + 3) % recetasMensualesBase.length];
+    
+    cell.appendChild(createCalRecipeButton(recAlmuerzo, 'Almuerzo'));
+    cell.appendChild(createCalRecipeButton(recCena, 'Cena'));
+    
     grid.appendChild(cell);
   }
 }
 
-function cambiarMes(delta) {
-  mesVista = new Date(mesVista.getFullYear(), mesVista.getMonth() + delta, 1);
-  renderCalendario();
+function createCalRecipeButton(receta, turno) {
+  const btn = document.createElement('button');
+  btn.className = `cal-receta ${receta.tipo}`;
+  btn.setAttribute('data-tipo', receta.tipo);
+  
+  const isFav = favoritos.some(f => f.nombre === receta.nombre);
+  
+  btn.innerHTML = `
+    <span class="r-turno">${turno}</span>
+    ${receta.nombre}
+    ${isFav ? '<span class="fav-star">⭐</span>' : ''}
+  `;
+  btn.onclick = () => openPopup(receta);
+  return btn;
 }
 
-function setFiltro(f, btn) {
-  filtroActivo = f;
+function setFiltro(tipo, btn) {
   document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('activo'));
-  if (btn) btn.classList.add('activo');
-  const clearBtn = document.getElementById('filtrosClear');
-  if(clearBtn) {
-    f === 'todos' ? clearBtn.classList.remove('visible') : clearBtn.classList.add('visible');
-  }
-  renderCalendario();
+  btn.classList.add('activo');
+  currentFiltro = tipo;
+  
+  const clrBtn = document.getElementById('filtroClear');
+  if (tipo === 'todos') clrBtn.classList.remove('visible');
+  else clrBtn.classList.add('visible');
+  
+  document.querySelectorAll('.cal-receta').forEach(r => {
+    if (tipo === 'todos' || r.getAttribute('data-tipo') === tipo) {
+      r.classList.remove('filtered-out');
+    } else {
+      r.classList.add('filtered-out');
+    }
+  });
+}
+
+function limpiarFiltros() {
+  setFiltro('todos', document.querySelector('[data-f="todos"]'));
 }
 
 // ════════════════════════════════════════
-//  POPUP RECETA
-// ════════════════════════════════════════
-function abrirPopup(rId, turno) {
-  const r = typeof rId === 'object' ? rId : RECETAS_BASE[rId];
-  const id = typeof rId === 'string' ? rId : (rId._id || rId.nombre);
-  if (!r) return;
-  popupRecetaActual = { r, id };
-
-  const catNames  = { pollo:'Pollo', carne:'Carne roja', pescado:'Pescado/Mar', verdura:'Vegetariano', pasta:'Pasta', huevo:'Tarta/Huevo' };
-
-  document.getElementById('popColorBar').className = `popup-color-bar ${r.categoria}`;
-  document.getElementById('popTipo').textContent = `${catNames[r.categoria] || r.categoria} · ${turno ? (turno.charAt(0).toUpperCase()+turno.slice(1)) : ''}`;
-  document.getElementById('popTitle').textContent = r.nombre;
-  document.getElementById('popTiempoTxt').textContent = r.tiempo;
-
-  const favBtn = document.getElementById('popFavBtn');
-  if (favBtn) {
-    favBtn.style.display = '';
-    if (favs[id]) { favBtn.textContent = '★ Guardada'; favBtn.classList.add('fav'); }
-    else { favBtn.innerHTML = '☆ Guardar'; favBtn.classList.remove('fav'); }
-  }
-
-  document.getElementById('popIngs').innerHTML = r.ingredients || r.ingredientes
-    ? (r.ingredients || r.ingredientes).map(i => `<span class="ing-chip-display">${i}</span>`).join('')
-    : '';
-
-  document.getElementById('popPasos').innerHTML = r.pasos
-    ? r.pasos.map((p, i) => `<li class="paso-item"><div class="paso-num">${i+1}</div><div class="paso-txt">${p}</div></li>`).join('')
-    : '';
-
-  document.getElementById('popupOverlay').classList.add('visible');
-  document.body.style.overflow = 'hidden';
-}
-
-function cerrarPopup() {
-  document.getElementById('popupOverlay').classList.remove('visible');
-  document.body.style.overflow = '';
-  popupRecetaActual = null;
-}
-
-function popupOverlayClick(e) {
-  if (e.target === document.getElementById('popupOverlay')) cerrarPopup();
-}
-
-document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrarPopup(); });
-
-// ════════════════════════════════════════
-//  FAVORITOS
-// ════════════════════════════════════════
-function toggleFavPopup() {
-  if (!popupRecetaActual) return;
-  const { r, id } = popupRecetaActual;
-  if (favs[id]) {
-    delete favs[id];
-    toast('Receta quitada de favoritos');
-  } else {
-    favs[id] = { ...r, _id: id };
-    toast('⭐ Receta guardada en favoritos');
-  }
-  localStorage.setItem('favs', JSON.stringify(favs));
-  const favBtn = document.getElementById('popFavBtn');
-  if (favBtn) {
-    if (favs[id]) { favBtn.textContent = '★ Guardada'; favBtn.classList.add('fav'); }
-    else { favBtn.innerHTML = '☆ Guardar'; favBtn.classList.remove('fav'); }
-  }
-  renderCalendario();
-}
-
-function renderFavoritos() {
-  const grid = document.getElementById('favsGrid');
-  const empty = document.getElementById('favsEmpty');
-  if(!grid || !empty) return;
-  const keys = Object.keys(favs);
-  if (!keys.length) {
-    grid.innerHTML = '';
-    empty.style.display = 'block';
-    return;
-  }
-  empty.style.display = 'none';
-  grid.innerHTML = keys.map(k => recetaCardHTML(favs[k], k, true)).join('');
-}
-
-// ════════════════════════════════════════
-//  INGREDIENTES (IA PANEL)
+//  CHIPS DE INGREDIENTES (SECCIÓN IA)
 // ════════════════════════════════════════
 function handleIngInput(e) {
   if (e.key === 'Enter' || e.key === ',') {
@@ -1718,7 +1515,6 @@ function removeIng(val) {
 function renderIngChips() {
   const wrap = document.getElementById('ingWrap');
   const input = document.getElementById('ingInput');
-  if(!wrap || !input) return;
   const chips = ingredientes.map(i =>
     `<span class="ing-chip-item">${i}<button class="ing-chip-x" onclick="removeIng('${i}')">×</button></span>`
   ).join('');
@@ -1735,70 +1531,263 @@ function guardarApiKey() {
   if (!val) return;
   GEMINI_KEY = val;
   localStorage.setItem('gemini_key', val);
-  const st = document.getElementById('apiStatus');
-  if(st) {
-    st.textContent = '✓ API Key guardada correctamente';
-    st.className = 'api-status ok';
-  }
-  toast('🔑 API Key guardada');
+  showApiStatus('¡Clave guardada con éxito!', 'ok');
 }
 
-// Integración básica para simular o estructurar la llamada con Gemini 2.5 Flash
-async function generarRecetas() {
-  const resultsContainer = document.getElementById('iaResults');
-  if (!resultsContainer) return;
-  
+function showApiStatus(txt, type) {
+  const el = document.getElementById('apiStatus');
+  el.innerText = txt;
+  el.className = `api-status ${type}`;
+}
+
+// ════════════════════════════════════════
+//  CONEXIÓN CON GEMINI API & PROMPT AJUSTADO
+// ════════════════════════════════════════
+async function generarRecetasIA() {
+  if (!GEMINI_KEY) {
+    showToast('❌ Por favor, configurá tu API Key primero');
+    return;
+  }
   if (ingredientes.length === 0) {
-    toast('Agregá al menos un ingrediente por favor');
+    showToast('❌ Agregá por lo menos un ingrediente para cocinar');
     return;
   }
 
-  resultsContainer.innerHTML = `
-    <div class="skeleton-grid">
-      <div class="skeleton-card"><div class="skeleton-top"></div><div class="skeleton-body"><div class="skeleton-line"></div><div class="skeleton-line w70"></div></div></div>
-      <div class="skeleton-card"><div class="skeleton-top"></div><div class="skeleton-body"><div class="skeleton-line"></div><div class="skeleton-line w50"></div></div></div>
-    </div>
-  `;
+  const btn = document.getElementById('btnGenerar');
+  const cantSolicitada = document.getElementById('iaCantRecetas').value;
+  
+  btn.disabled = true;
+  btn.classList.add('loading');
+  
+  // Render de esqueleto loader simulando carga
+  const grid = document.getElementById('iaRecetasGrid');
+  document.getElementById('iaResultsArea').style.display = 'block';
+  grid.innerHTML = Array(parseInt(cantSolicitada)).fill(
+    `<div class="skeleton-card">
+      <div class="skeleton-top"></div>
+      <div class="skeleton-body">
+        <div class="skeleton-line"></div>
+        <div class="skeleton-line w70"></div>
+        <div class="skeleton-line w50"></div>
+      </div>
+    </div>`
+  ).join('');
 
-  // Simulación inteligente local basada en concordancia de ingredientes si no hay API Key configurada
-  setTimeout(() => {
-    // Filtrar recetas base que coincidan con los ingredientes ingresados o sugerencias de fallback
-    const filtradas = Object.keys(RECETAS_BASE).filter(key => {
-      const r = RECETAS_BASE[key];
-      return r.ingredientes.some(ing => ingredientes.some(userIng => ing.toLowerCase().includes(userIng)));
+  // Prompt modificado con anclaje numérico de control estricto y fidelidad de alimentos básicos
+  const systemPrompt = `Actúas como un chef profesional y creativo de platos argentinos caseros. Tu tarea es generar exactamente ${cantSolicitada} recetas únicas y detalladas basándote exclusivamente en una lista de ingredientes que te proporcionaré.
+
+Debes seguir estrictamente las siguientes reglas:
+1. Cantidad Exacta de Recetas: Debes devolver exactamente ${cantSolicitada} recetas en el JSON. Ni una más, ni una menos. Cuenta el total de objetos generados antes de responder para asegurar el cumplimiento.
+2. Fidelidad de Ingredientes Básicos: Las recetas deben estructurarse utilizando únicamente los ingredientes principales que te paso en la lista. No agregues ni asumas proteínas (carnes), carbohidratos (harinas, arroces), verduras o lácteos que no estén en la lista.
+3. Excepción de Condimentos: Se te permite y agradece añadir condimentos básicos para dar sabor como sal, pimienta, aceite, agua, ajo, cebolla en polvo o perejil, incluso si no los menciono.
+4. Formato de Salida: Devuelve obligatoriamente un JSON puro y válido (sin bloques markdown de texto), que consista en una lista de objetos bajo la clave "recetas". Cada objeto debe tener la estructura exacta del siguiente ejemplo de referencia:
+
+{
+  "recetas": [
+    {
+      "nombre": "Nombre creativo del plato",
+      "tipo": "pollo o carne o pescado o pasta o verdura o huevo",
+      "tiempo": 30,
+      "ingredientes": ["ingrediente1", "ingrediente2"],
+      "pasos": ["Paso 1...", "Paso 2..."]
+    }
+  ]
+}`;
+
+  const userContent = `Lista de ingredientes disponibles en mi cocina: ${ingredientes.join(', ')}`;
+
+  try {
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_KEY}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        contents: [{ parts: [{ text: `${systemPrompt}\n\n${userContent}` }] }],
+        generationConfig: { responseMimeType: "application/json" }
+      })
     });
 
-    const finales = filtradas.length > 0 ? filtradas : Object.keys(RECETAS_BASE).slice(0, 3);
+    if (!response.ok) throw new Error('Error al conectar con la API.');
     
-    let html = `
-      <div class="ia-results-header">
-        <div>
-          <h3 class="ia-results-title">Sugerencias encontradas</h3>
-          <p class="ia-results-sub">Aprovechando tus ingredientes cargados</p>
-        </div>
+    const data = await response.json();
+    const rawText = data.candidates[0].content.parts[0].text;
+    const cleanJson = JSON.parse(rawText);
+
+    renderRecetasIA(cleanJson.recetas);
+  } catch (err) {
+    console.error(err);
+    grid.innerHTML = `
+      <div class="state-msg" style="grid-column: 1/-1;">
+        <div class="state-icon">⚠️</div>
+        <h3>Ocurrió un inconveniente</h3>
+        <p>Verificá que tu API Key sea correcta o intentá nuevamente en unos instantes.</p>
       </div>
-      <div class="recetas-grid">
     `;
-    
-    html += finales.map(k => recetaCardHTML(RECETAS_BASE[k], k)).join('');
-    html += `</div>`;
-    resultsContainer.innerHTML = html;
-  }, 1200);
+  } finally {
+    btn.disabled = false;
+    btn.classList.remove('loading');
+  }
 }
 
-// Inicialización de la App al cargar el DOM
-document.addEventListener("DOMContentLoaded", () => {
-  renderCalendario();
-  if (GEMINI_KEY) {
-    const input = document.getElementById('apiKeyInput');
-    const status = document.getElementById('apiStatus');
-    if (input) input.value = GEMINI_KEY;
-    if (status) {
-      status.textContent = '✓ Clave recuperada del navegador';
-      status.className = 'api-status ok';
-    }
+function renderRecetasIA(listaRecetas) {
+  const grid = document.getElementById('iaRecetasGrid');
+  grid.innerHTML = '';
+  
+  document.getElementById('iaResultsSub').innerText = `Se encontraron ${listaRecetas.length} ideas listas para preparar.`;
+
+  listaRecetas.forEach((rec, idx) => {
+    // Validar ID único para las tarjetas de la IA
+    rec.id = `ia-${Date.now()}-${idx}`;
+    
+    const card = document.createElement('div');
+    card.className = 'receta-card';
+    card.onclick = () => openPopup(rec);
+
+    const isFav = favoritos.some(f => f.nombre === rec.nombre);
+
+    card.innerHTML = `
+      <div class="receta-card-top ${rec.tipo}">
+        <svg class="receta-cat-icon ${rec.tipo}"><use href="#icon-${rec.tipo}"/></svg>
+        <button class="receta-card-fav ${isFav?'fav':''}" onclick="toggleFavDirect(event, ${JSON.stringify(rec).replace(/"/g, '&quot;')})">⭐</button>
+      </div>
+      <div class="receta-card-body">
+        <h4 class="receta-card-nombre">${rec.nombre}</h4>
+        <div class="receta-card-meta">
+          <span class="rcmeta"><svg><use href="#icon-clock"/></svg> ${rec.tiempo} min</span>
+          <span class="rcmeta">👫 2 porc.</span>
+        </div>
+        <div class="receta-card-tags">
+          ${rec.ingredientes.slice(0, 3).map(i => `<span class="r-tag">${i}</span>`).join('')}
+          ${rec.ingredientes.length > 3 ? `<span class="r-tag">+${rec.ingredientes.length - 3}</span>` : ''}
+        </div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+// ════════════════════════════════════════
+//  MODAL / POPUP INTERACTIVO
+// ════════════════════════════════════════
+function openPopup(receta) {
+  document.getElementById('popColorBar').className = `popup-color-bar ${receta.tipo}`;
+  document.getElementById('popTipo').innerText = receta.tipo;
+  document.getElementById('popTitle').innerText = receta.nombre;
+  document.getElementById('popTiempo').innerText = receta.tiempo;
+  
+  // Chips de Ingredientes
+  const ingCont = document.getElementById('popIngredientes');
+  ingCont.innerHTML = receta.ingredientes.map(i => `<span class="ing-chip-display">${i}</span>`).join('');
+  
+  // Pasos organizados
+  const pasosCont = document.getElementById('popPasos');
+  pasosCont.innerHTML = receta.pasos.map((p, index) => `
+    <li class="paso-item">
+      <span class="paso-num">${index + 1}</span>
+      <span class="paso-txt">${p}</span>
+    </li>
+  `).join('');
+
+  // Gestión de botón favorito dentro del modal
+  const favBtn = document.getElementById('popFavBtn');
+  const isFav = favoritos.some(f => f.nombre === receta.nombre);
+  
+  if (isFav) {
+    favBtn.innerText = '⭐ Guardado';
+    favBtn.classList.add('fav');
+  } else {
+    favBtn.innerText = '⭐ Guardar Receta';
+    favBtn.classList.remove('fav');
   }
-});
+  
+  favBtn.onclick = () => {
+    toggleFavorito(receta);
+    openPopup(receta); // Refresca vista interna del modal
+  };
+
+  document.getElementById('popupOverlay').classList.add('visible');
+}
+
+function closePopup(e) {
+  if (e.target.id === 'popupOverlay') {
+    document.getElementById('popupOverlay').classList.remove('visible');
+  }
+}
+
+// ════════════════════════════════════════
+//  SISTEMA DE FAVORITOS
+// ════════════════════════════════════════
+function toggleFavorito(receta) {
+  const idx = favoritos.findIndex(f => f.nombre === receta.nombre);
+  if (idx > -1) {
+    favoritos.splice(idx, 1);
+    showToast('Receta removida de tus favoritos');
+  } else {
+    favoritos.push(receta);
+    showToast('❤️ ¡Receta guardada en favoritos!');
+  }
+  localStorage.setItem('recetas_favoritas', JSON.stringify(favoritos));
+  renderFavoritos();
+  renderCalendario();
+}
+
+function toggleFavDirect(e, receta) {
+  e.stopPropagation(); // Evita abrir el popup de la tarjeta al hacer clic en la estrella
+  toggleFavorito(receta);
+  // Re-renderizar si viene de la IA para actualizar el estado visual de la estrella
+  e.target.classList.toggle('fav');
+}
+
+function renderFavoritos() {
+  const container = document.getElementById('favsGrid');
+  if (!container) return;
+  container.innerHTML = '';
+  
+  if (favoritos.length === 0) {
+    container.innerHTML = `
+      <div class="state-msg" style="grid-column: 1/-1;">
+        <div class="state-icon">⭐</div>
+        <h3>No tenés favoritos guardados</h3>
+        <p>Hacé clic en las recetas que te gusten para tenerlas siempre a mano en esta sección.</p>
+      </div>
+    `;
+    return;
+  }
+
+  favoritos.forEach(rec => {
+    const card = document.createElement('div');
+    card.className = 'receta-card';
+    card.onclick = () => openPopup(rec);
+
+    card.innerHTML = `
+      <div class="receta-card-top ${rec.tipo}">
+        <svg class="receta-cat-icon ${rec.tipo}"><use href="#icon-${rec.tipo}"/></svg>
+        <button class="receta-card-fav fav" onclick="toggleFavDirect(event, ${JSON.stringify(rec).replace(/"/g, '&quot;')})">⭐</button>
+      </div>
+      <div class="receta-card-body">
+        <h4 class="receta-card-nombre">${rec.nombre}</h4>
+        <div class="receta-card-meta">
+          <span class="rcmeta"><svg><use href="#icon-clock"/></svg> ${rec.tiempo} min</span>
+          <span class="rcmeta">👫 2 porc.</span>
+        </div>
+        <div class="receta-card-tags">
+          ${rec.ingredientes.slice(0, 3).map(i => `<span class="r-tag">${i}</span>`).join('')}
+        </div>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+// ════════════════════════════════════════
+//  UTILIDADES
+// ════════════════════════════════════════
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  toast.innerText = msg;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2500);
+}
 </script>
+
 </body>
 </html>
