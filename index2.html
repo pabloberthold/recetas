@@ -1275,7 +1275,7 @@ footer a { color: rgba(255,255,255,0.6); }
     <div class="ia-hero-card">
       <h2>¿Qué tenés en casa?</h2>
       <p>Contame qué ingredientes tenés y Gemini te sugiere recetas argentinas caseras que podés hacer ahora mismo.</p>
-      <div class="ia-powered">✨ Potenciado por Google Gemini 1.5 Flash — gratis</div>
+      <div class="ia-powered">✨ Potenciado por Google Gemini 2.5 Flash — gratis</div>
     </div>
 
     <!-- API KEY SETUP -->
@@ -1728,14 +1728,14 @@ Sugerí exactamente ${cantidad} recetas caseras argentinas típicas (milanesas, 
 
 Priorizá recetas simples para una pareja trabajadora. Usá ingredientes fáciles de conseguir en Argentina.
 
-Respondé SOLO con un JSON válido sin texto extra, sin bloques de código, sin comillas adicionales. Formato exacto:
+Respondé SOLO en JSON válido, sin texto extra, sin markdown. Formato:
 [
   {
-    "nombre": "Nombre de la receta",
-    "categoria": "pollo|carne|pescado|pasta|verdura|huevo",
-    "tiempo": "X min",
-    "ingredientes": ["ingrediente 1", "ingrediente 2", "ingrediente 3"],
-    "pasos": ["Paso 1 detallado.", "Paso 2 detallado.", "Paso 3 detallado.", "Paso 4.", "Paso 5."]
+    nombre: "Nombre de la receta",
+    categoria: "pollo|carne|pescado|pasta|verdura|huevo",
+    tiempo: "X min",
+    ingredientes: ["ingrediente 1", "ingrediente 2", "ingrediente 3"],
+    pasos: ["Paso 1.", "Paso 2.", "Paso 3.", "Paso 4.", "Paso 5."]
   }
 ]`;
 
@@ -1776,7 +1776,11 @@ Respondé SOLO con un JSON válido sin texto extra, sin bloques de código, sin 
 
     const data = await res.json();
     const texto = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
-    const clean = texto.replace(/```json|```/g, '').trim();
+    let clean = texto.replace(/```json|```/g, '').trim();
+    // Limpiar JSON más agresivamente
+    clean = clean.replace(/^[^\[]*/, '').replace(/[^\]]*$/, '');
+    clean = clean.replace(/([a-z_]+):/g, '"$1":');
+    clean = clean.replace(/: ([a-zA-Z0-9_]+)([,\]\}])/g, ': "$1"$2');
     const recetas = JSON.parse(clean);
     renderResultsIA(recetas);
 
