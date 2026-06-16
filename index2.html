@@ -1,1928 +1,819 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Menú mensual de cocina argentina con recetas caseras y sugerencias por IA">
-<title>La Cocina Argentina — Menú Mensual</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Inter:wght@300;400;500;600&family=Caveat:wght@500&display=swap" rel="stylesheet">
-
-<!-- ICON SPRITE (inline para GitHub Pages sin servidor) -->
-<svg xmlns="http://www.w3.org/2000/svg" style="display:none" id="iconSprite">
-  <symbol id="icon-pollo" viewBox="0 0 32 32">
-    <circle cx="12" cy="10" r="6" fill="currentColor" opacity=".9"/>
-    <path d="M8 15 Q4 20 6 26 Q10 30 16 28 Q22 30 26 26 Q28 20 24 15 Q20 12 16 13 Q12 12 8 15Z" fill="currentColor"/>
-    <circle cx="10" cy="9" r="1.5" fill="white"/>
-    <path d="M14 7 Q16 5 18 7" fill="none" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
-  </symbol>
-  <symbol id="icon-carne" viewBox="0 0 32 32">
-    <path d="M4 20 Q4 12 10 10 Q14 8 18 10 L28 8 Q30 8 30 10 Q30 12 28 12 L20 13 Q24 16 24 20 Q24 26 18 28 Q10 30 6 26 Q4 24 4 20Z" fill="currentColor"/>
-    <path d="M10 16 Q14 14 18 17" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" stroke-linecap="round"/>
-  </symbol>
-  <symbol id="icon-pescado" viewBox="0 0 32 32">
-    <path d="M6 16 Q2 10 2 16 Q2 22 6 16Z" fill="currentColor"/>
-    <ellipse cx="18" cy="16" rx="12" ry="7" fill="currentColor"/>
-    <circle cx="24" cy="14" r="1.5" fill="white"/>
-    <path d="M8 12 Q12 16 8 20" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.2"/>
-  </symbol>
-  <symbol id="icon-pasta" viewBox="0 0 32 32">
-    <path d="M6 10 Q10 8 16 12 Q22 8 26 10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-    <path d="M5 15 Q10 13 16 17 Q22 13 27 15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-    <path d="M6 20 Q10 18 16 22 Q22 18 26 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-  </symbol>
-  <symbol id="icon-verdura" viewBox="0 0 32 32">
-    <path d="M16 28 Q16 18 10 12 Q14 14 16 18 Q18 14 22 12 Q16 18 16 28Z" fill="currentColor"/>
-    <path d="M16 22 Q10 18 6 10 Q10 14 16 16" fill="currentColor" opacity=".7"/>
-    <path d="M16 22 Q22 18 26 10 Q22 14 16 16" fill="currentColor" opacity=".7"/>
-    <circle cx="16" cy="10" r="4" fill="currentColor"/>
-  </symbol>
-  <symbol id="icon-huevo" viewBox="0 0 32 32">
-    <ellipse cx="16" cy="18" rx="11" ry="12" fill="currentColor"/>
-    <ellipse cx="16" cy="20" rx="6" ry="6" fill="#FFF176" opacity=".9"/>
-  </symbol>
-  <symbol id="icon-star" viewBox="0 0 24 24">
-    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="currentColor"/>
-  </symbol>
-  <symbol id="icon-clock" viewBox="0 0 24 24">
-    <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
-    <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-  </symbol>
-  <symbol id="icon-chef" viewBox="0 0 24 24">
-    <circle cx="12" cy="6" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
-    <path d="M4 4 Q4 2 6 2 Q8 2 8 4" fill="none" stroke="currentColor" stroke-width="1.5"/>
-    <path d="M6 6 Q6 2 12 2 Q18 2 18 6" fill="none" stroke="currentColor" stroke-width="2"/>
-    <path d="M16 4 Q16 2 18 2 Q20 2 20 4" fill="none" stroke="currentColor" stroke-width="1.5"/>
-    <rect x="7" y="10" width="10" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
-    <path d="M7 14 h10" stroke="currentColor" stroke-width="1.5"/>
-  </symbol>
-</svg>
-
-<style>
-/* ── TOKENS ── */
-:root {
-  --ink:         #1a1a1a;
-  --ink2:        #444;
-  --ink3:        #888;
-  --verde:       #1b4d1e;
-  --verde2:      #2a6b2e;
-  --verde-light: #e6f2e7;
-  --crema:       #f8f4ed;
-  --hueso:       #ede8de;
-  --carbon:      #111810;
-  --dorado:      #c8920a;
-  --dorado-lt:   #fef3d8;
-  --rojo:        #b5291c;
-  --rojo-lt:     #fdecea;
-  --azul-lt:     #e8f2fc;
-  --azul:        #1a5c9a;
-  --violeta-lt:  #f0eafc;
-  --violeta:     #6b30b8;
-  --shadow-xs:   0 1px 3px rgba(0,0,0,0.07);
-  --shadow-sm:   0 2px 8px rgba(0,0,0,0.09);
-  --shadow-md:   0 6px 24px rgba(0,0,0,0.13);
-  --shadow-lg:   0 16px 48px rgba(0,0,0,0.2);
-  --r-sm: 8px;
-  --r-md: 12px;
-  --r-lg: 18px;
-  --transition: 0.18s ease;
-}
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: 'Inter', sans-serif;
-  background: var(--crema);
-  color: var(--ink);
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-/* ── NAV ── */
-.nav {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: var(--carbon);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 24px;
-  height: 52px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.3);
-}
-.nav-brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-}
-.nav-logo {
-  width: 32px; height: 32px;
-  background: var(--verde2);
-  border-radius: 8px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.1rem;
-}
-.nav-title {
-  font-family: 'Playfair Display', serif;
-  color: #fff;
-  font-size: 1rem;
-  letter-spacing: 0.2px;
-}
-.nav-links {
-  display: flex;
-  gap: 4px;
-}
-.nav-link {
-  background: none;
-  border: none;
-  color: rgba(255,255,255,0.65);
-  font-family: 'Inter', sans-serif;
-  font-size: 0.8rem;
-  font-weight: 500;
-  padding: 6px 14px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: var(--transition);
-  letter-spacing: 0.3px;
-}
-.nav-link:hover, .nav-link.active {
-  background: rgba(255,255,255,0.1);
-  color: #fff;
-}
-.nav-link.active {
-  background: var(--verde2);
-  color: #fff;
-}
-
-/* ── HERO ── */
-.hero {
-  background: var(--verde);
-  position: relative;
-  overflow: hidden;
-  padding: 48px 24px 40px;
-  text-align: center;
-}
-.hero-pattern {
-  position: absolute;
-  inset: 0;
-  background-image:
-    radial-gradient(circle at 15% 50%, rgba(200,146,10,0.12) 0%, transparent 50%),
-    radial-gradient(circle at 85% 20%, rgba(255,255,255,0.06) 0%, transparent 40%);
-  pointer-events: none;
-}
-/* Texture lines */
-.hero-pattern::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: repeating-linear-gradient(
-    -45deg,
-    transparent,
-    transparent 20px,
-    rgba(255,255,255,0.025) 20px,
-    rgba(255,255,255,0.025) 21px
-  );
-}
-.hero-eyebrow {
-  font-family: 'Caveat', cursive;
-  color: var(--dorado);
-  font-size: 1.1rem;
-  margin-bottom: 8px;
-  position: relative;
-  z-index: 1;
-}
-.hero h1 {
-  font-family: 'Playfair Display', serif;
-  color: #fff;
-  font-size: clamp(1.8rem, 5vw, 3rem);
-  line-height: 1.15;
-  margin-bottom: 14px;
-  position: relative;
-  z-index: 1;
-}
-.hero h1 em {
-  font-style: italic;
-  color: var(--dorado);
-}
-.hero-sub {
-  color: rgba(255,255,255,0.68);
-  font-size: 0.9rem;
-  font-weight: 300;
-  max-width: 480px;
-  margin: 0 auto 24px;
-  line-height: 1.6;
-  position: relative;
-  z-index: 1;
-}
-.hero-badges {
-  display: flex;
-  gap: 8px;
-  justify-content: center;
-  flex-wrap: wrap;
-  position: relative;
-  z-index: 1;
-}
-.hbadge {
-  background: rgba(255,255,255,0.1);
-  border: 1px solid rgba(255,255,255,0.2);
-  border-radius: 20px;
-  padding: 5px 14px;
-  font-size: 0.75rem;
-  color: rgba(255,255,255,0.85);
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-/* ── TABS ── */
-.tabs-wrap {
-  background: #fff;
-  border-bottom: 2px solid var(--hueso);
-  position: sticky;
-  top: 52px;
-  z-index: 90;
-  box-shadow: var(--shadow-xs);
-}
-.tabs {
-  display: flex;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 16px;
-  gap: 0;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-.tabs::-webkit-scrollbar { display: none; }
-.tab-btn {
-  flex-shrink: 0;
-  padding: 14px 22px;
-  border: none;
-  background: none;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--ink3);
-  cursor: pointer;
-  border-bottom: 2.5px solid transparent;
-  margin-bottom: -2px;
-  transition: var(--transition);
-  letter-spacing: 0.3px;
-  display: flex;
-  align-items: center;
-  gap: 7px;
-}
-.tab-btn:hover { color: var(--verde2); }
-.tab-btn.active {
-  color: var(--verde);
-  border-bottom-color: var(--verde);
-}
-.tab-icon {
-  width: 16px; height: 16px;
-}
-
-/* ── SECTIONS ── */
-.section { display: none; }
-.section.active { display: block; }
-
-/* ── FILTROS ── */
-.filtros-bar {
-  background: #fff;
-  border-bottom: 1px solid var(--hueso);
-  padding: 10px 20px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  flex-wrap: wrap;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-.filtros-label {
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: var(--ink3);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-right: 4px;
-  white-space: nowrap;
-}
-.filtro-btn {
-  padding: 5px 13px;
-  border-radius: 20px;
-  border: 1.5px solid var(--hueso);
-  background: transparent;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: var(--ink2);
-  cursor: pointer;
-  transition: var(--transition);
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  white-space: nowrap;
-}
-.filtro-btn svg { width: 14px; height: 14px; }
-.filtro-btn:hover { border-color: var(--verde2); color: var(--verde2); }
-.filtro-btn.activo {
-  background: var(--verde);
-  border-color: var(--verde);
-  color: #fff;
-}
-.filtro-btn.activo svg { color: #fff; }
-.filtro-clear {
-  margin-left: auto;
-  padding: 5px 12px;
-  border-radius: 20px;
-  border: 1.5px solid var(--rojo);
-  background: transparent;
-  color: var(--rojo);
-  font-family: 'Inter', sans-serif;
-  font-size: 0.72rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: var(--transition);
-  display: none;
-  white-space: nowrap;
-}
-.filtro-clear.visible { display: block; }
-.filtro-clear:hover { background: var(--rojo); color: #fff; }
-
-/* ── LEYENDA ── */
-.leyenda-wrap {
-  background: var(--hueso);
-  border-bottom: 1px solid #ddd;
-  padding: 8px 20px;
-}
-.leyenda {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-  flex-wrap: wrap;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-.ley-item {
-  display: flex; align-items: center; gap: 5px;
-  font-size: 0.72rem; color: var(--ink2);
-}
-.ley-dot {
-  width: 10px; height: 10px; border-radius: 50%;
-}
-.ley-dot.pollo   { background: #d4890a; }
-.ley-dot.carne   { background: #b5291c; }
-.ley-dot.pescado { background: #1a5c9a; }
-.ley-dot.verdura { background: #237d38; }
-.ley-dot.pasta   { background: #6b30b8; }
-.ley-dot.huevo   { background: #c07800; }
-
-/* ── CALENDARIO ── */
-.cal-outer { max-width: 1100px; margin: 0 auto; padding: 20px 16px 40px; }
-
-.cal-nav-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 16px;
-}
-.cal-mes-titulo {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.6rem;
-  color: var(--verde);
-}
-.cal-nav-btn {
-  background: #fff;
-  border: 1.5px solid var(--hueso);
-  border-radius: var(--r-sm);
-  width: 38px; height: 38px;
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer;
-  font-size: 1rem;
-  color: var(--verde);
-  transition: var(--transition);
-  box-shadow: var(--shadow-xs);
-}
-.cal-nav-btn:hover { background: var(--verde); color: #fff; border-color: var(--verde); }
-
-.cal-dow-row {
-  display: grid;
-  grid-template-columns: repeat(7,1fr);
-  gap: 4px;
-  margin-bottom: 4px;
-}
-.cal-dow {
-  text-align: center;
-  font-size: 0.68rem;
-  font-weight: 700;
-  color: var(--ink3);
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-  padding: 4px 0;
-}
-
-.cal-grid {
-  display: grid;
-  grid-template-columns: repeat(7,1fr);
-  gap: 4px;
-}
-
-.cal-cell {
-  background: #fff;
-  border-radius: var(--r-sm);
-  min-height: 118px;
-  border: 1.5px solid transparent;
-  padding: 7px 6px 6px;
-  position: relative;
-  transition: border-color var(--transition), box-shadow var(--transition);
-  box-shadow: var(--shadow-xs);
-}
-.cal-cell:hover { box-shadow: var(--shadow-sm); }
-.cal-cell.vacio { background: transparent; box-shadow: none; }
-.cal-cell.hoy {
-  border-color: var(--dorado);
-  background: var(--dorado-lt);
-}
-.cal-day-num {
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--ink3);
-  margin-bottom: 5px;
-  line-height: 1;
-}
-.cal-cell.hoy .cal-day-num { color: var(--dorado); }
-
-.cal-receta {
-  display: block;
-  width: 100%;
-  text-align: left;
-  border: none;
-  border-radius: 5px;
-  padding: 4px 6px;
-  margin-bottom: 3px;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.67rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: opacity var(--transition), transform 0.1s;
-  line-height: 1.25;
-  position: relative;
-}
-.cal-receta:hover { opacity: 0.82; transform: scale(1.02); }
-.cal-receta:active { transform: scale(0.97); }
-.cal-receta.pollo   { background: #fff3e0; color: #7a4400; }
-.cal-receta.carne   { background: #fdecea; color: #7a1010; }
-.cal-receta.pescado { background: #e3f2fd; color: #0d47a1; }
-.cal-receta.verdura { background: #e8f5e9; color: #1b5e20; }
-.cal-receta.pasta   { background: #ede7f6; color: #4a148c; }
-.cal-receta.huevo   { background: #fff8e1; color: #6d4c00; }
-.cal-receta.filtered-out { opacity: 0.1; pointer-events: none; }
-.cal-receta .r-turno {
-  display: block;
-  font-size: 0.58rem;
-  opacity: 0.6;
-  font-weight: 400;
-  margin-bottom: 1px;
-}
-.fav-star {
-  position: absolute;
-  top: 3px; right: 4px;
-  font-size: 0.65rem;
-  color: var(--dorado);
-  line-height: 1;
-}
-
-/* ── IA SECTION ── */
-.ia-outer {
-  max-width: 860px;
-  margin: 0 auto;
-  padding: 32px 20px 60px;
-}
-
-.ia-hero-card {
-  background: linear-gradient(135deg, var(--verde) 0%, #2d7a34 100%);
-  border-radius: var(--r-lg);
-  padding: 32px 28px;
-  color: #fff;
-  margin-bottom: 28px;
-  position: relative;
-  overflow: hidden;
-}
-.ia-hero-card::before {
-  content: '✨';
-  position: absolute;
-  font-size: 80px;
-  right: 20px; top: -10px;
-  opacity: 0.12;
-}
-.ia-hero-card h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.6rem;
-  margin-bottom: 8px;
-}
-.ia-hero-card p {
-  font-size: 0.85rem;
-  opacity: 0.78;
-  line-height: 1.6;
-  max-width: 480px;
-}
-.ia-powered {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: rgba(255,255,255,0.15);
-  border: 1px solid rgba(255,255,255,0.25);
-  border-radius: 20px;
-  padding: 4px 14px;
-  font-size: 0.74rem;
-  color: rgba(255,255,255,0.9);
-  margin-top: 14px;
-}
-
-/* API KEY SETUP */
-.api-setup {
-  background: var(--dorado-lt);
-  border: 1.5px solid #e8c870;
-  border-radius: var(--r-md);
-  padding: 18px 20px;
-  margin-bottom: 24px;
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-}
-.api-setup-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
-.api-setup-content { flex: 1; }
-.api-setup h3 {
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: #7a5500;
-  margin-bottom: 6px;
-}
-.api-setup p {
-  font-size: 0.78rem;
-  color: #8a6000;
-  line-height: 1.5;
-  margin-bottom: 10px;
-}
-.api-setup a { color: var(--dorado); font-weight: 600; }
-.api-key-row {
-  display: flex; gap: 8px;
-}
-.api-key-input {
-  flex: 1;
-  padding: 8px 12px;
-  border: 1.5px solid #d4a830;
-  border-radius: var(--r-sm);
-  font-family: 'Inter', sans-serif;
-  font-size: 0.8rem;
-  background: #fff;
-  color: var(--ink);
-  outline: none;
-}
-.api-key-input:focus { border-color: var(--verde2); }
-.btn-save-key {
-  padding: 8px 16px;
-  background: var(--verde);
-  color: #fff;
-  border: none;
-  border-radius: var(--r-sm);
-  font-family: 'Inter', sans-serif;
-  font-size: 0.8rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: var(--transition);
-  white-space: nowrap;
-}
-.btn-save-key:hover { background: var(--verde2); }
-.api-status {
-  margin-top: 6px;
-  font-size: 0.75rem;
-  font-weight: 600;
-}
-.api-status.ok { color: #1b5e20; }
-.api-status.err { color: var(--rojo); }
-
-/* INGREDIENT INPUT */
-.ing-panel {
-  background: #fff;
-  border-radius: var(--r-lg);
-  padding: 24px;
-  box-shadow: var(--shadow-sm);
-  margin-bottom: 20px;
-}
-.ing-panel h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.15rem;
-  color: var(--verde);
-  margin-bottom: 6px;
-}
-.ing-panel > p {
-  font-size: 0.8rem;
-  color: var(--ink3);
-  margin-bottom: 16px;
-  line-height: 1.5;
-}
-
-.ing-chips-wrap {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 7px;
-  min-height: 40px;
-  padding: 10px;
-  background: var(--crema);
-  border-radius: var(--r-sm);
-  border: 1.5px solid var(--hueso);
-  margin-bottom: 12px;
-  cursor: text;
-  transition: border-color var(--transition);
-}
-.ing-chips-wrap:focus-within { border-color: var(--verde2); }
-.ing-chip-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  background: var(--verde-light);
-  color: var(--verde);
-  border-radius: 20px;
-  padding: 4px 10px;
-  font-size: 0.78rem;
-  font-weight: 500;
-}
-.ing-chip-x {
-  background: none; border: none; cursor: pointer;
-  color: var(--verde2); font-size: 0.8rem; line-height: 1;
-  padding: 0 1px;
-}
-.ing-type-input {
-  border: none; outline: none;
-  background: transparent;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.82rem;
-  color: var(--ink);
-  min-width: 120px;
-  flex: 1;
-}
-.ing-type-input::placeholder { color: var(--ink3); }
-
-.ing-quick-label {
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: var(--ink3);
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-  margin-bottom: 8px;
-}
-.ing-quick-btns {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-bottom: 18px;
-}
-.ing-quick-btn {
-  padding: 4px 12px;
-  border-radius: 16px;
-  border: 1.5px solid var(--hueso);
-  background: #fff;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: var(--ink2);
-  cursor: pointer;
-  transition: var(--transition);
-}
-.ing-quick-btn:hover {
-  background: var(--verde-light);
-  border-color: var(--verde2);
-  color: var(--verde);
-}
-
-/* OPTIONS ROW */
-.ia-options-row {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  align-items: center;
-  margin-bottom: 16px;
-}
-.ia-select {
-  padding: 8px 12px;
-  border: 1.5px solid var(--hueso);
-  border-radius: var(--r-sm);
-  font-family: 'Inter', sans-serif;
-  font-size: 0.8rem;
-  color: var(--ink);
-  background: #fff;
-  outline: none;
-  cursor: pointer;
-}
-.ia-select:focus { border-color: var(--verde2); }
-
-.btn-generar {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 11px 24px;
-  background: var(--verde);
-  color: #fff;
-  border: none;
-  border-radius: var(--r-sm);
-  font-family: 'Inter', sans-serif;
-  font-size: 0.9rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: var(--transition);
-  box-shadow: 0 2px 10px rgba(27,77,30,0.35);
-  letter-spacing: 0.2px;
-}
-.btn-generar:hover { background: var(--verde2); transform: translateY(-1px); }
-.btn-generar:active { transform: translateY(0); }
-.btn-generar:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
-.btn-generar .spinner {
-  width: 16px; height: 16px;
-  border: 2px solid rgba(255,255,255,0.3);
-  border-top-color: #fff;
-  border-radius: 50%;
-  animation: spin 0.7s linear infinite;
-  display: none;
-}
-.btn-generar.loading .spinner { display: block; }
-.btn-generar.loading .btn-txt { opacity: 0.7; }
-@keyframes spin { to { transform: rotate(360deg); } }
-
-/* IA RESULTS */
-.ia-results { margin-top: 8px; }
-.ia-results-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 16px;
-}
-.ia-results-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.15rem;
-  color: var(--verde);
-}
-.ia-results-sub {
-  font-size: 0.75rem;
-  color: var(--ink3);
-  margin-top: 2px;
-}
-
-.recetas-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 16px;
-}
-
-.receta-card {
-  background: #fff;
-  border-radius: var(--r-md);
-  overflow: hidden;
-  box-shadow: var(--shadow-sm);
-  border: 1.5px solid transparent;
-  transition: box-shadow var(--transition), transform var(--transition), border-color var(--transition);
-  cursor: pointer;
-}
-.receta-card:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-2px);
-  border-color: var(--verde-light);
-}
-.receta-card-top {
-  height: 90px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-.receta-card-top.pollo   { background: #fff3e0; }
-.receta-card-top.carne   { background: var(--rojo-lt); }
-.receta-card-top.pescado { background: var(--azul-lt); }
-.receta-card-top.verdura { background: var(--verde-light); }
-.receta-card-top.pasta   { background: var(--violeta-lt); }
-.receta-card-top.huevo   { background: #fff8e1; }
-.receta-cat-icon {
-  width: 52px; height: 52px;
-  opacity: 0.55;
-}
-.receta-cat-icon.pollo   { color: #d4890a; }
-.receta-cat-icon.carne   { color: var(--rojo); }
-.receta-cat-icon.pescado { color: var(--azul); }
-.receta-cat-icon.verdura { color: #237d38; }
-.receta-cat-icon.pasta   { color: var(--violeta); }
-.receta-cat-icon.huevo   { color: #c07800; }
-
-.receta-card-fav {
-  position: absolute;
-  top: 8px; right: 10px;
-  background: none; border: none;
-  font-size: 1.1rem;
-  cursor: pointer;
-  opacity: 0.4;
-  transition: opacity var(--transition), transform 0.15s;
-  line-height: 1;
-}
-.receta-card-fav:hover, .receta-card-fav.fav { opacity: 1; }
-.receta-card-fav.fav { transform: scale(1.2); }
-
-.receta-card-body { padding: 14px 16px 16px; }
-.receta-card-nombre {
-  font-family: 'Playfair Display', serif;
-  font-size: 1rem;
-  line-height: 1.25;
-  color: var(--ink);
-  margin-bottom: 8px;
-}
-.receta-card-meta {
-  display: flex; gap: 8px; margin-bottom: 10px;
-}
-.rcmeta {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 0.72rem;
-  color: var(--ink3);
-}
-.rcmeta svg { width: 12px; height: 12px; }
-.receta-card-tags {
-  display: flex; flex-wrap: wrap; gap: 4px;
-}
-.r-tag {
-  background: var(--crema);
-  border-radius: 10px;
-  padding: 2px 8px;
-  font-size: 0.68rem;
-  color: var(--ink2);
-  font-weight: 500;
-}
-
-/* SKELETON LOADER */
-.skeleton-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 16px;
-}
-.skeleton-card {
-  background: #fff;
-  border-radius: var(--r-md);
-  overflow: hidden;
-  box-shadow: var(--shadow-xs);
-}
-.skeleton-top {
-  height: 90px;
-  background: linear-gradient(90deg, #f0ebe0 25%, #e8e2d5 50%, #f0ebe0 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.4s infinite;
-}
-.skeleton-body { padding: 14px 16px; }
-.skeleton-line {
-  height: 12px;
-  border-radius: 6px;
-  background: linear-gradient(90deg, #f0ebe0 25%, #e8e2d5 50%, #f0ebe0 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.4s infinite;
-  margin-bottom: 8px;
-}
-.skeleton-line.w70 { width: 70%; }
-.skeleton-line.w50 { width: 50%; }
-@keyframes shimmer {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
-}
-
-/* EMPTY / ERROR STATE */
-.state-msg {
-  text-align: center;
-  padding: 48px 20px;
-  color: var(--ink3);
-}
-.state-msg .state-icon { font-size: 2.5rem; margin-bottom: 12px; }
-.state-msg h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--ink2); margin-bottom: 6px; }
-.state-msg p { font-size: 0.82rem; line-height: 1.6; max-width: 380px; margin: 0 auto; }
-
-/* LISTA COMPRAS */
-.lista-header-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 14px;
-}
-.lista-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.1rem;
-  color: var(--verde);
-}
-.btn-lista {
-  padding: 7px 16px;
-  border-radius: var(--r-sm);
-  border: 1.5px solid var(--verde);
-  background: transparent;
-  color: var(--verde);
-  font-family: 'Inter', sans-serif;
-  font-size: 0.78rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: var(--transition);
-}
-.btn-lista:hover { background: var(--verde); color: #fff; }
-
-/* FAVORITOS SECTION */
-.favs-outer {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 28px 20px 60px;
-}
-.favs-outer h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.5rem;
-  color: var(--verde);
-  margin-bottom: 6px;
-}
-.favs-outer .sub {
-  font-size: 0.82rem;
-  color: var(--ink3);
-  margin-bottom: 24px;
-}
-
-/* ── POPUP ── */
-.popup-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(10,20,10,0.6);
-  z-index: 300;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  backdrop-filter: blur(3px);
-}
-.popup-overlay.visible { display: flex; }
-.popup-box {
-  background: #fff;
-  border-radius: var(--r-lg);
-  max-width: 520px;
-  width: 100%;
-  max-height: 88vh;
-  overflow-y: auto;
-  box-shadow: var(--shadow-lg);
-  animation: popIn 0.22s cubic-bezier(.34,1.36,.64,1);
-  position: relative;
-}
-@keyframes popIn {
-  from { opacity: 0; transform: scale(0.86) translateY(10px); }
-  to   { opacity: 1; transform: scale(1) translateY(0); }
-}
-.popup-color-bar {
-  height: 6px;
-  border-radius: var(--r-lg) var(--r-lg) 0 0;
-}
-.popup-color-bar.pollo   { background: #d4890a; }
-.popup-color-bar.carne   { background: var(--rojo); }
-.popup-color-bar.pescado { background: var(--azul); }
-.popup-color-bar.verdura { background: #237d38; }
-.popup-color-bar.pasta   { background: var(--violeta); }
-.popup-color-bar.huevo   { background: #c07800; }
-
-.popup-header {
-  padding: 18px 20px 12px;
-  border-bottom: 1px solid var(--hueso);
-  position: sticky;
-  top: 0;
-  background: #fff;
-  z-index: 2;
-}
-.popup-tipo-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 5px;
-}
-.popup-tipo {
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 1.2px;
-  text-transform: uppercase;
-  color: var(--ink3);
-}
-.popup-close {
-  background: var(--hueso);
-  border: none;
-  border-radius: 50%;
-  width: 28px; height: 28px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 0.9rem;
-  cursor: pointer;
-  color: var(--ink2);
-  transition: var(--transition);
-  flex-shrink: 0;
-}
-.popup-close:hover { background: #ddd; }
-.popup-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.3rem;
-  color: var(--verde);
-  line-height: 1.2;
-  margin-bottom: 10px;
-}
-.popup-meta-row {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  align-items: center;
-}
-.popup-meta-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 0.74rem;
-  color: var(--ink2);
-  background: var(--crema);
-  border-radius: 12px;
-  padding: 3px 10px;
-}
-.popup-meta-badge svg { width: 12px; height: 12px; }
-.popup-fav-btn {
-  margin-left: auto;
-  background: none;
-  border: 1.5px solid var(--hueso);
-  border-radius: 20px;
-  padding: 3px 12px;
-  font-size: 0.74rem;
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  cursor: pointer;
-  color: var(--ink2);
-  transition: var(--transition);
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-.popup-fav-btn:hover { border-color: var(--dorado); color: var(--dorado); }
-.popup-fav-btn.fav { border-color: var(--dorado); color: var(--dorado); background: var(--dorado-lt); }
-
-.popup-body { padding: 18px 20px 22px; }
-.popup-section {
-  margin-bottom: 18px;
-}
-.popup-section-title {
-  font-size: 0.68rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 1.2px;
-  color: var(--ink3);
-  margin-bottom: 10px;
-}
-.ing-chips-display {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-.ing-chip-display {
-  background: var(--verde-light);
-  color: var(--verde);
-  border-radius: 20px;
-  padding: 4px 12px;
-  font-size: 0.78rem;
-  font-weight: 500;
-}
-.pasos-ol {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.paso-item {
-  display: flex;
-  gap: 13px;
-  align-items: flex-start;
-}
-.paso-num {
-  background: var(--verde);
-  color: #fff;
-  border-radius: 50%;
-  width: 26px; height: 26px;
-  min-width: 26px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 0.72rem;
-  font-weight: 700;
-  margin-top: 1px;
-  flex-shrink: 0;
-}
-.paso-txt {
-  font-size: 0.87rem;
-  line-height: 1.55;
-  color: var(--ink);
-  padding-top: 3px;
-}
-
-/* TOAST */
-.toast {
-  position: fixed;
-  bottom: 24px;
-  left: 50%;
-  transform: translateX(-50%) translateY(80px);
-  background: var(--carbon);
-  color: #fff;
-  border-radius: 24px;
-  padding: 10px 22px;
-  font-size: 0.82rem;
-  font-weight: 500;
-  z-index: 400;
-  transition: transform 0.3s cubic-bezier(.34,1.36,.64,1), opacity 0.3s;
-  opacity: 0;
-  white-space: nowrap;
-  pointer-events: none;
-  box-shadow: var(--shadow-md);
-}
-.toast.show {
-  transform: translateX(-50%) translateY(0);
-  opacity: 1;
-}
-
-/* FOOTER */
-footer {
-  background: var(--carbon);
-  color: rgba(255,255,255,0.45);
-  text-align: center;
-  padding: 20px;
-  font-size: 0.75rem;
-  line-height: 1.6;
-}
-footer a { color: rgba(255,255,255,0.6); }
-
-/* RESPONSIVE */
-@media (max-width: 700px) {
-  .cal-cell { min-height: 78px; padding: 4px; }
-  .cal-receta { font-size: 0.6rem; padding: 3px 4px; }
-  .cal-receta .r-turno { display: none; }
-  .nav-links { display: none; }
-  .tabs { gap: 0; }
-  .tab-btn { padding: 12px 14px; font-size: 0.75rem; }
-}
-@media (max-width: 480px) {
-  .hero h1 { font-size: 1.6rem; }
-  .hero-badges { display: none; }
-  .cal-cell { min-height: 62px; }
-  .cal-dow { font-size: 0.58rem; }
-}
-</style>
-</head>
-<body>
-
-<!-- NAV -->
-<nav class="nav">
-  <a class="nav-brand" href="#">
-    <div class="nav-logo">🍖</div>
-    <span class="nav-title">La Cocina Argentina</span>
-  </a>
-  <div class="nav-links">
-    <button class="nav-link active" onclick="showSection('calendario', this)">Calendario</button>
-    <button class="nav-link" onclick="showSection('ia', this)">Buscar con IA</button>
-    <button class="nav-link" onclick="showSection('favoritos', this)">⭐ Favoritos</button>
-  </div>
-</nav>
-
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-pattern"></div>
-  <div class="hero-eyebrow">Para una pareja que cocina bien y rápido</div>
-  <h1>Menú mensual de<br><em>cocina argentina</em></h1>
-  <p class="hero-sub">Recetas caseras típicas, simples y nutritivas. Con IA para aprovechar lo que tenés en la heladera.</p>
-  <div class="hero-badges">
-    <span class="hbadge">⏱ Máx. 45 min</span>
-    <span class="hbadge">👫 2 porciones</span>
-    <span class="hbadge">🛒 Ingredientes fáciles</span>
-    <span class="hbadge">🤖 Potenciado por Gemini</span>
-  </div>
-</div>
-
-<!-- TABS -->
-<div class="tabs-wrap">
-  <div class="tabs">
-    <button class="tab-btn active" onclick="showSection('calendario', this)">
-      📅 Calendario mensual
-    </button>
-    <button class="tab-btn" onclick="showSection('ia', this)">
-      🤖 Recetas por IA
-    </button>
-    <button class="tab-btn" onclick="showSection('favoritos', this)">
-      ⭐ Mis favoritos
-    </button>
-  </div>
-</div>
-
-<!-- ══ SECCIÓN CALENDARIO ══ -->
-<div id="sec-calendario" class="section active">
-  <div style="background:#fff; border-bottom: 1px solid var(--hueso);">
-    <div class="filtros-bar">
-      <span class="filtros-label">Filtrar:</span>
-      <button class="filtro-btn activo" data-f="todos" onclick="setFiltro('todos',this)">Todos</button>
-      <button class="filtro-btn" data-f="pollo"   onclick="setFiltro('pollo',this)">
-        <svg class="tab-icon"><use href="#icon-pollo"/></svg> Pollo
-      </button>
-      <button class="filtro-btn" data-f="carne"   onclick="setFiltro('carne',this)">
-        <svg class="tab-icon"><use href="#icon-carne"/></svg> Carne
-      </button>
-      <button class="filtro-btn" data-f="pescado" onclick="setFiltro('pescado',this)">
-        <svg class="tab-icon"><use href="#icon-pescado"/></svg> Pescado
-      </button>
-      <button class="filtro-btn" data-f="pasta"   onclick="setFiltro('pasta',this)">
-        <svg class="tab-icon"><use href="#icon-pasta"/></svg> Pasta
-      </button>
-      <button class="filtro-btn" data-f="verdura" onclick="setFiltro('verdura',this)">
-        <svg class="tab-icon"><use href="#icon-verdura"/></svg> Verdura
-      </button>
-      <button class="filtro-btn" data-f="huevo"   onclick="setFiltro('huevo',this)">
-        <svg class="tab-icon"><use href="#icon-huevo"/></svg> Tarta/Huevo
-      </button>
-      <button class="filtro-clear" id="filtrosClear" onclick="setFiltro('todos', document.querySelector('[data-f=todos]'))">✕ Limpiar</button>
-    </div>
-  </div>
-  <div class="leyenda-wrap">
-    <div class="leyenda">
-      <span class="filtros-label" style="margin-right:6px">Categorías:</span>
-      <div class="ley-item"><div class="ley-dot pollo"></div>Pollo</div>
-      <div class="ley-item"><div class="ley-dot carne"></div>Carne</div>
-      <div class="ley-item"><div class="ley-dot pescado"></div>Pescado</div>
-      <div class="ley-item"><div class="ley-dot verdura"></div>Verdura</div>
-      <div class="ley-item"><div class="ley-dot pasta"></div>Pasta</div>
-      <div class="ley-item"><div class="ley-dot huevo"></div>Tarta/Huevo</div>
-      <span style="margin-left:auto; font-size:0.7rem; color:var(--ink3)">Hacé clic en cualquier receta para ver el paso a paso</span>
-    </div>
-  </div>
-  <div class="cal-outer">
-    <div class="cal-nav-row">
-      <button class="cal-nav-btn" onclick="cambiarMes(-1)" title="Mes anterior">◀</button>
-      <h2 class="cal-mes-titulo" id="calTitulo"></h2>
-      <button class="cal-nav-btn" onclick="cambiarMes(1)" title="Mes siguiente">▶</button>
-    </div>
-    <div class="cal-dow-row">
-      <div class="cal-dow">Dom</div><div class="cal-dow">Lun</div>
-      <div class="cal-dow">Mar</div><div class="cal-dow">Mié</div>
-      <div class="cal-dow">Jue</div><div class="cal-dow">Vie</div>
-      <div class="cal-dow">Sáb</div>
-    </div>
-    <div class="cal-grid" id="calGrid"></div>
-  </div>
-</div>
-
-<!-- ══ SECCIÓN IA ══ -->
-<div id="sec-ia" class="section">
-  <div class="ia-outer">
-
-    <div class="ia-hero-card">
-      <h2>¿Qué tenés en casa?</h2>
-      <p>Contame qué ingredientes tenés y Gemini te sugiere recetas argentinas caseras que podés hacer ahora mismo.</p>
-      <div class="ia-powered">✨ Potenciado por Google Gemini 1.5 Flash — gratis</div>
-    </div>
-
-    <!-- API KEY SETUP -->
-    <div class="api-setup" id="apiSetup">
-      <div class="api-setup-icon">🔑</div>
-      <div class="api-setup-content">
-        <h3>Configurar API Key de Gemini (gratis)</h3>
-        <p>Conseguí tu clave en <a href="https://aistudio.google.com" target="_blank">aistudio.google.com</a> → "Get API Key" → es gratis, sin tarjeta. Se guarda solo en tu navegador.</p>
-        <div class="api-key-row">
-          <input type="password" class="api-key-input" id="apiKeyInput" placeholder="AIzaSy...">
-          <button class="btn-save-key" onclick="guardarApiKey()">Guardar</button>
-        </div>
-        <div class="api-status" id="apiStatus"></div>
-      </div>
-    </div>
-
-    <!-- INGREDIENTES -->
-    <div class="ing-panel">
-      <h3>Tus ingredientes</h3>
-      <p>Escribí un ingrediente y presioná Enter. Agregá todo lo que tenés disponible.</p>
-
-      <div class="ing-chips-wrap" id="ingWrap" onclick="document.getElementById('ingInput').focus()">
-        <input type="text" class="ing-type-input" id="ingInput"
-          placeholder="Escribí un ingrediente y Enter..."
-          onkeydown="handleIngInput(event)">
-      </div>
-
-      <div class="ing-quick-label">Rápido — agregá de la lista:</div>
-      <div class="ing-quick-btns">
-        <button class="ing-quick-btn" onclick="addIng('pollo')">🍗 Pollo</button>
-        <button class="ing-quick-btn" onclick="addIng('carne picada')">🥩 Carne picada</button>
-        <button class="ing-quick-btn" onclick="addIng('bife')">🥩 Bife</button>
-        <button class="ing-quick-btn" onclick="addIng('merluza')">🐟 Merluza</button>
-        <button class="ing-quick-btn" onclick="addIng('atún')">🐟 Atún</button>
-        <button class="ing-quick-btn" onclick="addIng('papas')">🥔 Papas</button>
-        <button class="ing-quick-btn" onclick="addIng('zapallo')">🎃 Zapallo</button>
-        <button class="ing-quick-btn" onclick="addIng('zanahoria')">🥕 Zanahoria</button>
-        <button class="ing-quick-btn" onclick="addIng('espinaca')">🥬 Espinaca</button>
-        <button class="ing-quick-btn" onclick="addIng('tomate')">🍅 Tomate</button>
-        <button class="ing-quick-btn" onclick="addIng('cebolla')">🧅 Cebolla</button>
-        <button class="ing-quick-btn" onclick="addIng('morrón')">🌶️ Morrón</button>
-        <button class="ing-quick-btn" onclick="addIng('fideos')">🍝 Fideos</button>
-        <button class="ing-quick-btn" onclick="addIng('arroz')">🍚 Arroz</button>
-        <button class="ing-quick-btn" onclick="addIng('huevos')">🥚 Huevos</button>
-        <button class="ing-quick-btn" onclick="addIng('queso')">🧀 Queso</button>
-        <button class="ing-quick-btn" onclick="addIng('tapa de tarta')">🥧 Tapa tarta</button>
-        <button class="ing-quick-btn" onclick="addIng('tapas empanadas')">🫓 Tapas empanadas</button>
-      </div>
-
-      <div class="ia-options-row">
-        <select class="ia-select" id="selCantidad">
-          <option value="3">3 recetas</option>
-          <option value="4">4 recetas</option>
-          <option value="5">5 recetas</option>
-        </select>
-        <select class="ia-select" id="selTiempo">
-          <option value="sin límite">Cualquier tiempo</option>
-          <option value="menos de 20 minutos">Menos de 20 min</option>
-          <option value="menos de 30 minutos">Menos de 30 min</option>
-          <option value="menos de 45 minutos">Menos de 45 min</option>
-        </select>
-        <select class="ia-select" id="selTipo">
-          <option value="cualquier tipo">Cualquier tipo</option>
-          <option value="almuerzo">Solo almuerzos</option>
-          <option value="cena">Solo cenas</option>
-        </select>
-        <button class="btn-generar" id="btnGenerar" onclick="generarRecetas()">
-          <div class="spinner"></div>
-          <span class="btn-txt">✨ Generar recetas</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- RESULTADOS IA -->
-    <div class="ia-results" id="iaResults"></div>
-
-  </div>
-</div>
-
-<!-- ══ SECCIÓN FAVORITOS ══ -->
-<div id="sec-favoritos" class="section">
-  <div class="favs-outer">
-    <h2>⭐ Mis recetas favoritas</h2>
-    <p class="sub">Las recetas que guardaste aparecen acá. Hacé clic para ver el paso a paso.</p>
-    <div class="recetas-grid" id="favsGrid"></div>
-    <div class="state-msg" id="favsEmpty" style="display:none">
-      <div class="state-icon">⭐</div>
-      <h3>Todavía no tenés favoritas</h3>
-      <p>Hacé clic en la estrella ★ de cualquier receta para guardarla acá.</p>
-    </div>
-  </div>
-</div>
-
-<!-- POPUP -->
-<div class="popup-overlay" id="popupOverlay" onclick="popupOverlayClick(event)">
-  <div class="popup-box" id="popupBox">
-    <div class="popup-color-bar" id="popColorBar"></div>
-    <div class="popup-header">
-      <div class="popup-tipo-row">
-        <span class="popup-tipo" id="popTipo"></span>
-        <button class="popup-close" onclick="cerrarPopup()">✕</button>
-      </div>
-      <div class="popup-title" id="popTitle"></div>
-      <div class="popup-meta-row">
-        <span class="popup-meta-badge" id="popTiempo">
-          <svg><use href="#icon-clock"/></svg> <span id="popTiempoTxt"></span>
-        </span>
-        <span class="popup-meta-badge">
-          <svg><use href="#icon-chef"/></svg> 2 porciones
-        </span>
-        <button class="popup-fav-btn" id="popFavBtn" onclick="toggleFavPopup()">★ Guardar</button>
-      </div>
-    </div>
-    <div class="popup-body">
-      <div class="popup-section">
-        <div class="popup-section-title">🛒 Ingredientes</div>
-        <div class="ing-chips-display" id="popIngs"></div>
-      </div>
-      <div class="popup-section">
-        <div class="popup-section-title">👨‍🍳 Paso a paso</div>
-        <ol class="pasos-ol" id="popPasos"></ol>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- TOAST -->
-<div class="toast" id="toast"></div>
-
-<!-- FOOTER -->
-<footer>
-  <p>La Cocina Argentina · Menú mensual con IA · <a href="https://aistudio.google.com" target="_blank">Gemini 1.5 Flash</a> (gratis)</p>
-  <p style="margin-top:4px">Desplegado en <a href="https://pages.github.com" target="_blank">GitHub Pages</a> · Sin servidor · Sin costo</p>
-</footer>
-
-<script>
-// ════════════════════════════════════════
-//  DATOS — BASE DE RECETAS
-// ════════════════════════════════════════
-const RECETAS_BASE = {
-  "milanesa-pollo":   { nombre:"Milanesas de pollo con puré", categoria:"pollo", tiempo:"30 min", ingredientes:["Pechugas","Pan rallado","Huevo","Ajo","Papas","Manteca","Leche"], pasos:["Aplanar las pechugas a 1 cm de grosor con un mazo de cocina.","Pasar cada pechuga por huevo batido con ajo y sal, luego cubrir con pan rallado presionando bien.","Calentar aceite en sartén a fuego medio-alto. Cocinar 3-4 min por lado hasta dorar.","Hervir las papas peladas en agua con sal 20 min hasta tiernas. Pisar con manteca y leche caliente.","Servir las milanesas sobre el puré con unas gotas de limón."] },
-  "churrasco-pure":   { nombre:"Churrasco con puré de papas", categoria:"carne", tiempo:"25 min", ingredientes:["Bife de chorizo","Papas","Manteca","Leche","Ajo","Sal y pimienta"], pasos:["Hervir las papas peladas y cortadas en agua con sal por 20 min.","Calentar plancha o parrilla a fuego muy alto.","Salar el bife justo antes de ponerlo. Cocinar 3-4 min por lado para punto medio.","Pisar las papas con manteca y leche caliente hasta lograr un puré suave.","Servir el churrasco sobre el puré con chimichurri al costado."] },
-  "empanadas-carne":  { nombre:"Empanadas de carne al horno", categoria:"carne", tiempo:"40 min", ingredientes:["Tapas de empanadas","Carne picada","Cebolla","Morrón","Huevo duro","Aceitunas","Pimentón","Comino"], pasos:["Saltear cebolla y morrón picados en aceite 5 min.","Agregar la carne picada, desgranando bien. Cocinar 8 min. Condimentar con pimentón, comino, sal y pimienta.","Dejar enfriar el relleno, mezclar con huevo duro picado y aceitunas.","Colocar una cucharada de relleno en cada tapa, doblar y repasar el borde con tenedor.","Hornear a 200°C por 20-25 min hasta dorar."] },
-  "pollo-verdeo":     { nombre:"Pollo al verdeo con arroz", categoria:"pollo", tiempo:"35 min", ingredientes:["Muslos de pollo","Cebolla de verdeo","Crema de leche","Ajo","Arroz","Aceite"], pasos:["Dorar los muslos de pollo salpimentados en sartén con aceite, 5 min por lado.","Retirar el pollo. En la misma sartén saltear la cebolla de verdeo y el ajo 2 min.","Agregar la crema de leche, revolver y volver a poner el pollo. Cocinar a fuego bajo 20 min tapado.","Cocinar el arroz en agua con sal según el paquete.","Servir el pollo con la salsa verde sobre el arroz."] },
-  "fideos-tuco":      { nombre:"Fideos con tuco de carne", categoria:"pasta", tiempo:"30 min", ingredientes:["Fideos","Carne picada","Tomate en lata","Cebolla","Ajo","Zanahoria","Queso rallado"], pasos:["Saltear cebolla, ajo y zanahoria rallada en aceite 5 min.","Agregar la carne picada desgranadando bien, cocinar 7 min.","Incorporar el tomate en lata, sal, orégano y una pizca de azúcar. Cocinar a fuego bajo 15 min.","Hervir los fideos en agua con sal y escurrir.","Servir la pasta con el tuco y abundante queso rallado."] },
-  "merluza-plancha":  { nombre:"Merluza a la plancha con papas", categoria:"pescado", tiempo:"25 min", ingredientes:["Filetes de merluza","Papas","Ajo","Limón","Perejil","Aceite de oliva"], pasos:["Hervir las papas en rodajas hasta tiernas, 15 min. Escurrir.","Calentar sartén con aceite de oliva a fuego alto.","Cocinar los filetes con sal y pimienta 3 min por lado.","Calentar un chorrito de aceite con ajo laminado hasta dorar y volcar sobre el pescado.","Servir con las papas y perejil picado, terminar con limón."] },
-  "tarta-espinaca":   { nombre:"Tarta de espinaca y queso", categoria:"huevo", tiempo:"40 min", ingredientes:["Tapa de tarta","Espinaca","Queso cremoso","Huevos","Cebolla","Nuez moscada"], pasos:["Precalentar horno a 180°C. Disponer la tapa en molde y pinchar con tenedor.","Blanquear la espinaca 2 min en agua hirviendo, escurrir y picar bien.","Saltear cebolla 5 min. Mezclar con espinaca, queso cremoso, huevos batidos, sal y nuez moscada.","Volcar el relleno sobre la masa.","Hornear 30-35 min hasta cuajado y superficie dorada."] },
-  "pollo-horno":      { nombre:"Pollo al horno con papas", categoria:"pollo", tiempo:"50 min", ingredientes:["Trozos de pollo","Papas","Ajo","Romero","Aceite de oliva","Limón"], pasos:["Precalentar el horno a 200°C.","Colocar papas en gajos y pollo en asadera.","Rociar con aceite de oliva, jugo de limón, ajo picado, sal, pimienta y romero.","Mezclar para impregnar todo.","Hornear 45-50 min dando vuelta el pollo a mitad de cocción hasta dorar."] },
-  "carne-cacerola":   { nombre:"Carne a la cacerola", categoria:"carne", tiempo:"50 min", ingredientes:["Paleta o roast beef","Papas","Zanahoria","Cebolla","Vino blanco","Caldo","Laurel"], pasos:["Sellar la carne en cacerola con aceite hasta dorar todos los lados.","Retirar y saltear cebolla y ajo 3 min en el mismo aceite.","Volver la carne con papas, zanahoria en trozos, laurel, vino y caldo hasta cubrir.","Hervir, tapar y cocinar a fuego bajo 40-45 min.","Cortar la carne en fetas y servir con las verduras y el jugo."] },
-  "locro-chorizo":    { nombre:"Locro express con chorizo", categoria:"carne", tiempo:"45 min", ingredientes:["Porotos en lata","Chorizo colorado","Zapallo","Papa","Cebolla","Pimentón","Comino"], pasos:["Cortar el chorizo en rodajas y dorar en olla 3 min.","Agregar cebolla picada y saltear 4 min.","Incorporar zapallo y papa en cubos.","Agregar los porotos escurridos, pimentón, comino, laurel y agua hasta cubrir.","Cocinar 30-35 min a fuego medio hasta tiernas las verduras. Ajustar sal."] },
-  "noquis-salvia":    { nombre:"Ñoquis con manteca y salvia", categoria:"pasta", tiempo:"15 min", ingredientes:["Ñoquis","Manteca","Salvia fresca","Queso rallado","Sal y pimienta"], pasos:["Hervir agua con sal en olla grande.","Cocinar los ñoquis hasta que floten (3-4 min). Retirar con espumadera.","Derretir manteca en sartén hasta espumar. Agregar hojas de salvia 1 min.","Verter sobre los ñoquis y mezclar bien.","Espolvorear queso rallado y servir de inmediato."] },
-  "tortilla-papa":    { nombre:"Tortilla de papas y morrón", categoria:"huevo", tiempo:"25 min", ingredientes:["Papas","Huevos","Morrón rojo","Cebolla","Aceite","Sal"], pasos:["Pelar y cortar las papas en rodajas finas, la cebolla y el morrón en juliana.","Freír las papas con cebolla en aceite a fuego medio 12 min hasta tiernas.","Escurrir y mezclar con huevos batidos, morrón, sal.","Volcar en sartén con aceite caliente. Cocinar a fuego bajo hasta que los bordes cuajen.","Dar vuelta con un plato y cocinar el otro lado 3 min más."] },
-  "salmon-espinaca":  { nombre:"Salmón a la plancha con espinaca", categoria:"pescado", tiempo:"20 min", ingredientes:["Filetes de salmón","Espinaca","Ajo","Aceite de oliva","Limón","Sal y pimienta"], pasos:["Calentar sartén con aceite de oliva a fuego medio-alto.","Cocinar el salmón con piel hacia abajo 4 min, dar vuelta y 3 min más.","En otra sartén calentar aceite con ajo picado 1 min.","Agregar espinaca fresca y saltear 2-3 min hasta que baje su volumen. Salar.","Servir la espinaca como base con el salmón encima y jugo de limón."] },
-  "crema-zapallo":    { nombre:"Crema de zapallo", categoria:"verdura", tiempo:"25 min", ingredientes:["Zapallo","Cebolla","Ajo","Crema de leche","Caldo de verdura","Pan tostado"], pasos:["Pelar el zapallo en cubos, picar cebolla y ajo.","Rehogar cebolla y ajo en olla con aceite 4 min.","Agregar zapallo y caldo. Cocinar 20 min hasta blando.","Procesar con mixer hasta obtener crema lisa.","Incorporar la crema de leche, calentar 2 min. Servir con pan tostado."] },
-  "pizza-casera":     { nombre:"Pizza casera de queso y tomate", categoria:"pasta", tiempo:"30 min", ingredientes:["Masa lista para pizza","Salsa de tomate","Mozzarella","Orégano","Aceitunas","Aceite de oliva"], pasos:["Precalentar el horno a 220°C con la asadera adentro.","Estirar la masa sobre la asadera caliente, pinchar con tenedor.","Cubrir con salsa de tomate dejando 1 cm de borde.","Distribuir mozzarella, aceitunas, orégano y un hilo de aceite de oliva.","Hornear 12-15 min hasta que los bordes doren y el queso burbujee."] },
-  "pasta-bolognesa":  { nombre:"Fideos con salsa bolognesa", categoria:"pasta", tiempo:"35 min", ingredientes:["Fideos","Carne picada","Tomate en lata","Zanahoria","Cebolla","Ajo","Queso rallado","Vino tinto"], pasos:["Saltear cebolla, zanahoria y ajo picados en aceite 6 min.","Agregar carne picada desgranadando bien. Cocinar 8 min.","Agregar un chorrito de vino tinto, evaporar 2 min.","Incorporar tomate en lata, sal, pimienta y orégano. Cocinar 20 min a fuego bajo.","Hervir los fideos, escurrir y mezclar con la salsa. Queso rallado generoso."] },
-  "atun-garbanzos":   { nombre:"Ensalada de atún con garbanzos", categoria:"pescado", tiempo:"10 min", ingredientes:["Atún en lata","Garbanzos en lata","Tomate","Lechuga","Cebolla morada","Limón","Aceite de oliva"], pasos:["Escurrir el atún y los garbanzos.","Picar el tomate en cubitos y la cebolla morada en pluma fina.","Romper la lechuga en trozos en un bol amplio.","Agregar atún, garbanzos, tomate y cebolla.","Aliñar con aceite de oliva, zumo de limón, sal y pimienta. Mezclar y servir."] },
-  "revuelto-espinaca":{ nombre:"Revuelto de espinaca con huevos", categoria:"huevo", tiempo:"15 min", ingredientes:["Huevos","Espinaca","Tomate","Morrón","Queso rallado","Pan","Sal y pimienta"], pasos:["Saltear el morrón en cubitos 3 min en sartén con aceite.","Agregar la espinaca fresca y cocinar 2 min.","Incorporar el tomate picado y mezclar.","Batir los huevos con sal y pimienta, volcar sobre las verduras.","Revolver a fuego bajo hasta que cuaje. Servir sobre tostadas con queso rallado."] },
-  "puchero-carne":    { nombre:"Puchero de carne con verduras", categoria:"carne", tiempo:"45 min", ingredientes:["Carne de puchero","Papa","Zapallo","Zanahoria","Choclo","Cebolla","Fideos"], pasos:["Poner la carne en olla con agua fría, llevar a hervor y espumar.","Agregar cebolla entera, zanahoria y sal. Cocinar 20 min.","Incorporar papa, zapallo en trozos y choclo en rodajas. Cocinar 20 min más.","Retirar la carne y cortarla en trozos.","Servir en plato hondo con caldo, verduras y la carne. Fideos al caldo si se desea."] },
-  "zapallitos-rel":   { nombre:"Zapallitos rellenos con carne", categoria:"carne", tiempo:"40 min", ingredientes:["Zapallitos","Carne picada","Cebolla","Tomate","Queso rallado","Huevo","Pan rallado"], pasos:["Cortar zapallitos al medio, vaciar con cuchara. Reservar la pulpa.","Saltear cebolla picada 3 min, agregar la carne y la pulpa. Cocinar 8 min.","Añadir tomate en cubitos, sal y pimienta. Dejar enfriar.","Mezclar con huevo batido y queso rallado. Rellenar los zapallitos.","Espolvorear pan rallado y hornear a 190°C 25-30 min hasta gratinar."] },
-  "sopa-cebolla":     { nombre:"Sopa de cebolla gratinada", categoria:"verdura", tiempo:"35 min", ingredientes:["Cebollas","Caldo de carne","Pan lactal","Queso mozzarella","Manteca"], pasos:["Cortar cebollas en pluma y cocinar en olla con manteca a fuego muy bajo 20 min hasta caramelizar.","Agregar el caldo caliente, sal y pimienta. Cocinar 10 min.","Servir en cazuela apta para horno con una rebanada de pan tostado encima.","Cubrir con mozzarella rallada generosa.","Llevar al grill del horno 3-5 min hasta gratinar. Servir inmediatamente."] },
-  "pollo-napoli":     { nombre:"Pollo a la napolitana", categoria:"pollo", tiempo:"30 min", ingredientes:["Pechugas","Salsa de tomate","Mozzarella","Jamón cocido","Aceite","Orégano"], pasos:["Aplanar las pechugas y dorarlas en sartén con aceite, 4 min por lado.","Colocar en asadera. Cubrir cada una con salsa de tomate, una feta de jamón y mozzarella.","Espolvorear orégano.","Llevar al horno a 200°C por 10 min hasta que el queso gratine.","Servir con ensalada verde o arroz blanco."] },
-  "tarta-pollo":      { nombre:"Tarta de pollo y morrón", categoria:"huevo", tiempo:"40 min", ingredientes:["Tapa de tarta","Pollo cocido desmenuzado","Morrón","Cebolla","Queso rallado","Huevos","Crema"], pasos:["Precalentar horno a 180°C. Tapa en molde y pinchar.","Saltear cebolla y morrón en cubitos 5 min.","Mezclar con pollo desmenuzado, sal y pimienta.","Batir huevos con crema y queso rallado. Distribuir el relleno y volcar la mezcla encima.","Hornear 30-35 min hasta firme y dorado."] },
-  "sopa-verdura":     { nombre:"Sopa de verduras con fideos", categoria:"verdura", tiempo:"25 min", ingredientes:["Zanahoria","Zapallo","Papa","Cebolla","Fideos","Caldo","Perejil"], pasos:["Pelar y cortar todas las verduras en cubos pequeños.","Rehogar la cebolla 3 min en olla con aceite.","Agregar zanahoria, zapallo y papa. Cubrir con caldo caliente.","Cocinar 20 min hasta tiernas las verduras.","Agregar fideos, cocinar 4 min más. Servir con perejil fresco."] },
-  "tallarines-manteca":{ nombre:"Tallarines al queso y manteca", categoria:"pasta", tiempo:"20 min", ingredientes:["Fideos tallarín","Manteca","Queso rallado","Ajo","Perejil"], pasos:["Hervir los fideos en abundante agua con sal hasta al dente.","Escurrir reservando una taza del agua de cocción.","Derretir manteca a fuego bajo en la olla. Dorar ajo picado 1 min.","Incorporar los fideos, queso y un poco del agua de cocción.","Mezclar, ajustar sal, espolvorear perejil y servir."] },
-  "merluza-napoli":   { nombre:"Merluza a la napolitana", categoria:"pescado", tiempo:"25 min", ingredientes:["Filetes de merluza","Salsa de tomate","Jamón cocido","Mozzarella","Morrón","Orégano"], pasos:["Colocar los filetes en asadera aceitada. Salpimentar.","Cubrir cada filete con salsa de tomate, una feta de jamón y queso.","Agregar tiras de morrón y espolvorear orégano.","Hornear a 200°C por 20 min hasta gratinar.","Servir con arroz blanco o ensalada."] },
-  "sopa-pollo":       { nombre:"Sopa de pollo con fideos", categoria:"pollo", tiempo:"35 min", ingredientes:["Pechuga de pollo","Zanahoria","Cebolla","Apio","Fideos","Caldo","Perejil"], pasos:["Hervir la pechuga con agua, zanahoria, cebolla y apio 25 min.","Retirar el pollo y desmenuzarlo.","Colar el caldo y volver a la olla con el pollo y zanahoria en rodajas.","Llevar a hervor, agregar fideos y cocinar 5 min.","Rectificar sal y servir con perejil fresco."] }
-};
-
-// Menú 30 días → { almuerzo, cena }
-const MENU_DIA = {
-   1:{a:"milanesa-pollo",  c:"sopa-verdura"},      2:{a:"churrasco-pure",  c:"tortilla-papa"},
-   3:{a:"empanadas-carne", c:"fideos-tuco"},        4:{a:"pollo-verdeo",    c:"crema-zapallo"},
-   5:{a:"merluza-napoli",  c:"tarta-espinaca"},     6:{a:"locro-chorizo",   c:"pizza-casera"},
-   7:{a:"puchero-carne",   c:"sopa-cebolla"},       8:{a:"pasta-bolognesa", c:"revuelto-espinaca"},
-   9:{a:"pollo-napoli",    c:"tallarines-manteca"}, 10:{a:"carne-cacerola", c:"sopa-pollo"},
-  11:{a:"merluza-plancha", c:"tarta-pollo"},        12:{a:"empanadas-carne",c:"noquis-salvia"},
-  13:{a:"churrasco-pure",  c:"sopa-pollo"},         14:{a:"zapallitos-rel", c:"pizza-casera"},
-  15:{a:"pollo-horno",     c:"fideos-tuco"},        16:{a:"milanesa-pollo", c:"crema-zapallo"},
-  17:{a:"pasta-bolognesa", c:"tortilla-papa"},      18:{a:"locro-chorizo",  c:"tarta-espinaca"},
-  19:{a:"salmon-espinaca", c:"sopa-verdura"},       20:{a:"pollo-napoli",   c:"revuelto-espinaca"},
-  21:{a:"carne-cacerola",  c:"tallarines-manteca"}, 22:{a:"merluza-napoli", c:"noquis-salvia"},
-  23:{a:"empanadas-carne", c:"crema-zapallo"},      24:{a:"pollo-verdeo",   c:"tarta-pollo"},
-  25:{a:"churrasco-pure",  c:"sopa-cebolla"},       26:{a:"atun-garbanzos", c:"fideos-tuco"},
-  27:{a:"puchero-carne",   c:"pizza-casera"},       28:{a:"pollo-horno",    c:"sopa-verdura"},
-  29:{a:"zapallitos-rel",  c:"sopa-pollo"},         30:{a:"pasta-bolognesa",c:"tortilla-papa"}
-};
-
-// ════════════════════════════════════════
-//  ESTADO GLOBAL
-// ════════════════════════════════════════
-const HOY = new Date();
-let mesVista = new Date(HOY.getFullYear(), HOY.getMonth(), 1);
-let filtroActivo = "todos";
-let ingredientes = [];
-let popupRecetaActual = null; // id o objeto
-let favs = JSON.parse(localStorage.getItem('favs') || '{}');
-let GEMINI_KEY = localStorage.getItem('gemini_key') || '';
-
-const MESES = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
-
-// ════════════════════════════════════════
-//  NAVEGACIÓN DE SECCIONES
-// ════════════════════════════════════════
-function showSection(id, btn) {
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.tab-btn, .nav-link').forEach(b => b.classList.remove('active'));
-  document.getElementById('sec-' + id).classList.add('active');
-  if (btn) {
-    btn.classList.add('active');
-    // sincronizar nav-link y tab-btn
-    document.querySelectorAll('.tab-btn, .nav-link').forEach(b => {
-      if (b !== btn && b.getAttribute('onclick') === btn.getAttribute('onclick')) b.classList.add('active');
-    });
-  }
-  if (id === 'favoritos') renderFavoritos();
-}
-
-// ════════════════════════════════════════
-//  CALENDARIO
-// ════════════════════════════════════════
-function renderCalendario() {
-  const anio = mesVista.getFullYear();
-  const mes  = mesVista.getMonth();
-  document.getElementById('calTitulo').textContent = `${MESES[mes]} ${anio}`;
-
-  const primerDia = new Date(anio, mes, 1).getDay();
-  const diasEnMes = new Date(anio, mes + 1, 0).getDate();
-  const grid = document.getElementById('calGrid');
-  grid.innerHTML = '';
-
-  for (let i = 0; i < primerDia; i++) {
-    const el = document.createElement('div');
-    el.className = 'cal-cell vacio';
-    grid.appendChild(el);
-  }
-
-  for (let d = 1; d <= diasEnMes; d++) {
-    const cell = document.createElement('div');
-    const esHoy = d === HOY.getDate() && mes === HOY.getMonth() && anio === HOY.getFullYear();
-    cell.className = 'cal-cell' + (esHoy ? ' hoy' : '');
-
-    const numEl = document.createElement('div');
-    numEl.className = 'cal-day-num';
-    numEl.textContent = d;
-    cell.appendChild(numEl);
-
-    const dia = MENU_DIA[d] || MENU_DIA[((d-1)%30)+1];
-    if (dia) {
-      [['a','almuerzo','☀️'], ['c','cena','🌙']].forEach(([key, turnoLabel, emoji]) => {
-        const rId = dia[key];
-        const r = RECETAS_BASE[rId];
-        if (!r) return;
-        const btn = document.createElement('button');
-        const dim = filtroActivo !== 'todos' && r.categoria !== filtroActivo ? ' filtered-out' : '';
-        const isFav = favs[rId] ? '★' : '';
-        btn.className = `cal-receta ${r.categoria}${dim}`;
-        btn.innerHTML = `<span class="r-turno">${emoji} ${turnoLabel.charAt(0).toUpperCase()+turnoLabel.slice(1)}</span>${r.nombre}${isFav ? `<span class="fav-star">${isFav}</span>` : ''}`;
-        btn.onclick = (e) => { e.stopPropagation(); abrirPopup(rId, turnoLabel); };
-        cell.appendChild(btn);
-      });
+{
+  "models": [
+    {
+      "name": "models/gemini-2.5-flash",
+      "version": "001",
+      "displayName": "Gemini 2.5 Flash",
+      "description": "Stable version of Gemini 2.5 Flash, our mid-size multimodal model that supports up to 1 million tokens, released in June of 2025.",
+      "inputTokenLimit": 1048576,
+      "outputTokenLimit": 65536,
+      "supportedGenerationMethods": [
+        "generateContent",
+        "countTokens",
+        "createCachedContent",
+        "batchGenerateContent"
+      ],
+      "temperature": 1,
+      "topP": 0.95,
+      "topK": 64,
+      "maxTemperature": 2,
+      "thinking": true
+    },
+    {
+      "name": "models/gemini-2.5-pro",
+      "version": "2.5",
+      "displayName": "Gemini 2.5 Pro",
+      "description": "Stable release (June 17th, 2025) of Gemini 2.5 Pro",
+      "inputTokenLimit": 1048576,
+      "outputTokenLimit": 65536,
+      "supportedGenerationMethods": [
+        "generateContent",
+        "countTokens",
+        "createCachedContent",
+        "batchGenerateContent"
+      ],
+      "temperature": 1,
+      "topP": 0.95,
+      "topK": 64,
+      "maxTemperature": 2,
+      "thinking": true
+    },
+    {
+      "name": "models/gemini-2.0-flash",
+      "version": "2.0",
+      "displayName": "Gemini 2.0 Flash",
+      "description": "Gemini 2.0 Flash",
+      "inputTokenLimit": 1048576,
+      "outputTokenLimit": 8192,
+      "supportedGenerationMethods": [
+        "generateContent",
+        "countTokens",
+        "createCachedContent",
+        "batchGenerateContent"
+      ],
+      "temperature": 1,
+      "topP": 0.95,
+      "topK": 40,
+      "maxTemperature": 2
+    },
+    {
+      "name": "models/gemini-2.0-flash-001",
+      "version": "2.0",
+      "displayName": "Gemini 2.0 Flash 001",
+      "description": "Stable version of Gemini 2.0 Flash, our fast and versatile multimodal model for scaling across diverse tasks, released in January of 2025.",
+      "inputTokenLimit": 1048576,
+      "outputTokenLimit": 8192,
+      "supportedGenerationMethods": [
+        "generateContent",
+        "countTokens",
+        "createCachedContent",
+        "batchGenerateContent"
+      ],
+      "temperature": 1,
+      "topP": 0.95,
+      "topK": 40,
+      "maxTemperature": 2
+    },
+    {
+      "name": "models/gemini-2.0-flash-lite-001",
+      "version": "2.0",
+      "displayName": "Gemini 2.0 Flash-Lite 001",
+      "description": "Stable version of Gemini 2.0 Flash-Lite",
+      "inputTokenLimit": 1048576,
+      "outputTokenLimit": 8192,
+      "supportedGenerationMethods": [
+        "generateContent",
+        "countTokens",
+        "createCachedContent",
+        "batchGenerateContent"
+      ],
+      "temperature": 1,
+      "topP": 0.95,
+      "topK": 40,
+      "maxTemperature": 2
+    },
+    {
+      "name": "models/gemini-2.0-flash-lite",
+      "version": "2.0",
+      "displayName": "Gemini 2.0 Flash-Lite",
+      "description": "Gemini 2.0 Flash-Lite",
+      "inputTokenLimit": 1048576,
+      "outputTokenLimit": 8192,
+      "supportedGenerationMethods": [
+        "generateContent",
+        "countTokens",
+        "createCachedContent",
+        "batchGenerateContent"
+      ],
+      "temperature": 1,
+      "topP": 0.95,
+      "topK": 40,
+      "maxTemperature": 2
+    },
+    {
+      "name": "models/gemini-2.5-flash-preview-tts",
+      "version": "gemini-2.5-flash-exp-tts-2025-05-19",
+      "displayName": "Gemini 2.5 Flash Preview TTS",
+      "description": "Gemini 2.5 Flash Preview TTS",
+      "inputTokenLimit": 8192,
+      "outputTokenLimit": 16384,
+      "supportedGenerationMethods": [
+        "countTokens",
+        "generateContent"
+      ],
+      "temperature": 1,
+      "topP": 0.95,
+      "topK": 64,
+      "maxTemperature": 2
+    },
+    {
+      "name": "models/gemini-2.5-pro-preview-tts",
+      "version": "gemini-2.5-pro-preview-tts-2025-05-19",
+      "displayName": "Gemini 2.5 Pro Preview TTS",
+      "description": "Gemini 2.5 Pro Preview TTS",
+      "inputTokenLimit": 8192,
+      "outputTokenLimit": 16384,
+      "supportedGenerationMethods": [
+        "countTokens",
+        "generateContent",
+        "batchGenerateContent"
+      ],
+      "temperature": 1,
+      "topP": 0.95,
+      "topK": 64,
+      "maxTemperature": 2
+    },
+    {
+      "name": "models/gemma-4-26b-a4b-it",
+      "version": "001",
+      "displayName": "Gemma 4 26B A4B IT",
+      "description": "Gemma 4 26B A4B IT",
+      "inputTokenLimit": 262144,
+      "outputTokenLimit": 32768,
+      "supportedGenerationMethods": [
+        "generateContent",
+        "countTokens"
+      ],
+      "temperature": 1,
+      "topP": 0.95,
+      "topK": 64,
+      "maxTemperature": 2,
+      "thinking": true
+    },
+    {
+      "name": "models/gemma-4-31b-it",
+      "version": "001",
+      "displayName": "Gemma 4 31B IT",
+      "description": "Gemma 4 31B IT",
+      "inputTokenLimit": 262144,
+      "outputTokenLimit": 32768,
+      "supportedGenerationMethods": [
+        "generateContent",
+        "countTokens"
+      ],
+      "temperature": 1,
+      "topP": 0.95,
+      "topK": 64,
+      "maxTemperature": 2,
+      "thinking": true
+    },
+    {
+      "name": "models/gemini-flash-latest",
+      "version": "Gemini Flash Latest",
+      "displayName": "Gemini Flash Latest",
+      "description": "Latest release of Gemini Flash",
+      "inputTokenLimit": 1048576,
+      "outputTokenLimit": 65536,
+      "supportedGenerationMethods": [
+        "generateContent",
+        "countTokens",
+        "createCachedContent",
+        "batchGenerateContent"
+      ],
+      "temperature": 1,
+      "topP": 0.95,
+      "topK": 64,
+      "maxTemperature": 2,
+      "thinking": true
+    },
+    {
+      "name": "models/gemini-flash-lite-latest",
+      "version": "Gemini Flash-Lite Latest",
+      "displayName": "Gemini Flash-Lite Latest",
+      "description": "Latest release of Gemini Flash-Lite",
+      "inputTokenLimit": 1048576,
+      "outputTokenLimit": 65536,
+      "supportedGenerationMethods": [
+        "generateContent",
+        "countTokens",
+        "createCachedContent",
+        "batchGenerateContent"
+      ],
+      "temperature": 1,
+      "topP": 0.95,
+      "topK": 64,
+      "maxTemperature": 2,
+      "thinking": true
+    },
+    {
+      "name": "models/gemini-pro-latest",
+      "version": "Gemini Pro Latest",
+      "displayName": "Gemini Pro Latest",
+      "description": "Latest release of Gemini Pro",
+      "inputTokenLimit": 1048576,
+      "outputTokenLimit": 65536,
+      "supportedGenerationMethods": [
+        "generateContent",
+        "countTokens",
+        "createCachedContent",
+        "batchGenerateContent"
+      ],
+      "temperature": 1,
+      "topP": 0.95,
+      "topK": 64,
+      "maxTemperature": 2,
+      "thinking": true
+    },
+    {
+      "name": "models/gemini-2.5-flash-lite",
+      "version": "001",
+      "displayName": "Gemini 2.5 Flash-Lite",
+      "description": "Stable version of Gemini 2.5 Flash-Lite, released in July of 2025",
+      "inputTokenLimit": 1048576,
+      "outputTokenLimit": 65536,
+      "supportedGenerationMethods": [
+        "generateContent",
+        "countTokens",
+        "createCachedContent",
+        "batchGenerateContent"
+      ],
+      "temperature": 1,
+      "topP": 0.95,
+      "topK": 64,
+      "maxTemperature": 2,
+      "thinking": true
+    },
+    {
+      "name": "models/gemini-2.5-flash-image",
+      "version": "2.0",
+      "displayName": "Nano Banana",
+      "description": "Gemini 2.5 Flash Preview Image",
+      "inputTokenLimit": 32768,
+      "outputTokenLimit": 32768,
+      "supportedGenerationMethods": [
+        "generateContent",
+        "countTokens",
+        "batchGenerateContent"
+      ],
+      "temperature": 1,
+      "topP": 0.95,
+      "topK": 64,
+      "maxTemperature": 1
+    },
+    {
+      "name": "models/gemini-3-pro-preview",
+      "version": "3-pro-preview-11-2025",
+      "displayName": "Gemini 3 Pro Preview",
+      "description": "Gemini 3 Pro Preview",
+      "inputTokenLimit": 1048576,
+      "outputTokenLimit": 65536,
+      "supportedGenerationMethods": [
+        "generateContent",
+        "countTokens",
+        "createCachedContent",
+        "batchGenerateContent"
+      ],
+      "temperature": 1,
+      "topP": 0.95,
+      "topK": 64,
+      "maxTemperature": 2,
+      "thinking": true
+    },
+    {
+      "name": "models/gemini-3-flash-preview",
+      "version": "3-flash-preview-12-2025",
+      "displayName": "Gemini 3 Flash Preview",
+      "description": "Gemini 3 Flash Preview",
+      "inputTokenLimit": 1048576,
+      "outputTokenLimit": 65536,
+      "supportedGenerationMethods": [
+        "generateContent",
+        "countTokens",
+        "createCachedContent",
+        "batchGenerateContent"
+      ],
+      "temperature": 1,
+      "topP": 0.95,
+      "topK": 64,
+      "maxTemperature": 2,
+      "thinking": true
+    },
+    {
+      "name": "models/gemini-3.1-pro-preview",
+      "version": "3.1-pro-preview-01-2026",
+      "displayName": "Gemini 3.1 Pro Preview",
+      "description": "Gemini 3.1 Pro Preview",
+      "inputTokenLimit": 1048576,
+      "outputTokenLimit": 65536,
+      "supportedGenerationMethods": [
+        "generateContent",
+        "countTokens",
+        "createCachedContent",
+        "batchGenerateContent"
+      ],
+      "temperature": 1,
+      "topP": 0.95,
+      "topK": 64,
+      "maxTemperature": 2,
+      "thinking": true
+    },
+    {
+      "name": "models/gemini-3.1-pro-preview-customtools",
+      "version": "3.1-pro-preview-01-2026",
+      "displayName": "Gemini 3.1 Pro Preview Custom Tools",
+      "description": "Gemini 3.1 Pro Preview optimized for custom tool usage",
+      "inputTokenLimit": 1048576,
+      "outputTokenLimit": 65536,
+      "supportedGenerationMethods": [
+        "generateContent",
+        "countTokens",
+        "createCachedContent",
+        "batchGenerateContent"
+      ],
+      "temperature": 1,
+      "topP": 0.95,
+      "topK": 64,
+      "maxTemperature": 2,
+      "thinking": true
+    },
+    {
+      "name": "models/gemini-3.1-flash-lite-preview",
+      "version": "3.1-flash-lite-preview-03-2026",
+      "displayName": "Gemini 3.1 Flash Lite Preview",
+      "description": "Gemini 3.1 Flash Lite Preview",
+      "inputTokenLimit": 1048576,
+      "outputTokenLimit": 65536,
+      "supportedGenerationMethods": [
+        "generateContent",
+        "countTokens",
+        "createCachedContent",
+        "batchGenerateContent"
+      ],
+      "temperature": 1,
+      "topP": 0.95,
+      "topK": 64,
+      "maxTemperature": 2,
+      "thinking": true
+    },
+    {
+      "name": "models/gemini-3.1-flash-lite",
+      "version": "3.1-flash-lite-05-2026",
+      "displayName": "Gemini 3.1 Flash Lite",
+      "description": "Gemini 3.1 Flash Lite",
+      "inputTokenLimit": 1048576,
+      "outputTokenLimit": 65536,
+      "supportedGenerationMethods": [
+        "generateContent",
+        "countTokens",
+        "createCachedContent",
+        "batchGenerateContent"
+      ],
+      "temperature": 1,
+      "topP": 0.95,
+      "topK": 64,
+      "maxTemperature": 2,
+      "thinking": true
+    },
+    {
+      "name": "models/gemini-3-pro-image-preview",
+      "version": "3.0",
+      "displayName": "Nano Banana Pro",
+      "description": "Gemini 3 Pro Image Preview",
+      "inputTokenLimit": 131072,
+      "outputTokenLimit": 32768,
+      "supportedGenerationMethods": [
+        "generateContent",
+        "countTokens",
+        "batchGenerateContent"
+      ],
+      "temperature": 1,
+      "topP": 0.95,
+      "topK": 64,
+      "maxTemperature": 1,
+      "thinking": true
+    },
+    {
+      "name": "models/gemini-3-pro-image",
+      "version": "3.0",
+      "displayName": "Nano Banana Pro",
+      "description": "Gemini 3 Pro Image",
+      "inputTokenLimit": 131072,
+      "outputTokenLimit": 32768,
+      "supportedGenerationMethods": [
+        "generateContent",
+        "countTokens",
+        "batchGenerateContent"
+      ],
+      "temperature": 1,
+      "topP": 0.95,
+      "topK": 64,
+      "maxTemperature": 1,
+      "thinking": true
+    },
+    {
+      "name": "models/nano-banana-pro-preview",
+      "version": "3.0",
+      "displayName": "Nano Banana Pro",
+      "description": "Gemini 3 Pro Image Preview",
+      "inputTokenLimit": 131072,
+      "outputTokenLimit": 32768,
+      "supportedGenerationMethods": [
+        "generateContent",
+        "countTokens",
+        "batchGenerateContent"
+      ],
+      "temperature": 1,
+      "topP": 0.95,
+      "topK": 64,
+      "maxTemperature": 1,
+      "thinking": true
+    },
+    {
+      "name": "models/gemini-3.1-flash-image-preview",
+      "version": "3.0",
+      "displayName": "Nano Banana 2",
+      "description": "Gemini 3.1 Flash Image Preview.",
+      "inputTokenLimit": 65536,
+      "outputTokenLimit": 65536,
+      "supportedGenerationMethods": [
+        "generateContent",
+        "countTokens",
+        "batchGenerateContent"
+      ],
+      "temperature": 1,
+      "topP": 0.95,
+      "topK": 64,
+      "maxTemperature": 1,
+      "thinking": true
+    },
+    {
+      "name": "models/gemini-3.1-flash-image",
+      "version": "3.0",
+      "displayName": "Nano Banana 2",
+      "description": "Gemini 3.1 Flash Image.",
+      "inputTokenLimit": 65536,
+      "outputTokenLimit": 65536,
+      "supportedGenerationMethods": [
+        "generateContent",
+        "countTokens",
+        "batchGenerateContent"
+      ],
+      "temperature": 1,
+      "topP": 0.95,
+      "topK": 64,
+      "maxTemperature": 1,
+      "thinking": true
+    },
+    {
+      "name": "models/gemini-3.5-flash",
+      "version": "3.5-flash-05-2026",
+      "displayName": "Gemini 3.5 Flash",
+      "description": "Gemini 3.5 Flash",
+      "inputTokenLimit": 1048576,
+      "outputTokenLimit": 65536,
+      "supportedGenerationMethods": [
+        "generateContent",
+        "countTokens",
+        "createCachedContent",
+        "batchGenerateContent"
+      ],
+      "temperature": 1,
+      "topP": 0.95,
+      "topK": 64,
+      "maxTemperature": 2,
+      "thinking": true
+    },
+    {
+      "name": "models/lyria-3-clip-preview",
+      "version": "lyria-3-clip-preview",
+      "displayName": "Lyria 3 Clip Preview",
+      "description": "Lyria 3 30s model Preview",
+      "inputTokenLimit": 1048576,
+      "outputTokenLimit": 65536,
+      "supportedGenerationMethods": [
+        "generateContent",
+        "countTokens"
+      ],
+      "temperature": 1,
+      "topP": 0.95,
+      "topK": 64,
+      "maxTemperature": 2
+    },
+    {
+      "name": "models/lyria-3-pro-preview",
+      "version": "lyria-3-pro-preview",
+      "displayName": "Lyria 3 Pro Preview",
+      "description": "Lyria 3 Pro Preview",
+      "inputTokenLimit": 1048576,
+      "outputTokenLimit": 65536,
+      "supportedGenerationMethods": [
+        "generateContent",
+        "countTokens"
+      ],
+      "temperature": 1,
+      "topP": 0.95,
+      "topK": 64,
+      "maxTemperature": 2
+    },
+    {
+      "name": "models/gemini-3.1-flash-tts-preview",
+      "version": "3.1-flash-tts-preview",
+      "displayName": "Gemini 3.1 Flash TTS Preview",
+      "description": "Gemini 3.1 Flash TTS Preview",
+      "inputTokenLimit": 8192,
+      "outputTokenLimit": 16384,
+      "supportedGenerationMethods": [
+        "generateContent",
+        "countTokens",
+        "batchGenerateContent"
+      ],
+      "temperature": 1,
+      "topP": 0.95,
+      "topK": 64,
+      "maxTemperature": 2,
+      "thinking": true
+    },
+    {
+      "name": "models/gemini-robotics-er-1.5-preview",
+      "version": "1.5-preview",
+      "displayName": "Gemini Robotics-ER 1.5 Preview",
+      "description": "Gemini Robotics-ER 1.5 Preview",
+      "inputTokenLimit": 1048576,
+      "outputTokenLimit": 65536,
+      "supportedGenerationMethods": [
+        "generateContent",
+        "countTokens"
+      ],
+      "temperature": 1,
+      "topP": 0.95,
+      "topK": 64,
+      "maxTemperature": 2,
+      "thinking": true
+    },
+    {
+      "name": "models/gemini-robotics-er-1.6-preview",
+      "version": "1.6-preview",
+      "displayName": "Gemini Robotics-ER 1.6 Preview",
+      "description": "Gemini Robotics-ER 1.6 Preview",
+      "inputTokenLimit": 131072,
+      "outputTokenLimit": 65536,
+      "supportedGenerationMethods": [
+        "generateContent",
+        "countTokens",
+        "createCachedContent",
+        "batchGenerateContent"
+      ],
+      "temperature": 1,
+      "topP": 0.95,
+      "topK": 64,
+      "maxTemperature": 2,
+      "thinking": true
+    },
+    {
+      "name": "models/gemini-2.5-computer-use-preview-10-2025",
+      "version": "Gemini 2.5 Computer Use Preview 10-2025",
+      "displayName": "Gemini 2.5 Computer Use Preview 10-2025",
+      "description": "Gemini 2.5 Computer Use Preview 10-2025",
+      "inputTokenLimit": 131072,
+      "outputTokenLimit": 65536,
+      "supportedGenerationMethods": [
+        "generateContent",
+        "countTokens"
+      ],
+      "temperature": 1,
+      "topP": 0.95,
+      "topK": 64,
+      "maxTemperature": 2,
+      "thinking": true
+    },
+    {
+      "name": "models/antigravity-preview-05-2026",
+      "version": "0.1",
+      "displayName": "Antigravity Agent Preview",
+      "description": "Preview release of Antigravity Agent (05-2026)",
+      "inputTokenLimit": 131072,
+      "outputTokenLimit": 65536,
+      "supportedGenerationMethods": [
+        "generateContent",
+        "countTokens"
+      ]
+    },
+    {
+      "name": "models/deep-research-max-preview-04-2026",
+      "version": "deepthink-exp-05-20",
+      "displayName": "Deep Research Max Preview (Apr-21-2026)",
+      "description": "Preview release (April 21st, 2026) of Deep Research Max",
+      "inputTokenLimit": 131072,
+      "outputTokenLimit": 65536,
+      "supportedGenerationMethods": [
+        "generateContent",
+        "countTokens"
+      ],
+      "temperature": 1,
+      "topP": 0.95,
+      "topK": 64,
+      "maxTemperature": 2,
+      "thinking": true
+    },
+    {
+      "name": "models/deep-research-preview-04-2026",
+      "version": "deepthink-exp-05-20",
+      "displayName": "Deep Research Preview (Apr-21-2026)",
+      "description": "Preview release (April 21th, 2026) of Deep Research",
+      "inputTokenLimit": 131072,
+      "outputTokenLimit": 65536,
+      "supportedGenerationMethods": [
+        "generateContent",
+        "countTokens"
+      ],
+      "temperature": 1,
+      "topP": 0.95,
+      "topK": 64,
+      "maxTemperature": 2,
+      "thinking": true
+    },
+    {
+      "name": "models/deep-research-pro-preview-12-2025",
+      "version": "deepthink-exp-05-20",
+      "displayName": "Deep Research Pro Preview (Dec-12-2025)",
+      "description": "Preview release (December 12th, 2025) of Deep Research Pro",
+      "inputTokenLimit": 131072,
+      "outputTokenLimit": 65536,
+      "supportedGenerationMethods": [
+        "generateContent",
+        "countTokens"
+      ],
+      "temperature": 1,
+      "topP": 0.95,
+      "topK": 64,
+      "maxTemperature": 2,
+      "thinking": true
+    },
+    {
+      "name": "models/gemini-embedding-001",
+      "version": "001",
+      "displayName": "Gemini Embedding 001",
+      "description": "Obtain a distributed representation of a text.",
+      "inputTokenLimit": 2048,
+      "outputTokenLimit": 1,
+      "supportedGenerationMethods": [
+        "embedContent",
+        "countTextTokens",
+        "countTokens",
+        "asyncBatchEmbedContent"
+      ]
+    },
+    {
+      "name": "models/gemini-embedding-2-preview",
+      "version": "2",
+      "displayName": "Gemini Embedding 2 Preview",
+      "description": "Obtain a distributed representation of multimodal content.",
+      "inputTokenLimit": 8192,
+      "outputTokenLimit": 1,
+      "supportedGenerationMethods": [
+        "embedContent",
+        "countTextTokens",
+        "countTokens",
+        "asyncBatchEmbedContent"
+      ]
+    },
+    {
+      "name": "models/gemini-embedding-2",
+      "version": "2",
+      "displayName": "Gemini Embedding 2",
+      "description": "Obtain a distributed representation of multimodal content.",
+      "inputTokenLimit": 8192,
+      "outputTokenLimit": 1,
+      "supportedGenerationMethods": [
+        "embedContent",
+        "countTextTokens",
+        "countTokens",
+        "asyncBatchEmbedContent"
+      ]
+    },
+    {
+      "name": "models/aqa",
+      "version": "001",
+      "displayName": "Model that performs Attributed Question Answering.",
+      "description": "Model trained to return answers to questions that are grounded in provided sources, along with estimating answerable probability.",
+      "inputTokenLimit": 7168,
+      "outputTokenLimit": 1024,
+      "supportedGenerationMethods": [
+        "generateAnswer"
+      ],
+      "temperature": 0.2,
+      "topP": 1,
+      "topK": 40
+    },
+    {
+      "name": "models/imagen-4.0-generate-001",
+      "version": "001",
+      "displayName": "Imagen 4",
+      "description": "Vertex served Imagen 4.0 model",
+      "inputTokenLimit": 480,
+      "outputTokenLimit": 8192,
+      "supportedGenerationMethods": [
+        "predict"
+      ]
+    },
+    {
+      "name": "models/imagen-4.0-ultra-generate-001",
+      "version": "001",
+      "displayName": "Imagen 4 Ultra",
+      "description": "Vertex served Imagen 4.0 ultra model",
+      "inputTokenLimit": 480,
+      "outputTokenLimit": 8192,
+      "supportedGenerationMethods": [
+        "predict"
+      ]
+    },
+    {
+      "name": "models/imagen-4.0-fast-generate-001",
+      "version": "001",
+      "displayName": "Imagen 4 Fast",
+      "description": "Vertex served Imagen 4.0 Fast model",
+      "inputTokenLimit": 480,
+      "outputTokenLimit": 8192,
+      "supportedGenerationMethods": [
+        "predict"
+      ]
+    },
+    {
+      "name": "models/veo-2.0-generate-001",
+      "version": "2.0",
+      "displayName": "Veo 2",
+      "description": "Vertex served Veo 2 model. Access to this model requires billing to be enabled on the associated Google Cloud Platform account. Please visit https://console.cloud.google.com/billing to enable it.",
+      "inputTokenLimit": 480,
+      "outputTokenLimit": 8192,
+      "supportedGenerationMethods": [
+        "predictLongRunning"
+      ]
+    },
+    {
+      "name": "models/veo-3.0-generate-001",
+      "version": "3.0",
+      "displayName": "Veo 3",
+      "description": "Veo 3",
+      "inputTokenLimit": 480,
+      "outputTokenLimit": 8192,
+      "supportedGenerationMethods": [
+        "predictLongRunning"
+      ]
+    },
+    {
+      "name": "models/veo-3.0-fast-generate-001",
+      "version": "3.0",
+      "displayName": "Veo 3 fast",
+      "description": "Veo 3 fast",
+      "inputTokenLimit": 480,
+      "outputTokenLimit": 8192,
+      "supportedGenerationMethods": [
+        "predictLongRunning"
+      ]
+    },
+    {
+      "name": "models/veo-3.1-generate-preview",
+      "version": "3.1",
+      "displayName": "Veo 3.1",
+      "description": "Veo 3.1",
+      "inputTokenLimit": 480,
+      "outputTokenLimit": 8192,
+      "supportedGenerationMethods": [
+        "predictLongRunning"
+      ]
+    },
+    {
+      "name": "models/veo-3.1-fast-generate-preview",
+      "version": "3.1",
+      "displayName": "Veo 3.1 fast",
+      "description": "Veo 3.1 fast",
+      "inputTokenLimit": 480,
+      "outputTokenLimit": 8192,
+      "supportedGenerationMethods": [
+        "predictLongRunning"
+      ]
+    },
+    {
+      "name": "models/veo-3.1-lite-generate-preview",
+      "version": "3.1",
+      "displayName": "Veo 3.1 lite",
+      "description": "Veo 3.1 lite",
+      "inputTokenLimit": 480,
+      "outputTokenLimit": 8192,
+      "supportedGenerationMethods": [
+        "predictLongRunning"
+      ]
     }
-    grid.appendChild(cell);
-  }
+  ],
+  "nextPageToken": "CiRtb2RlbHMvdmVvLTMuMS1saXRlLWdlbmVyYXRlLXByZXZpZXc="
 }
-
-function cambiarMes(delta) {
-  mesVista = new Date(mesVista.getFullYear(), mesVista.getMonth() + delta, 1);
-  renderCalendario();
-}
-
-function setFiltro(f, btn) {
-  filtroActivo = f;
-  document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('activo'));
-  if (btn) btn.classList.add('activo');
-  const clearBtn = document.getElementById('filtrosClear');
-  f === 'todos' ? clearBtn.classList.remove('visible') : clearBtn.classList.add('visible');
-  renderCalendario();
-}
-
-// ════════════════════════════════════════
-//  POPUP RECETA
-// ════════════════════════════════════════
-function abrirPopup(rId, turno) {
-  const r = typeof rId === 'object' ? rId : RECETAS_BASE[rId];
-  const id = typeof rId === 'string' ? rId : (rId._id || rId.nombre);
-  if (!r) return;
-  popupRecetaActual = { r, id };
-
-  const catColors = { pollo:'#d4890a', carne:'#b5291c', pescado:'#1a5c9a', verdura:'#237d38', pasta:'#6b30b8', huevo:'#c07800' };
-  const catNames  = { pollo:'Pollo', carne:'Carne roja', pescado:'Pescado/Mar', verdura:'Vegetariano', pasta:'Pasta', huevo:'Tarta/Huevo' };
-
-  document.getElementById('popColorBar').className = `popup-color-bar ${r.categoria}`;
-  document.getElementById('popTipo').textContent = `${catNames[r.categoria] || r.categoria} · ${turno ? (turno.charAt(0).toUpperCase()+turno.slice(1)) : ''}`;
-  document.getElementById('popTitle').textContent = r.nombre;
-  document.getElementById('popTiempoTxt').textContent = r.tiempo;
-
-  // Favorito
-  const favBtn = document.getElementById('popFavBtn');
-  if (favs[id]) { favBtn.textContent = '★ Guardada'; favBtn.classList.add('fav'); }
-  else { favBtn.innerHTML = '☆ Guardar'; favBtn.classList.remove('fav'); }
-
-  // Ingredientes
-  document.getElementById('popIngs').innerHTML = r.ingredientes
-    .map(i => `<span class="ing-chip-display">${i}</span>`).join('');
-
-  // Pasos
-  document.getElementById('popPasos').innerHTML = r.pasos
-    .map((p, i) => `<li class="paso-item"><div class="paso-num">${i+1}</div><div class="paso-txt">${p}</div></li>`).join('');
-
-  document.getElementById('popupOverlay').classList.add('visible');
-  document.body.style.overflow = 'hidden';
-}
-
-function cerrarPopup() {
-  document.getElementById('popupOverlay').classList.remove('visible');
-  document.body.style.overflow = '';
-  popupRecetaActual = null;
-}
-
-function popupOverlayClick(e) {
-  if (e.target === document.getElementById('popupOverlay')) cerrarPopup();
-}
-
-document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrarPopup(); });
-
-// ════════════════════════════════════════
-//  FAVORITOS
-// ════════════════════════════════════════
-function toggleFavPopup() {
-  if (!popupRecetaActual) return;
-  const { r, id } = popupRecetaActual;
-  const key = id;
-  if (favs[key]) {
-    delete favs[key];
-    toast('Receta quitada de favoritos');
-  } else {
-    favs[key] = { ...r, _id: key };
-    toast('⭐ Receta guardada en favoritos');
-  }
-  localStorage.setItem('favs', JSON.stringify(favs));
-  const favBtn = document.getElementById('popFavBtn');
-  if (favs[key]) { favBtn.textContent = '★ Guardada'; favBtn.classList.add('fav'); }
-  else { favBtn.innerHTML = '☆ Guardar'; favBtn.classList.remove('fav'); }
-  renderCalendario();
-}
-
-function renderFavoritos() {
-  const grid = document.getElementById('favsGrid');
-  const empty = document.getElementById('favsEmpty');
-  const keys = Object.keys(favs);
-  if (!keys.length) {
-    grid.innerHTML = '';
-    empty.style.display = 'block';
-    return;
-  }
-  empty.style.display = 'none';
-  grid.innerHTML = keys.map(k => {
-    const r = favs[k];
-    return recetaCardHTML(r, k, true);
-  }).join('');
-}
-
-// ════════════════════════════════════════
-//  INGREDIENTES (IA PANEL)
-// ════════════════════════════════════════
-function handleIngInput(e) {
-  if (e.key === 'Enter' || e.key === ',') {
-    e.preventDefault();
-    const val = e.target.value.trim().replace(/,$/, '');
-    if (val) addIng(val);
-    e.target.value = '';
-  }
-}
-
-function addIng(val) {
-  if (!val.trim()) return;
-  const norm = val.trim().toLowerCase();
-  if (ingredientes.includes(norm)) return;
-  ingredientes.push(norm);
-  renderIngChips();
-}
-
-function removeIng(val) {
-  ingredientes = ingredientes.filter(i => i !== val);
-  renderIngChips();
-}
-
-function renderIngChips() {
-  const wrap = document.getElementById('ingWrap');
-  const input = document.getElementById('ingInput');
-  const chips = ingredientes.map(i =>
-    `<span class="ing-chip-item">${i}<button class="ing-chip-x" onclick="removeIng('${i}')">×</button></span>`
-  ).join('');
-  wrap.innerHTML = chips;
-  wrap.appendChild(input);
-  input.focus();
-}
-
-// ════════════════════════════════════════
-//  API KEY GEMINI
-// ════════════════════════════════════════
-function guardarApiKey() {
-  const val = document.getElementById('apiKeyInput').value.trim();
-  if (!val) return;
-  GEMINI_KEY = val;
-  localStorage.setItem('gemini_key', val);
-  const st = document.getElementById('apiStatus');
-  st.textContent = '✓ API Key guardada correctamente';
-  st.className = 'api-status ok';
-  toast('🔑 API Key guardada');
-}
-
-function initApiKeyUI() {
-  if (GEMINI_KEY) {
-    const inp = document.getElementById('apiKeyInput');
-    if (inp) inp.value = GEMINI_KEY;
-    const st = document.getElementById('apiStatus');
-    st.textContent = '✓ API Key configurada';
-    st.className = 'api-status ok';
-  }
-}
-
-// ════════════════════════════════════════
-//  GENERAR RECETAS CON GEMINI
-// ════════════════════════════════════════
-async function generarRecetas() {
-  if (!GEMINI_KEY) {
-    toast('⚠️ Primero guardá tu API Key de Gemini');
-    document.getElementById('apiKeyInput')?.focus();
-    return;
-  }
-  if (!ingredientes.length) {
-    toast('⚠️ Agregá al menos un ingrediente');
-    document.getElementById('ingInput').focus();
-    return;
-  }
-
-  const btn = document.getElementById('btnGenerar');
-  btn.classList.add('loading');
-  btn.disabled = true;
-
-  const cantidad = document.getElementById('selCantidad').value;
-  const tiempo   = document.getElementById('selTiempo').value;
-  const tipo     = document.getElementById('selTipo').value;
-
-  const prompt = `Sos un cocinero argentino casero experto en cocina criolla. El usuario tiene estos ingredientes disponibles: ${ingredientes.join(', ')}.
-
-Sugerí exactamente ${cantidad} recetas caseras argentinas típicas (milanesas, empanadas, tortillas, tartas, bifes, pastas, sopas, guisos, etc.) que se puedan hacer ${tiempo !== 'sin límite' ? `en ${tiempo}` : ''} ${tipo !== 'cualquier tipo' ? `para ${tipo}` : ''}.
-
-Priorizá recetas simples para una pareja trabajadora. Usá ingredientes fáciles de conseguir en Argentina.
-
-Respondé SOLO con un JSON válido sin texto extra, sin bloques de código, sin comillas adicionales. Formato exacto:
-[
-  {
-    "nombre": "Nombre de la receta",
-    "categoria": "pollo|carne|pescado|pasta|verdura|huevo",
-    "tiempo": "X min",
-    "ingredientes": ["ingrediente 1", "ingrediente 2", "ingrediente 3"],
-    "pasos": ["Paso 1 detallado.", "Paso 2 detallado.", "Paso 3 detallado.", "Paso 4.", "Paso 5."]
-  }
-]`;
-
-  const resultDiv = document.getElementById('iaResults');
-  resultDiv.innerHTML = `
-    <div class="ia-results-header">
-      <div><div class="ia-results-title">Generando recetas...</div><div class="ia-results-sub">Consultando Gemini con ${ingredientes.length} ingredientes</div></div>
-    </div>
-    <div class="skeleton-grid">
-      ${Array(parseInt(cantidad)).fill(`
-        <div class="skeleton-card">
-          <div class="skeleton-top"></div>
-          <div class="skeleton-body">
-            <div class="skeleton-line"></div>
-            <div class="skeleton-line w70"></div>
-            <div class="skeleton-line w50"></div>
-          </div>
-        </div>`).join('')}
-    </div>`;
-
-  try {
-    const res = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_KEY}`,
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          contents: [{ parts: [{ text: prompt }] }],
-          generationConfig: { temperature: 0.7, maxOutputTokens: 2048 }
-        })
-      }
-    );
-
-    if (!res.ok) {
-      const err = await res.json();
-      throw new Error(err.error?.message || `HTTP ${res.status}`);
-    }
-
-    const data = await res.json();
-    const texto = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
-    const clean = texto.replace(/```json|```/g, '').trim();
-    const recetas = JSON.parse(clean);
-    renderResultsIA(recetas);
-
-  } catch (err) {
-    resultDiv.innerHTML = `
-      <div class="state-msg">
-        <div class="state-icon">⚠️</div>
-        <h3>No se pudo conectar con Gemini</h3>
-        <p>${err.message.includes('API key') ? 'La API Key no es válida. Verificá que la copiaste correctamente desde aistudio.google.com' : 'Error: ' + err.message}</p>
-      </div>`;
-  } finally {
-    btn.classList.remove('loading');
-    btn.disabled = false;
-  }
-}
-
-function renderResultsIA(recetas) {
-  const div = document.getElementById('iaResults');
-  if (!recetas?.length) {
-    div.innerHTML = `<div class="state-msg"><div class="state-icon">🍽️</div><h3>Sin resultados</h3><p>Intentá con más ingredientes o cambiá los filtros.</p></div>`;
-    return;
-  }
-
-  const cardsHTML = recetas.map((r, i) => {
-    const id = 'ia_' + Date.now() + '_' + i;
-    r._id = id;
-    return recetaCardHTML(r, id, false);
-  }).join('');
-
-  div.innerHTML = `
-    <div class="ia-results-header">
-      <div>
-        <div class="ia-results-title">✨ ${recetas.length} recetas sugeridas</div>
-        <div class="ia-results-sub">Basadas en: ${ingredientes.join(', ')}</div>
-      </div>
-      <button class="btn-lista" onclick="generarListaCompras(${JSON.stringify(recetas).replace(/"/g,'&quot;')})">🛒 Lista de compras</button>
-    </div>
-    <div class="recetas-grid">${cardsHTML}</div>`;
-
-  // Attach click handlers (necesario porque usamos innerHTML)
-  recetas.forEach((r, i) => {
-    const id = 'ia_' + (div.querySelector('.receta-card')?.dataset?.idx || 0);
-  });
-
-  // Guardar recetas IA en window para onclick
-  window._iaRecetas = recetas;
-}
-
-function recetaCardHTML(r, id, isFav) {
-  const cat = r.categoria || 'verdura';
-  const faved = favs[id] ? 'fav' : '';
-  const favIcon = favs[id] ? '★' : '☆';
-  return `<div class="receta-card" onclick="abrirPopup(window._iaRecetas?.find(x=>x._id==='${id}') || window.RECETAS_BASE?.['${id}'] || ${JSON.stringify(r).replace(/"/g,'&quot;')}, '')">
-    <div class="receta-card-top ${cat}">
-      <svg class="receta-cat-icon ${cat}"><use href="#icon-${cat}"/></svg>
-      <button class="receta-card-fav ${faved}" onclick="event.stopPropagation(); toggleFavCard('${id}', ${JSON.stringify(r).replace(/"/g,'&quot;')}, this)" title="Guardar en favoritos">${favIcon}</button>
-    </div>
-    <div class="receta-card-body">
-      <div class="receta-card-nombre">${r.nombre}</div>
-      <div class="receta-card-meta">
-        <span class="rcmeta"><svg><use href="#icon-clock"/></svg> ${r.tiempo}</span>
-        <span class="rcmeta"><svg><use href="#icon-chef"/></svg> 2 porc.</span>
-      </div>
-      <div class="receta-card-tags">
-        ${r.ingredientes.slice(0,3).map(i=>`<span class="r-tag">${i}</span>`).join('')}
-      </div>
-    </div>
-  </div>`;
-}
-
-function toggleFavCard(id, r, btn) {
-  if (favs[id]) {
-    delete favs[id];
-    btn.textContent = '☆';
-    btn.classList.remove('fav');
-    toast('Receta quitada de favoritos');
-  } else {
-    favs[id] = { ...r, _id: id };
-    btn.textContent = '★';
-    btn.classList.add('fav');
-    toast('⭐ Guardada en favoritos');
-  }
-  localStorage.setItem('favs', JSON.stringify(favs));
-  renderCalendario();
-}
-
-// ════════════════════════════════════════
-//  LISTA DE COMPRAS IA
-// ════════════════════════════════════════
-function generarListaCompras(recetasStr) {
-  const recetas = typeof recetasStr === 'string' ? JSON.parse(recetasStr) : recetasStr;
-  const todos = [...new Set(recetas.flatMap(r => r.ingredientes))].sort();
-  const categorias = {
-    'Carnes y proteínas': todos.filter(i => /pollo|carne|bife|churrasco|milanesa|pescado|merluza|atún|chorizo|jamón|salmon/i.test(i)),
-    'Verduras': todos.filter(i => /papa|zapallo|zanahoria|cebolla|morrón|espinaca|tomate|lechuga|apio|verdeo|zapallito/i.test(i)),
-    'Lácteos': todos.filter(i => /queso|leche|crema|manteca|mozzarella|ricota/i.test(i)),
-    'Almacén': todos.filter(i => /fideos|arroz|harina|pan|tapa|tapas|porotos|garbanzos|lata/i.test(i)),
-    'Otros': todos.filter(i => !/(pollo|carne|bife|churrasco|milanesa|pescado|merluza|atún|chorizo|jamón|salmon|papa|zapallo|zanahoria|cebolla|morrón|espinaca|tomate|lechuga|apio|verdeo|zapallito|queso|leche|crema|manteca|mozzarella|ricota|fideos|arroz|harina|pan|tapa|tapas|porotos|garbanzos|lata)/i.test(i))
-  };
-
-  const popup = document.getElementById('popupOverlay');
-  const box = document.getElementById('popupBox');
-
-  document.getElementById('popColorBar').className = 'popup-color-bar verdura';
-  document.getElementById('popTipo').textContent = '🛒 Lista de compras';
-  document.getElementById('popTitle').textContent = `Para ${recetas.length} recetas`;
-  document.getElementById('popTiempoTxt').textContent = `${todos.length} ingredientes`;
-  document.getElementById('popFavBtn').style.display = 'none';
-
-  const ings = document.getElementById('popIngs');
-  ings.innerHTML = Object.entries(categorias).filter(([,v])=>v.length).map(([cat, items]) =>
-    `<div style="width:100%;margin-bottom:10px">
-      <div style="font-size:0.68rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#888;margin-bottom:6px">${cat}</div>
-      <div style="display:flex;flex-wrap:wrap;gap:5px">${items.map(i=>`<span class="ing-chip-display">${i}</span>`).join('')}</div>
-    </div>`
-  ).join('');
-
-  document.getElementById('popPasos').innerHTML = '';
-  document.querySelector('.popup-section:last-child .popup-section-title').style.display = 'none';
-
-  popup.classList.add('visible');
-  document.body.style.overflow = 'hidden';
-}
-
-// ════════════════════════════════════════
-//  TOAST
-// ════════════════════════════════════════
-let toastTimeout;
-function toast(msg) {
-  const el = document.getElementById('toast');
-  el.textContent = msg;
-  el.classList.add('show');
-  clearTimeout(toastTimeout);
-  toastTimeout = setTimeout(() => el.classList.remove('show'), 2800);
-}
-
-// ════════════════════════════════════════
-//  HELPERS GLOBALES para onclick en HTML
-// ════════════════════════════════════════
-window.RECETAS_BASE = RECETAS_BASE;
-
-// ════════════════════════════════════════
-//  INIT
-// ════════════════════════════════════════
-renderCalendario();
-initApiKeyUI();
-</script>
-</body>
-</html>
