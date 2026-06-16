@@ -1205,7 +1205,7 @@ footer a { color: rgba(255,255,255,0.6); }
       📅 Calendario mensual
     </button>
     <button class="tab-btn" onclick="showSection('ia', this)">
-      🤖 Recetas por IA
+      🤖 Recetas con IA
     </button>
     <button class="tab-btn" onclick="showSection('favoritos', this)">
       ⭐ Mis favoritos
@@ -1275,7 +1275,7 @@ footer a { color: rgba(255,255,255,0.6); }
     <div class="ia-hero-card">
       <h2>¿Qué tenés en casa?</h2>
       <p>Contame qué ingredientes tenés y Gemini te sugiere recetas argentinas caseras que podés hacer ahora mismo.</p>
-      <div class="ia-powered">✨ Potenciado por Google Gemini 1.5 Flash — gratis</div>
+      <div class="ia-powered">✨ Potenciado por Google Gemini</div>
     </div>
 
     <!-- API KEY SETUP -->
@@ -1327,6 +1327,8 @@ footer a { color: rgba(255,255,255,0.6); }
 
       <div class="ia-options-row">
         <select class="ia-select" id="selCantidad">
+          <option value="1"> receta</option>
+          <option value="2">2 recetas</option>
           <option value="3">3 recetas</option>
           <option value="4">4 recetas</option>
           <option value="5">5 recetas</option>
@@ -1407,8 +1409,8 @@ footer a { color: rgba(255,255,255,0.6); }
 
 <!-- FOOTER -->
 <footer>
-  <p>La Cocina Argentina · Menú mensual con IA · <a href="https://aistudio.google.com" target="_blank">Gemini 1.5 Flash</a> (gratis)</p>
-  <p style="margin-top:4px">Desplegado en <a href="https://pages.github.com" target="_blank">GitHub Pages</a> · Sin servidor · Sin costo</p>
+  <p>La Cocina Argentina · Menú mensual con IA · <a href="https://aistudio.google.com" target="_blank">Gemini</a></p>
+  <p style="margin-top:4px">Desplegado en <a href="https://pages.github.com" target="_blank">GitHub Pages</a></p>
 </footer>
 
 <script>
