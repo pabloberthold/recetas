@@ -1,0 +1,1202 @@
+[
+  {
+    "id": "receta-1",
+    "nombre": "Milanesas de Carne con Puré",
+    "categoria": "carne",
+    "tiempo": "45 min",
+    "ingredientes": ["Bolas de lomo o nalga", "Huevos", "Ajo y perejil", "Pan rallado", "Papas", "Leche", "Manteca", "Nuez moscada"],
+    "pasos": [
+      "Pasar la carne por huevo batido con ajo, perejil, sal y pimienta.",
+      "Apanar presionando bien y freír en abundante aceite caliente o cocinar al horno.",
+      "Hervir las papas, pisarlas calientes con manteca, leche, sal y un toque de nuez moscada."
+    ]
+  },
+  {
+    "id": "receta-2",
+    "nombre": "Pollo al Horno con Papas",
+    "categoria": "pollo",
+    "tiempo": "60 min",
+    "ingredientes": ["Pollo entero o trozado", "Papas", "Cebolla", "Limón", "Romero", "Pimentón", "Aceite de oliva"],
+    "pasos": [
+      "Condimentar el pollo con aceite, jugo de limón, pimentón, sal, pimienta y romero.",
+      "Cortar las papas y cebollas en cuñas y disponer todo en una asadera.",
+      "Hornear a 200°C hasta que el pollo esté cocido y la piel quede crocante."
+    ]
+  },
+  {
+    "id": "receta-3",
+    "nombre": "Filet de Merluza a la Romana",
+    "categoria": "pescado",
+    "tiempo": "30 min",
+    "ingredientes": ["Filets de merluza", "Harina", "Huevos", "Limón", "Ajo y perejil", "Aceite para freír"],
+    "pasos": [
+      "Secar los filets, salpimentar y pasarlos por harina.",
+      "Pasar por los huevos batidos con ajo y perejil picado.",
+      "Freír en aceite caliente de ambos lados hasta que doren. Servir con rodajas de limón."
+    ]
+  },
+  {
+    "id": "receta-4",
+    "nombre": "Tallarines Caseros con Tuco",
+    "categoria": "pasta",
+    "tiempo": "90 min",
+    "ingredientes": ["Harina 0000", "Huevos", "Carne para estofado (roast beef)", "Puré de tomate", "Cebolla", "Zanahoria", "Laurel"],
+    "pasos": [
+      "Amasar la harina con los huevos hasta obtener una masa lisa. Estirar y cortar los tallarines.",
+      "Sofreír cebolla y zanahoria, sellar la carne y agregar el puré de tomate con el laurel.",
+      "Cocinar el tuco a fuego bajo por una hora. Hervir la pasta al dente y servir."
+    ]
+  },
+  {
+    "id": "receta-5",
+    "nombre": "Tortilla de Papas",
+    "categoria": "verdura",
+    "tiempo": "40 min",
+    "ingredientes": ["Papas", "Cebolla", "Huevos", "Aceite de girasol", "Sal"],
+    "pasos": [
+      "Cortar las papas en rodajas finas y picar la cebolla. Freír a fuego lento hasta que estén tiernas.",
+      "Escurrir el aceite y mezclar con los huevos batidos con sal.",
+      "Cuajar en una sartén caliente con un hilo de aceite, dar la vuelta con un plato y dorar el otro lado."
+    ]
+  },
+  {
+    "id": "receta-6",
+    "nombre": "Huevos Revueltos con Gramajo",
+    "categoria": "huevo",
+    "tiempo": "25 min",
+    "ingredientes": ["Huevos", "Jamón cocido", "Arvejas", "Papas pay (hilo)", "Manteca"],
+    "pasos": [
+      "Cortar el jamón en tiritas finas y dorarlo ligeramente en una sartén con manteca.",
+      "Agregar las arvejas y los huevos apenas batidos, cocinando a fuego bajo sin parar de revolver.",
+      "Retirar del fuego cuando estén cremosos e incorporar las papas pay crocantes al final."
+    ]
+  },
+  {
+    "id": "receta-7",
+    "nombre": "Empanadas de Carne Cortada a Cuchillo",
+    "categoria": "carne",
+    "tiempo": "120 min",
+    "ingredientes": ["Roast beef o bola de lomo", "Cebolla", "Cebolla de verdeo", "Comino", "Pimentón", "Discos de empanada", "Huevo duro"],
+    "pasos": [
+      "Picar la cebolla y rehogarla. Agregar la carne cortada en cubos muy pequeños.",
+      "Condimentar fuertemente con pimentón, comino y sal. Enfriar el relleno.",
+      "Agregar el verdeo crudo y huevo duro picado. Armar las empanadas, repulgar y hornear."
+    ]
+  },
+  {
+    "id": "receta-8",
+    "nombre": "Supremas de Pollo a la Suiza",
+    "categoria": "pollo",
+    "tiempo": "45 min",
+    "ingredientes": ["Supremas de pollo", "Salsa blanca (Bechamel)", "Queso de máquina o muzzarella", "Nuez moscada", "Pan rallado"],
+    "pasos": [
+      "Pasar las supremas por huevo y pan rallado. Cocinar al horno hasta dorar.",
+      "Cubrir las supremas con salsa blanca espesa condimentada con nuez moscada.",
+      "Colocar láminas de queso por encima y gratinar en el horno a temperatura máxima."
+    ]
+  },
+  {
+    "id": "receta-9",
+    "nombre": "Arroz con Calamares",
+    "categoria": "pescado",
+    "tiempo": "50 min",
+    "ingredientes": ["Tubos de calamar", "Arroz", "Cebolla", "Morrón rojo", "Caldo de pescado", "Azafrán o condimento para arroz"],
+    "pasos": [
+      "Cortar los calamares en anillos. Rehogar cebolla y morrón en una cazuela.",
+      "Añadir los calamares, el arroz y dorar un minuto. Incorporar el caldo caliente y el azafrán.",
+      "Cocinar a fuego medio hasta que el arroz absorba el líquido y los calamares estén tiernos."
+    ]
+  },
+  {
+    "id": "receta-10",
+    "nombre": "Ñoquis de Papa",
+    "categoria": "pasta",
+    "tiempo": "60 min",
+    "ingredientes": ["Papas", "Harina 0000", "Yema de huevo", "Queso rallado", "Sal y nuez moscada"],
+    "pasos": [
+      "Hervir las papas con piel, pelar y pisar caliente. Dejar entibiar.",
+      "Agregar la yema, condimentos, queso y la harina necesaria sin amasar en exceso.",
+      "Formar cilindros, cortar los cuadraditos y pasarlos por la tablita de ñoquis. Hervir."
+    ]
+  },
+  {
+    "id": "receta-11",
+    "nombre": "Budín de Zapallitos",
+    "categoria": "verdura",
+    "tiempo": "50 min",
+    "ingredientes": ["Zapallitos verdes", "Cebolla", "Huevos", "Queso rallado", "Crema de leche", "Pan rallado"],
+    "pasos": [
+      "Cortar los zapallitos, cocinarlos y escurrirlos muy bien para quitar el exceso de agua.",
+      "Mezclar con cebolla rehogada, huevos, queso rallado y un chorrito de crema.",
+      "Volcar en un molde espolvoreado con pan rallado y hornear a baño María hasta que cuaje."
+    ]
+  },
+  {
+    "id": "receta-12",
+    "nombre": "Huevos al Colchón",
+    "categoria": "huevo",
+    "tiempo": "20 min",
+    "ingredientes": ["Huevos", "Arvejas", "Cebolla", "Salsa de tomate", "Jamón cocido", "Queso muzzarella"],
+    "pasos": [
+      "Rehogar cebolla, agregar el jamón, las arvejas y la salsa de tomate en una sartén profunda.",
+      "Hacer pequeños huecos en la salsa y romper un huevo en cada uno.",
+      "Tapar la sartén y cocinar a fuego lento hasta que las claras estén blancas y la yema jugosa."
+    ]
+  },
+  {
+    "id": "receta-13",
+    "nombre": "Pastel de Papa",
+    "categoria": "carne",
+    "tiempo": "60 min",
+    "ingredientes": ["Carne picada", "Cebolla", "Papas", "Huevos duros", "Aceitunas", "Queso fresco", "Manteca"],
+    "pasos": [
+      "Cocinar la carne con la cebolla picada y condimentar. Sumar aceitunas y huevo duro.",
+      "Hacer un puré de papas clásico con manteca y leche.",
+      "En una fuente armar una base de carne, cubrir con el puré, queso fresco y gratinar."
+    ]
+  },
+  {
+    "id": "receta-14",
+    "nombre": "Pollo a la Portuguesa",
+    "categoria": "pollo",
+    "tiempo": "50 min",
+    "ingredientes": ["Pollo trozado", "Cebolla", "Morrón rojo y verde", "Tomate perita", "Vino blanco", "Papas"],
+    "pasos": [
+      "Dorar las piezas de pollo en una olla profunda con aceite. Retirar.",
+      "En la misma olla, saltear las cebollas y los morrones en tiras. Sumar el tomate y el vino.",
+      "Reincorporar el pollo con rodajas de papa, tapar y cocinar a fuego bajo."
+    ]
+  },
+  {
+    "id": "receta-15",
+    "nombre": "Cazuela de Mariscos",
+    "categoria": "pescado",
+    "tiempo": "45 min",
+    "ingredientes": ["Langostinos", "Mejillones", "Calamares", "Cebolla", "Puré de tomate", "Vino blanco", "Ajo"],
+    "pasos": [
+      "Sofreír ajo y cebolla. Agregar los calamares y cocinar unos minutos.",
+      "Verter el vino blanco, dejar evaporar el alcohol y sumar el puré de tomate.",
+      "Incorporar los mejillones y langostinos al final, cocinando solo 5 minutos más."
+    ]
+  },
+  {
+    "id": "receta-16",
+    "nombre": "Canelones de Espinaca y Ricota",
+    "categoria": "pasta",
+    "tiempo": "75 min",
+    "ingredientes": ["Espinaca cocida", "Ricota", "Panqueques de masa", "Salsa de tomate", "Salsa blanca", "Queso rallado"],
+    "pasos": [
+      "Mezclar la espinaca bien escurrida y picada con la ricota, condimentos y queso.",
+      "Rellenar los panqueques formando los canelones y ubicarlos en una asadera.",
+      "Cubrir con salsa de tomate, salsa blanca, espolvorear queso y llevar a horno fuerte."
+    ]
+  },
+  {
+    "id": "receta-17",
+    "nombre": "Zapallitos Rellenos de Arroz y Queso",
+    "categoria": "verdura",
+    "tiempo": "45 min",
+    "ingredientes": ["Zapallitos redondos", "Arroz cocido", "Cebolla", "Queso muzzarella", "Salsa blanca fina"],
+    "pasos": [
+      "Hervir los zapallitos enteros 5 minutos. Cortar la tapa y ahuecar guardando la pulpa.",
+      "Mezclar la pulpa con arroz, cebolla salteada y cubos de muzzarella.",
+      "Rellenar los zapallitos, poner una cucharada de salsa blanca encima y hornear."
+    ]
+  },
+  {
+    "id": "receta-18",
+    "nombre": "Omelette de Jamón y Queso",
+    "categoria": "huevo",
+    "tiempo": "15 min",
+    "ingredientes": ["Huevos", "Jamón cocido", "Queso palta o muzzarella", "Manteca", "Sal"],
+    "pasos": [
+      "Batir los huevos con una pizca de sal.",
+      "Derretir manteca en una sartén, volcar los huevos y remover un poco la base.",
+      "Colocar el jamón y queso en el centro, doblar a la mitad y dejar fundir el queso."
+    ]
+  },
+  {
+    "id": "receta-19",
+    "nombre": "Bife de Chorizo a la Criolla",
+    "categoria": "carne",
+    "tiempo": "35 min",
+    "ingredientes": ["Bifes de chorizo", "Cebolla", "Morrón rojo", "Tomate", "Vino tinto", "Papas fritas"],
+    "pasos": [
+      "Cocinar en una sartén las cebollas y morrones en aros con el tomate en cubos.",
+      "Agregar un chorro de vino tinto y dejar reducir la salsa.",
+      "Cocinar el bife a la plancha al punto deseado y servir cubierto con la salsa criolla caliente."
+    ]
+  },
+  {
+    "id": "receta-20",
+    "nombre": "Pollo al Verdeo",
+    "categoria": "pollo",
+    "tiempo": "40 min",
+    "ingredientes": ["Pechugas o muslos de pollo", "Cebolla de verdeo", "Crema de leche", "Vino blanco", "Caldo de pollo"],
+    "pasos": [
+      "Sellar el pollo trozado en una sartén profunda hasta que esté dorado.",
+      "Añadir la parte blanca de la cebolla de verdeo picada y rehogar. Verter el vino blanco.",
+      "Agregar la crema de leche y la parte verde del verdeo, cocinando hasta espesar."
+    ]
+  },
+  {
+    "id": "receta-21",
+    "nombre": "Chupín de Pescado",
+    "categoria": "pescado",
+    "tiempo": "50 min",
+    "ingredientes": ["Pescado en postas (surubí, corvina o merluza)", "Papas", "Cebolla", "Morrón", "Tomate triturado", "Caldo"],
+    "pasos": [
+      "En una olla grande armar capas calzando papas en rodajas, cebolla, morrón y el pescado.",
+      "Sazonar cada capa con sal, pimienta, orégano y un toque de pimentón.",
+      "Bañar con el tomate triturado y caldo, tapar y cocinar a fuego mínimo sin revolver."
+    ]
+  },
+  {
+    "id": "receta-22",
+    "nombre": "Ravioles de Verdura con Estofado",
+    "categoria": "pasta",
+    "tiempo": "100 min",
+    "ingredientes": ["Ravioles de acelga/espinaca", "Carne para estofado", "Cebolla", "Zanahoria", "Puré de tomates"],
+    "pasos": [
+      "Preparar un estofado clásico sellando la carne y cocinándola largo tiempo en salsa de tomate.",
+      "Hervir los ravioles en abundante agua con sal hasta que suban a la superficie.",
+      "Escurrir los ravioles y servirlos inmediatamente cubiertos con abundante estofado y queso."
+    ]
+  },
+  {
+    "id": "receta-23",
+    "nombre": "Berenjenas a la Parmigiana",
+    "categoria": "verdura",
+    "tiempo": "55 min",
+    "ingredientes": ["Berenjenas", "Salsa de tomate fileto", "Queso muzzarella", "Queso rallado", "Albahaca"],
+    "pasos": [
+      "Cortar las berenjenas en láminas, pasarlas por harina u hornearlas con aceite de oliva.",
+      "En una fuente para horno, intercalar capas de berenjena, salsa de tomate, muzzarella y albahaca.",
+      "Terminar con abundante queso rallado arriba y hornear hasta lograr un gratinado dorado."
+    ]
+  },
+  {
+    "id": "receta-24",
+    "nombre": "Huevos en Purgatorio",
+    "categoria": "huevo",
+    "tiempo": "20 min",
+    "ingredientes": ["Huevos", "Salsa de tomate picante", "Ajo", "Peperoncino o ají molido", "Queso parmesano", "Pan de campo"],
+    "pasos": [
+      "Cocinar el ajo picado en aceite de oliva, agregar la salsa de tomate y el ají molido.",
+      "Colocar los huevos directamente sobre la salsa hirviendo.",
+      "Espolvorear queso parmesano, tapar y retirar cuando las claras estén firmes. Servir con pan tostado."
+    ]
+  },
+  {
+    "id": "receta-25",
+    "nombre": "Strogonoff de Carne",
+    "categoria": "carne",
+    "tiempo": "35 min",
+    "ingredientes": ["Lomo o cuadril", "Champiñones", "Cebolla", "Crema de leche", "Mostaza", "Arroz blanco para acompañar"],
+    "pasos": [
+      "Cortar la carne en tiras finas y dorarla a fuego muy fuerte en una sartén. Reservar.",
+      "Saltear la cebolla y los champiñones fileteados. Agregar la mostaza y la crema de leche.",
+      "Reincorporar la carne con sus jugos, calentar un minuto y servir junto al arroz blanco."
+    ]
+  },
+  {
+    "id": "receta-26",
+    "nombre": "Pollo al Ajillo",
+    "categoria": "pollo",
+    "tiempo": "40 min",
+    "ingredientes": ["Pollo trozado sin piel", "Dientes de ajo abundantes", "Vino blanco", "Perejil fresco", "Aceite de oliva"],
+    "pasos": [
+      "Dorar los dientes de ajo fileteados en aceite de oliva. Retirar antes de que se quemen.",
+      "En ese mismo aceite dorado, cocinar bien las piezas de pollo salpimentadas.",
+      "Verter el vino blanco, reincorporar los ajos, reducir el líquido y terminar con perejil picado."
+    ]
+  },
+  {
+    "id": "receta-27",
+    "nombre": "Pescado al Papillote",
+    "categoria": "pescado",
+    "tiempo": "30 min",
+    "ingredientes": ["Filet de pescado blanco", "Zanahoria", "Zucchini", "Morrón", "Aceite de oliva", "Papel de aluminio"],
+    "pasos": [
+      "Cortar los vegetales en juliana fina y disponerlos sobre una hoja grande de papel de aluminio.",
+      "Colocar el filet sazonado encima de los vegetales y rociar con aceite de oliva.",
+      "Cerrar el papel formando un paquete hermético y hornear a 200°C por 15-20 minutos."
+    ]
+  },
+  {
+    "id": "receta-28",
+    "nombre": "Sorrentinos de Jamón y Queso",
+    "categoria": "pasta",
+    "tiempo": "70 min",
+    "ingredientes": ["Masa para pasta", "Jamón cocido", "Queso muzzarella", "Ricota", "Salsa rosa (tomate y crema)"],
+    "pasos": [
+      "Picar el jamón y la muzzarella, mezclar con un toque de ricota para ligar el relleno.",
+      "Estirar la masa, armar los sorrentinos usando el molde clásico y sellar bien los bordes.",
+      "Hervir en agua salada y servir con una mezcla homogénea de salsa de tomate y crema."
+    ]
+  },
+  {
+    "id": "receta-29",
+    "nombre": "Calabaza Rellena de Verduras",
+    "categoria": "verdura",
+    "tiempo": "55 min",
+    "ingredientes": ["Calabaza mediana", "Choclo en grano", "Espinaca", "Cebolla", "Queso cremoso"],
+    "pasos": [
+      "Cortar la calabaza a la mitad, sacar las semillas y hornear boca abajo hasta que esté tierna.",
+      "Ahuecar un poco y mezclar esa pulpa con espinaca salteada, cebolla y granos de choclo.",
+      "Rellenar las mitades de calabaza, cubrir con queso cremoso y gratinar en el horno."
+    ]
+  },
+  {
+    "id": "receta-30",
+    "nombre": "Revuelto Gramajo Clásico",
+    "categoria": "huevo",
+    "tiempo": "20 min",
+    "ingredientes": ["Huevos", "Papas fritas bastón finas", "Jamón cocido en tiras", "Arvejas", "Aceite"],
+    "pasos": [
+      "Tener listas las papas fritas bien crocantes y secas.",
+      "En una sartén calentar el jamón y las arvejas. Agregar los huevos batiendo ligeramente.",
+      "Sumar las papas fritas inmediatamente, revolver pocos segundos y servir jugoso."
+    ]
+  },
+  {
+    "id": "receta-31",
+    "nombre": "Puchero de Carne",
+    "categoria": "carne",
+    "tiempo": "90 min",
+    "ingredientes": ["Osobuco o falda", "Choclo", "Calabaza", "Papas", "Zanahoria", "Puerro", "Garbanzos"],
+    "pasos": [
+      "Hervir la carne en una olla grande con agua, sal, puerro y zanahoria durante 45 minutos.",
+      "Ir agregando los vegetales según su tiempo de cocción: primero choclo y papas, luego la calabaza.",
+      "Servir la carne y los vegetales colados en una fuente grande, rociados con aceite de oliva."
+    ]
+  },
+  {
+    "id": "receta-32",
+    "nombre": "Pollo a la Mostaza",
+    "categoria": "pollo",
+    "tiempo": "45 min",
+    "ingredientes": ["Presas de pollo", "Mostaza de Dijon o común", "Cebolla", "Vino blanco", "Crema de leche"],
+    "pasos": [
+      "Untar el pollo con abundante mostaza y dorarlo en una cacerola con aceite.",
+      "Añadir la cebolla picada fina y cocinar hasta que transparente. Levantar el fondo con vino blanco.",
+      "Bajar el fuego, incorporar la crema de leche y cocinar tapado hasta que el pollo esté tierno."
+    ]
+  },
+  {
+    "id": "receta-33",
+    "nombre": "Budín de Pescado",
+    "categoria": "pescado",
+    "tiempo": "60 min",
+    "ingredientes": ["Filet de merluza cocido", "Huevos", "Crema de leche", "Salsa de tomate", "Pan rallado"],
+    "pasos": [
+      "Procesar o desmenuzar el pescado cocido asegurándose de que no queden espinas.",
+      "Mezclar con los huevos batidos, la crema, un par de cucharadas de salsa de tomate, sal y pimienta.",
+      "Colocar en un molde de budín aceitado y cocinar al horno a baño María hasta que esté firme."
+    ]
+  },
+  {
+    "id": "receta-34",
+    "nombre": "Lasaña de Carne y Queso",
+    "categoria": "pasta",
+    "tiempo": "80 min",
+    "ingredientes": ["Placas de lasaña", "Carne picada cocida en salsa", "Queso muzzarella", "Salsa blanca espesa"],
+    "pasos": [
+      "En una fuente profunda poner una base de salsa de tomate, luego una capa de masa.",
+      "Intercalar capas de carne con salsa, muzzarella, salsa blanca y placas de masa.",
+      "Terminar la última capa con salsa blanca y muzzarella para gratinar bien al horno."
+    ]
+  },
+  {
+    "id": "receta-35",
+    "nombre": "Torrejas de Acelga",
+    "categoria": "verdura",
+    "tiempo": "30 min",
+    "ingredientes": ["Acelga cocida y escurrida", "Huevos", "Harina leudante", "Queso rallado", "Ajo", "Aceite"],
+    "pasos": [
+      "Picar la acelga finamente y mezclarla con el ajo, huevo, queso rallado y condimentos.",
+      "Incorporar la harina leudante de a poco hasta formar una pasta espesa.",
+      "Tomar porciones con una cuchara y freír en aceite caliente hasta que inflen y doren."
+    ]
+  },
+  {
+    "id": "receta-36",
+    "nombre": "Huevos Escalfados con Espárragos",
+    "categoria": "huevo",
+    "tiempo": "20 min",
+    "ingredientes": ["Huevos", "Espárragos frescos", "Aceite de oliva", "Queso parmesano", "Vinagre"],
+    "pasos": [
+      "Cocinar los espárragos a la plancha con un chorrito de aceite de oliva hasta que estén tiernos.",
+      "Hervir agua con un chorro de vinegar, hacer un remolino y cocinar los huevos sin cáscara por 3 minutos.",
+      "Servir los huevos escalfados sobre los espárragos calientes y espolvorear parmesano."
+    ]
+  },
+  {
+    "id": "receta-37",
+    "nombre": "Carbonada Criolla",
+    "categoria": "carne",
+    "tiempo": "75 min",
+    "ingredientes": ["Carne de ternera en cubos", "Zapallo cabutiá", "Choclo", "Duraznos en almíbar", "Papa", "Cebolla"],
+    "pasos": [
+      "Saltear la cebolla y dorar la carne. Añadir caldo y cocinar a fuego lento.",
+      "Sumar las papas, el zapallo en cubos y los granos de choclo.",
+      "Faltando 10 minutos agregar trozos de durazno en almíbar para darle el clásico sabor agridulce."
+    ]
+  },
+  {
+    "id": "receta-38",
+    "nombre": "Pollo a la Cazadora",
+    "categoria": "pollo",
+    "tiempo": "50 min",
+    "ingredientes": ["Pollo trozado", "Champignones", "Zanahoria", "Cebolla", "Tomate triturado", "Vino tinto"],
+    "pasos": [
+      "Dorar el pollo en aceite de oliva y retirar de la olla.",
+      "Saltear la cebolla, zanahoria en rodajas y los champiñones. Verter el vino tinto.",
+      "Regresar el pollo, incorporar el tomate triturado, condimentar con tomillo y cocinar tapado."
+    ]
+  },
+  {
+    "id": "receta-39",
+    "nombre": "Filet de Pescado al Verdeo",
+    "categoria": "pescado",
+    "tiempo": "30 min",
+    "ingredientes": ["Filets de lenguado o merluza", "Cebolla de verdeo", "Crema de leche", "Vino blanco"],
+    "pasos": [
+      "Disponer los filets en una fuente de horno aceitada y salpimentar.",
+      "Cubrir con la cebolla de verdeo picada fina, rociar con vino blanco y llevar al horno 10 minutos.",
+      "Verter la crema de leche por encima y dejar cocinar 5 minutos más hasta reducir."
+    ]
+  },
+  {
+    "id": "receta-40",
+    "nombre": "Fideos con Pesto de Albahaca",
+    "categoria": "pasta",
+    "tiempo": "20 min",
+    "ingredientes": ["Fideos secos (Spaghetti)", "Albahaca fresca", "Nueces", "Ajo", "Queso rallado", "Aceite de oliva"],
+    "pasos": [
+      "Procesar o machacar en un mortero las hojas de albahaca con el ajo, las nueces y el aceite.",
+      "Añadir el queso rallado a la mezcla hasta lograr una pasta homogénea.",
+      "Hervir los fideos, colarlos reservando un poco de agua y mezclar energéticamente con el pesto."
+    ]
+  },
+  {
+    "id": "receta-41",
+    "nombre": "Milanesas de Berenjena",
+    "categoria": "verdura",
+    "tiempo": "35 min",
+    "ingredientes": ["Berenjenas", "Huevos", "Pan rallado", "Ajo y perejil", "Queso muzzarella", "Tomate"],
+    "pasos": [
+      "Cortar las berenjenas a lo largo, pasarlas por huevo batido con condimentos y luego por pan rallado.",
+      "Cocinar al horno de ambos lados hasta que estén tiernas.",
+      "Colocar una rodaja de tomate y muzzarella arriba de cada una y gratinar."
+    ]
+  },
+  {
+    "id": "receta-42",
+    "nombre": "Shakshuka (Huevos en Salsa)",
+    "categoria": "huevo",
+    "tiempo": "30 min",
+    "ingredientes": ["Huevos", "Morrón rojo", "Cebolla", "Extracto de tomate", "Comino", "Paprika", "Ajo"],
+    "pasos": [
+      "Cocinar la cebolla y el morrón picados con el ajo en aceite de oliva hasta que estén muy blandos.",
+      "Añadir las especias y el tomate triturado, cocinando hasta que espese la salsa.",
+      "Hacer huecos, romper los huevos adentro y cocinar tapado a fuego mínimo hasta que cuajen."
+    ]
+  },
+  {
+    "id": "receta-43",
+    "nombre": "Matambre a la Pizza",
+    "categoria": "carne",
+    "tiempo": "70 min",
+    "ingredientes": ["Matambre de ternera", "Leche", "Salsa de tomate", "Queso muzzarella", "Orégano", "Aceitunas"],
+    "pasos": [
+      "Hervir el matambre en leche con sal y laurel por 45 minutos para tiernizarlo.",
+      "Llevar a la parrilla o asadera de horno del lado de la grasa hasta dorar.",
+      "Dar la vuelta, pintar con salsa de tomate, cubrir con muzzarella y derretir bien."
+    ]
+  },
+  {
+    "id": "receta-44",
+    "nombre": "Vitel Toné",
+    "categoria": "carne",
+    "tiempo": "90 min",
+    "ingredientes": ["Peceto", "Atún en aceite", "Anchoas", "Mayonesa", "Crema de leche", "Alcaparras"],
+    "pasos": [
+      "Hervir el peceto entero en un caldo de verduras hasta que esté tierno. Dejar enfriar en el líquido.",
+      "Licuar el atún, las anchoas, la mayonesa, la crema de leche y un chorrito del caldo.",
+      "Cortar la carne en rodajas finas, disponerlas en una fuente y cubrirlas por completo con la salsa."
+    ]
+  },
+  {
+    "id": "receta-45",
+    "nombre": "Pollo a la Crema de Champiñones",
+    "categoria": "pollo",
+    "tiempo": "40 min",
+    "ingredientes": ["Pechugas de pollo", "Champiñones frescos", "Cebolla", "Crema de leche", "Caldo de verduras"],
+    "pasos": [
+      "Filetear las pechugas y dorarlas en una sartén con manteca y aceite. Reservar.",
+      "En la misma sartén saltear la cebolla y los champiñones fileteados.",
+      "Agregar la crema, reincorporar el pollo y cocinar a fuego bajo hasta que espese la salsa."
+    ]
+  },
+  {
+    "id": "receta-46",
+    "nombre": "Paella Criolla",
+    "categoria": "pescado",
+    "tiempo": "60 min",
+    "ingredientes": ["Arroz doble carolina", "Mariscos surtidos", "Pollo trozado", "Cebolla", "Morrón", "Azafrán"],
+    "pasos": [
+      "Dorar el pollo en la paellera. Sumar cebolla y morrón picados finos.",
+      "Agregar el arroz, nacarar e incorporar el caldo caliente con el azafrán disuelto.",
+      "A mitad de cocción del arroz, sumar los mariscos y cocinar sin revolver hasta que el grano esté a punto."
+    ]
+  },
+  {
+    "id": "receta-47",
+    "nombre": "Capeletis Caruso",
+    "categoria": "pasta",
+    "tiempo": "35 min",
+    "ingredientes": ["Capeletis de carne o queso", "Crema de leche", "Jamón cocido", "Champiñones", "Extracto de carne"],
+    "pasos": [
+      "Calentar la crema de leche en una sartén con el jamón cortado y los champiñones fileteados.",
+      "Disolver una cucharadita de extracto de carne o caldo concentrado en la crema.",
+      "Hervir los capeletis, volcarlos directamente en la salsa caliente y mezclar con queso rallado."
+    ]
+  },
+  {
+    "id": "receta-48",
+    "nombre": "Pastel de Calabaza y Espinaca",
+    "categoria": "verdura",
+    "tiempo": "45 min",
+    "ingredientes": ["Calabaza", "Espinaca cocida", "Cebolla", "Queso crema", "Queso muzzarella"],
+    "pasos": [
+      "Hacer un puré firme con la calabaza horneada.",
+      "Mezclar la espinaca picada con cebolla salteada y queso crema.",
+      "En una fuente colocar la base de espinaca, cubrir con el puré de calabaza, muzzarella y dorar."
+    ]
+  },
+  {
+    "id": "receta-49",
+    "nombre": "Ensalada Caesar con Pollo y Huevo",
+    "categoria": "huevo",
+    "tiempo": "25 min",
+    "ingredientes": ["Pechuga de pollo", "Huevo duro o soft", "Lechuga capuchina o romana", "Croutons de pan", "Aderezo caesar"],
+    "pasos": [
+      "Cocinar la pechuga a la plancha con condimentos y cortarla en tiras.",
+      "Lavar la lechuga, disponerla en un bol junto con los croutons y el pollo.",
+      "Agregar el huevo cortado en cuartos y aderezar con la salsa caesar y queso en hebras."
+    ]
+  },
+  {
+    "id": "receta-50",
+    "nombre": "Estofado de Ternera con Polenta",
+    "categoria": "carne",
+    "tiempo": "55 min",
+    "ingredientes": ["Carne de ternera", "Salsa de tomate", "Polenta instantánea", "Leche", "Manteca", "Queso cremoso"],
+    "pasos": [
+      "Cocinar la carne en cubos dentro de la salsa de tomate con verduras hasta que esté blanda.",
+      "Preparar la polenta hirviendo leche y agua, volcando la polenta en forma de lluvia.",
+      "Servir la polenta cremosa con manteca y queso abajo, y cubrir con el estofado caliente arriba."
+    ]
+  },
+  {
+    "id": "receta-51",
+    "nombre": "Pollo al Curry Simple",
+    "categoria": "pollo",
+    "tiempo": "35 min",
+    "ingredientes": ["Pechuga de pollo", "Curry en polvo", "Cebolla", "Manzana verde", "Crema de leche o leche de coco"],
+    "pasos": [
+      "Saltear la cebolla y la manzana verde rallada fina en una sartén profunda.",
+      "Añadir el pollo en cubos y dorar. Incorporar el curry y remover bien para despertar el aroma.",
+      "Bañar con la crema de leche, bajar el fuego y dejar espesar la salsa."
+    ]
+  },
+  {
+    "id": "receta-52",
+    "nombre": "Filet de Gatuzo a la Plancha",
+    "categoria": "pescado",
+    "tiempo": "25 min",
+    "ingredientes": ["Filet de gatuzo", "Ajo", "Limón", "Manteca", "Perejil"],
+    "pasos": [
+      "Marinar el pescado con jugo de limón y ajo picado por unos 10 minutos.",
+      "Calentar una plancha con un toque de aceite y cocinar el filet de ambos lados cuidando que no se desarme.",
+      "Servir inmediatamente con una cucharada de manteca derretida con perejil por encima."
+    ]
+  },
+  {
+    "id": "receta-53",
+    "nombre": "Varenikes de Papa y Cebolla",
+    "categoria": "pasta",
+    "tiempo": "75 min",
+    "ingredientes": ["Masa para pasta", "Papas", "Cebollas abundantes", "Manteca o grasa de ave"],
+    "pasos": [
+      "Preparar un puré de papas liso. Picar las cebollas finas y dorarlas en manteca hasta caramelizar.",
+      "Mezclar la mitad de la cebolla frita con el puré para hacer el relleno de las pastas.",
+      "Armar las empanaditas semicirculares, hervirlas y servirlas con el resto de la cebolla frita por encima."
+    ]
+  },
+  {
+    "id": "receta-54",
+    "nombre": "Guiso de Lentejas",
+    "categoria": "verdura",
+    "tiempo": "60 min",
+    "ingredientes": ["Lentejas", "Panceta ahumada", "Chorizo colorado", "Papa", "Zanahoria", "Salsa de tomate"],
+    "pasos": [
+      "Dorar la panceta y el chorizo colorado en una olla. Sumar cebolla y morrón picados.",
+      "Añadir las lentejas (previamente hidratadas), la zanahoria y el puré de tomate con caldo.",
+      "Agregar las papas en cubos pequeños al final y cocinar hasta que todo esté tierno y espeso."
+    ]
+  },
+  {
+    "id": "receta-55",
+    "nombre": "Huevos Rancheros Criollos",
+    "categoria": "huevo",
+    "tiempo": "25 min",
+    "ingredientes": ["Huevos", "Tortillas de maíz o pan plano", "Frijoles negros cocidos", "Salsa criolla picante"],
+    "pasos": [
+      "Calentar las tortillas y untarlas con una base de frijoles negros pisados calientes.",
+      "Preparar huevos fritos por separado manteniendo la yema jugosa.",
+      "Colocar los huevos sobre las tortillas y bañar con una buena cantidad de salsa criolla de tomates."
+    ]
+  },
+  {
+    "id": "receta-56",
+    "nombre": "Colita de Cuadril al Horno",
+    "categoria": "carne",
+    "tiempo": "55 min",
+    "ingredientes": ["Colita de cuadril", "Ajo", "Romero", "Papas", "Batatas", "Aceite de oliva"],
+    "pasos": [
+      "Hacer pequeñas incisiones en la carne e introducir láminas de ajo y hojas de romero.",
+      "Colocar la carne en una fuente rodeada de papas y batatas cortadas en dados.",
+      "Rociar todo con aceite de oliva, salar y hornear a temperatura media-alta hasta el punto deseado."
+    ]
+  },
+  {
+    "id": "receta-57",
+    "nombre": "Brochettes de Pollo y Vegetales",
+    "categoria": "pollo",
+    "tiempo": "30 min",
+    "ingredientes": ["Pechuga de pollo", "Morrón rojo y verde", "Cebolla", "Panceta", "Salsa de soja"],
+    "pasos": [
+      "Cortar el pollo, los morrones, la cebolla y la panceta en cuadrados del mismo tamaño.",
+      "Armar las brochettes intercalando los ingredientes en los palitos de madera.",
+      "Cocinar a la plancha o parrilla, pincelando con un toque de salsa de soja hasta dorar bien."
+    ]
+  },
+  {
+    "id": "receta-58",
+    "nombre": "Bocaditos de Salmón Blanco",
+    "categoria": "pescado",
+    "tiempo": "30 min",
+    "ingredientes": ["Salmón blanco o lenguado", "Huevo", "Harina", "Ralladura de limón", "Condimento para pescados"],
+    "pasos": [
+      "Cortar el pescado en cubos medianos (tamaño bocado) y sazonar con limón.",
+      "Pasar los cubos por harina, luego por huevo batido condimentado.",
+      "Freír rápidamente en aceite bien caliente para que queden crocantes por fuera y jugosos adentro."
+    ]
+  },
+  {
+    "id": "receta-59",
+    "nombre": "Spaghetti a la Putanesca",
+    "categoria": "pasta",
+    "tiempo": "25 min",
+    "ingredientes": ["Spaghetti", "Tomates perita en conserva", "Anchoas", "Aceitunas negras", "Alcaparras", "Ajo"],
+    "pasos": [
+      "Dorar el ajo y las anchoas en aceite de oliva hasta que las anchoas se deshagan.",
+      "Sumar las aceitunas fileteadas, alcaparras y los tomates triturados con las manos.",
+      "Cocinar la salsa 15 minutos. Mezclar con los spaghetti hervidos al dente."
+    ]
+  },
+  {
+    "id": "receta-60",
+    "nombre": "Revuelto de Zapallitos con Huevo",
+    "categoria": "verdura",
+    "tiempo": "25 min",
+    "ingredientes": ["Zapallitos verdes", "Cebolla", "Huevos", "Queso rallado", "Aceite"],
+    "pasos": [
+      "Cortar los zapallitos en cubos pequeños descartando el centro con demasiadas semillas.",
+      "Saltear la cebolla, agregar los zapallitos y cocinar hasta que pierdan rigidez.",
+      "Agregar los huevos batidos, revolver constantemente a fuego bajo y apagar cuando cuaje suave."
+    ]
+  },
+  {
+    "id": "receta-61",
+    "nombre": "Huevos Rellenos Clásicos",
+    "categoria": "huevo",
+    "tiempo": "20 min",
+    "ingredientes": ["Huevos", "Atún en conserva", "Mayonesa", "Mostaza", "Pimentón dulce"],
+    "pasos": [
+      "Hervir los huevos durante 10 minutos. Enfriar, pelar y cortar a la mitad a lo largo.",
+      "Retirar las yemas y pisarlas junto con el atún desmenuzado, mayonesa y un toque de mostaza.",
+      "Rellenar las claras vacías con la pasta usando una cuchara o manga y espolvorear pimentón."
+    ]
+  },
+  {
+    "id": "receta-62",
+    "nombre": "Bifes a la Criolla",
+    "categoria": "carne",
+    "tiempo": "40 min",
+    "ingredientes": ["Bifes de aguja o cuadril", "Cebolla", "Morrón", "Tomate", "Papas", "Caldo"],
+    "pasos": [
+      "En una olla baja acomodar capas de cebolla, morrón, papas en rodajas y los bifes intercalados.",
+      "Condimentar cada piso con sal, pimienta, orégano y ají molido.",
+      "Verter un cucharón de caldo, tapar herméticamente y cocinar a fuego lento hasta que la papa esté lista."
+    ]
+  },
+  {
+    "id": "receta-63",
+    "nombre": "Pollo al Limón estilo Chino",
+    "categoria": "pollo",
+    "tiempo": "35 min",
+    "ingredientes": ["Pechuga de pollo", "Jugo de limón", "Azúcar", "Almidón de maíz (maicena)", "Salsa de soja"],
+    "pasos": [
+      "Cortar el pollo en cubos, pasarlo por almidón de maíz y freír hasta que esté crocante. Reservar.",
+      "En una sartén calentar jugo de limón, agua, azúcar y un chorrito de salsa de soja.",
+      "Espesar la salsa con una cucharadita de almidón disuelto, tirar el pollo adentro y saltear para impregnar."
+    ]
+  },
+  {
+    "id": "receta-64",
+    "nombre": "Arroz con Mariscos de la Costa",
+    "categoria": "pescado",
+    "tiempo": "45 min",
+    "ingredientes": ["Arroz secos", "Mejillones", "Tiritas de calamar", "Cebolla de verdeo", "Ajo", "Caldo de verduras"],
+    "pasos": [
+      "Saltear el ajo y la cebolla de verdeo en aceite de oliva. Sumar los calamares.",
+      "Agregar el arroz y remover. Ir incorporando el caldo caliente de a poco como si fuera un risotto.",
+      "Cinco minutos antes de terminar, añadir los mejillones limpios y un buen puñado de perejil picado."
+    ]
+  },
+  {
+    "id": "receta-65",
+    "nombre": "Sorrentinos de Caprese",
+    "categoria": "pasta",
+    "tiempo": "60 min",
+    "ingredientes": ["Masa de pasta", "Muzzarella", "Tomates secos hidratados", "Albahaca fresca"],
+    "pasos": [
+      "Picar la muzzarella junto con los tomates secos y las hojas de albahaca fresca.",
+      "Armar los sorrentinos rellenando la masa y cuidando que no quede aire atrapado en el interior.",
+      "Hervir en abundante agua hirviendo y servir con un hilo de buen aceite de oliva y queso fresco."
+    ]
+  },
+  {
+    "id": "receta-66",
+    "nombre": "Milanesas de Calabaza Napolitanas",
+    "categoria": "verdura",
+    "tiempo": "35 min",
+    "ingredientes": ["Calabaza (frontera plana)", "Huevos", "Pan rallado", "Salsa de tomate", "Muzzarella"],
+    "pasos": [
+      "Cortar rodajas finas de calabaza, pasarlas por huevo batido sazonado y luego por pan rallado.",
+      "Cocinar al horno fuerte en una placa aceitada de ambos lados.",
+      "Colocar encima salsa de tomate, queso muzzarella, orégano y llevar a fundir."
+    ]
+  },
+  {
+    "id": "receta-67",
+    "nombre": "Huevos Poché sobre Tostada de Palta",
+    "categoria": "huevo",
+    "tiempo": "15 min",
+    "ingredientes": ["Huevos", "Pan de masa madre", "Palta madura", "Limón", "Semillas de sésamo"],
+    "pasos": [
+      "Pisar la palta con sal, pimienta y unas gotas de jugo de limón. Untar sobre el pan tostado.",
+      "Hacer el huevo poché en agua a punto de hervor con vinagre por exactamente 3 minutos.",
+      "Colocar el huevo sobre la palta, romper ligeramente la yema y decorar con semillas."
+    ]
+  },
+  {
+    "id": "receta-68",
+    "nombre": "Niños Envueltos de Carne",
+    "categoria": "carne",
+    "tiempo": "70 min",
+    "ingredientes": ["Bifes finos de nalga o bola de lomo", "Panceta", "Zanahoria en bastones", "Salsa de tomate"],
+    "pasos": [
+      "Estirar cada bife, colocar una tira de panceta y una de zanahoria por dentro.",
+      "Enrollar apretando bien y sujetar firmemente con un palillo de madera.",
+      "Dorar los rollitos en una cacerola, cubrir con salsa de tomate y cocinar tapados a fuego lento."
+    ]
+  },
+  {
+    "id": "receta-69",
+    "nombre": "Supremas de Pollo Maryland",
+    "categoria": "pollo",
+    "tiempo": "45 min",
+    "ingredientes": ["Suprema de pollo", "Banana", "Choclo cremoso (lata)", "Huevo", "Pan rallado", "Papas fritas"],
+    "pasos": [
+      "Hacer la milanesa de pollo de forma tradicional y freír.",
+      "Pasar la banana por harina y huevo y freírla también. Calentar el choclo cremoso con manteca.",
+      "Servir la milanesa con la salsa de choclo por encima, la banana frita al lado y papas fritas bastón."
+    ]
+  },
+  {
+    "id": "receta-70",
+    "nombre": "Chicharrón de Pescado",
+    "categoria": "pescado",
+    "tiempo": "30 min",
+    "ingredientes": ["Filet de pescado firme", "Salsa de soja", "Ajo en polvo", "Harina", "Fécula de maíz"],
+    "pasos": [
+      "Cortar el pescado en tiras gruesas y marinarlas con salsa de soja y ajo.",
+      "Pasar por una mezcla de partes iguales de harina y fécula de maíz apretando bien.",
+      "Freír en abundante aceite bien caliente hasta lograr un color dorado intenso y súper crocante."
+    ]
+  },
+  {
+    "id": "receta-71",
+    "nombre": "Fideos a la Parisienne",
+    "categoria": "pasta",
+    "tiempo": "30 min",
+    "ingredientes": ["Fideos secos o de cinta", "Pechuga de pollo", "Jamón cocido", "Champignones", "Crema de leche"],
+    "pasos": [
+      "Saltear cubos pequeños de pollo en manteca. Sumar el jamón en tiritas y los champiñones fileteados.",
+      "Verter la crema de leche y cocinar a fuego bajo unos minutos para concentrar sabores.",
+      "Hervir la pasta, colarla e incorporarla directamente a la sartén con la salsa caliente."
+    ]
+  },
+  {
+    "id": "receta-72",
+    "nombre": "Tortilla de Zapallitos",
+    "categoria": "verdura",
+    "tiempo": "35 min",
+    "ingredientes": ["Zapallitos verdes", "Cebolla", "Huevos", "Queso parmesano", "Aceite"],
+    "pasos": [
+      "Cortar los zapallitos en rodajas finas. Saltearlos junto a la cebolla picada hasta ablandar.",
+      "Escurrir el líquido excedente y mezclar los vegetales con los huevos bien batidos y el queso.",
+      "Cocinar en sartén caliente dándole la vuelta a mitad de camino para dorar ambas caras."
+    ]
+  },
+  {
+    "id": "receta-73",
+    "nombre": "Frittata de Espinaca y Ricota",
+    "categoria": "huevo",
+    "tiempo": "30 min",
+    "ingredientes": ["Huevos", "Espinaca fresca", "Ricota", "Cebolla", "Nuez moscada"],
+    "pasos": [
+      "Saltear la cebolla y la espinaca hasta que reduzca. Mezclar en un bol con la ricota.",
+      "Batir los huevos con sal, pimienta y nuez moscada, y unirlos a la preparación de espinaca.",
+      "Volcar en una sartén que pueda ir al horno y cocinar a fuego bajo; terminar arriba con el grill del horno."
+    ]
+  },
+  {
+    "id": "receta-74",
+    "nombre": "Entraña a la Plancha con Chimichurri",
+    "categoria": "carne",
+    "tiempo": "25 min",
+    "ingredientes": ["Entraña entera", "Aceite", "Vinagre", "Ajo", "Orégano", "Ají molido"],
+    "pasos": [
+      "Preparar el chimichurri mezclando ajo picado, orégano, ají molido, aceite, vinagre y sal.",
+      "Limpiar el exceso de piel de la entraña pero dejar una capa fina para que quede crocante.",
+      "Cocinar a la plancha insoportablemente caliente 7-10 minutos por lado. Servir con el chimichurri."
+    ]
+  },
+  {
+    "id": "receta-75",
+    "nombre": "Pollo a la Barbacoa con Puré de Batata",
+    "categoria": "pollo",
+    "tiempo": "50 min",
+    "ingredientes": ["Muslos de pollo", "Salsa barbacoa", "Batatas", "Miel", "Manteca"],
+    "pasos": [
+      "Disponer los muslos en una placa, pintarlos con salsa barbacoa y un toque de miel.",
+      "Hornear a temperatura media y volver a pintar a mitad de cocción para caramelizar.",
+      "Acompañar con un puré suave de batatas hecho con manteca y una cucharadita de leche."
+    ]
+  },
+  {
+    "id": "receta-76",
+    "nombre": "Filet de Merluza Gratinado con Salsa Blanca",
+    "categoria": "pescado",
+    "tiempo": "40 min",
+    "ingredientes": ["Filets de merluza", "Salsa blanca espesa", "Queso rallado", "Nuez moscada"],
+    "pasos": [
+      "Enrollar los filets o colocarlos estirados en una fuente para horno previamente enmantecada.",
+      "Cubrir los pescados crudos con la salsa blanca bien condimentada con nuez moscada.",
+      "Espolvorear abundante queso rallado por encima y hornear 20 minutos hasta burbujear y dorar."
+    ]
+  },
+  {
+    "id": "receta-77",
+    "nombre": "Ravioles de Pollo con Salsa Bolognesa",
+    "categoria": "pasta",
+    "tiempo": "60 min",
+    "ingredientes": ["Ravioles de pollo", "Carne picada", "Cebolla", "Apio", "Salsa de tomate"],
+    "pasos": [
+      "Preparar la boloñesa salteando los vegetales picadísimos, sumando la carne picada y luego el tomate.",
+      "Dejar reducir la salsa a fuego muy lento por un mínimo de 40 minutos.",
+      "Hervir los ravioles, escurrir y combinar en una fuente con abundante salsa espesa."
+    ]
+  },
+  {
+    "id": "receta-78",
+    "nombre": "Berenjenas Rellenas de Lentejas",
+    "categoria": "verdura",
+    "tiempo": "45 min",
+    "ingredientes": ["Berenjenas grandes", "Lentejas cocidas", "Cebolla", "Tomate en cubos", "Queso cremoso"],
+    "pasos": [
+      "Cortar las berenjenas a la mitad, hacerles tajos y hornearlas hasta que la pulpa esté blanda.",
+      "Retirar la pulpa con cuchara y saltarla con cebolla, tomate y las lentejas ya listas.",
+      "Rellenar las carcasas de berenjena, coronar con un trozo de queso y derretir al horno."
+    ]
+  },
+  {
+    "id": "receta-79",
+    "nombre": "Huevo Mollet con Espinacas a la Crema",
+    "categoria": "huevo",
+    "tiempo": "20 min",
+    "ingredientes": ["Huevos", "Espinaca fresca", "Salsa blanca líquida o crema", "Queso rallado"],
+    "pasos": [
+      "Hervir los huevos exactamente durante 6 minutos, pasarlos por agua helada y pelarlos con cuidado.",
+      "Cocinar la espinaca, picarla y mezclarla con la crema caliente y condimentos.",
+      "Servir el colchón de espinacas cremosas y colocar el huevo mollet arriba (al cortarlo la yema fluirá)."
+    ]
+  },
+  {
+    "id": "receta-80",
+    "nombre": "Bife de Cuadril a la Pimienta",
+    "categoria": "carne",
+    "tiempo": "30 min",
+    "ingredientes": ["Bifes de cuadril gruesos", "Pimienta negra en grano", "Crema de leche", "Cognac o vino blanco"],
+    "pasos": [
+      "Aplastar los granos de pimienta y pegarlos presionando sobre ambas caras del bife.",
+      "Sellar la carne en una sartén caliente con manteca al punto deseado. Retirar.",
+      "Desglasar la sartén con un chorro de cognac, agregar la crema de leche, reducir y salsear el bife."
+    ]
+  },
+  {
+    "id": "receta-81",
+    "nombre": "Wok de Pollo y Vegetales",
+    "categoria": "pollo",
+    "tiempo": "25 min",
+    "ingredientes": ["Pechuga de pollo", "Zanahoria", "Morrón rojo", "Zucchini", "Salsa de soja", "Aceite de sésamo"],
+    "pasos": [
+      "Cortar el pollo y todos los vegetales en bastones delgados (juliana).",
+      "Calentar el wok al máximo, saltear el pollo primero y luego ir sumando los vegetales manteniendo su crocantez.",
+      "Terminar vertiendo la salsa de soja, cocinar un minuto más revolviendo constantemente y servir."
+    ]
+  },
+  {
+    "id": "receta-82",
+    "nombre": "Empanadas de Atún gallegas",
+    "categoria": "pescado",
+    "tiempo": "50 min",
+    "ingredientes": ["Atún en lata", "Cebolla abundante", "Morrón rojo", "Huevo duro", "Discos de empanada de hojaldre"],
+    "pasos": [
+      "Cocinar la cebolla y el morrón picados en aceite de oliva hasta que estén muy tiernos (estilo sofrito).",
+      "Apagar el fuego, mezclar con el atún escurrido y el huevo duro picado. Dejar enfriar.",
+      "Armar las empanadas con repulgue tradicional, pintar con huevo batido y hornear hasta dorar."
+    ]
+  },
+  {
+    "id": "receta-83",
+    "nombre": "Sorrentinos de Calabaza y Muzarella",
+    "categoria": "pasta",
+    "tiempo": "65 min",
+    "ingredientes": ["Masa para pasta", "Puré de calabaza seco", "Queso muzzarella", "Amarettis (opcional)"],
+    "pasos": [
+      "Mezclar el puré de calabaza (hecho al horno para que no tenga agua) con muzzarella rallada.",
+      "Armar los sorrentinos de buen tamaño prensando los bordes para evitar filtraciones.",
+      "Hervir en abundante agua salada y acompañar con manteca clarificada y hojas de salvia."
+    ]
+  },
+  {
+    "id": "receta-84",
+    "nombre": "Ensalada Tibia de Calabaza y Huevo Soft",
+    "categoria": "verdura",
+    "tiempo": "30 min",
+    "ingredientes": ["Calabaza en cubos", "Huevo", "Rúcula fresca", "Queso de cabra o feteado", "Semillas de girasol"],
+    "pasos": [
+      "Asar los cubos de calabaza en el horno con aceite de oliva y tomillo hasta que doren.",
+      "Hervir un huevo por 6 minutos y medio para lograr consistencia blanda.",
+      "Armar el plato con una base de rúcula, la calabaza tibia, el queso desgranado y el huevo soft arriba."
+    ]
+  },
+  {
+    "id": "receta-85",
+    "nombre": "Tortilla de Espinacas Básica",
+    "categoria": "huevo",
+    "tiempo": "20 min",
+    "ingredientes": ["Espinaca fresca", "Huevos", "Cebolla", "Queso muzzarella", "Sal y pimienta"],
+    "pasos": [
+      "Cocinar la espinaca al vapor un minuto, escurrir apretando fuertemente con las manos y picar.",
+      "Mezclar con cebolla previamente rehogada, los huevos batidos y dados de muzzarella.",
+      "Cocinar en una sartén aceitada caliente unos 5 minutos por lado cuidando que quede jugosa."
+    ]
+  },
+  {
+    "id": "receta-86",
+    "nombre": "Guiso de Mondongo",
+    "categoria": "carne",
+    "tiempo": "110 min",
+    "ingredientes": ["Mondongo", "Salsa de tomate", "Chorizo colorado", "Papas", "Porotos blancos cocidos"],
+    "pasos": [
+      "Hervir el mondongo en agua con vinagre y laurel por 1 hora y media hasta ablandar. Cortar en tiras.",
+      "Hacer una base de guiso con cebolla, morrón y el chorizo colorado. Añadir el tomate y el mondongo.",
+      "Incorporar las papas y los porotos, cocinando hasta que la salsa espese de forma contundente."
+    ]
+  },
+  {
+    "id": "receta-87",
+    "nombre": "Pollo al Horno con Chimichurri",
+    "categoria": "pollo",
+    "tiempo": "60 min",
+    "ingredientes": ["Pollo entero trozado", "Chimichurri seco hidratado", "Aceite de girasol", "Limón"],
+    "pasos": [
+      "Adobar el pollo frotándolo por todos lados con una mezcla espesa de chimichurri, aceite y limón.",
+      "Dejar marinar en la heladera al menos una hora si es posible.",
+      "Acomodar en una asadera y cocinar a horno fuerte para lograr un acabado crocante y muy sabroso."
+    ]
+  },
+  {
+    "id": "receta-88",
+    "nombre": "Ceviche Criollo Sencillo",
+    "categoria": "pescado",
+    "tiempo": "25 min",
+    "ingredientes": ["Filet de lenguado o boga super fresco", "Jugo de limón abundante", "Cebolla morada", "Cilantro", "Ají picante"],
+    "pasos": [
+      "Cortar el pescado limpio en cubos de 1.5 cm y disponerlos en un bol frío.",
+      "Cubrir con la cebolla cortada en pluma fina, el cilantro picado y el ají molido o fresco.",
+      "Bañar con jugo de limón puro, mezclar bien y dejar reposar 5 minutos en frío antes de servir."
+    ]
+  },
+  {
+    "id": "receta-89",
+    "nombre": "Panzotti de Ricota y Nuez",
+    "categoria": "pasta",
+    "tiempo": "70 min",
+    "ingredientes": ["Masa de pasta", "Ricota premium", "Nueces picadas", "Queso parmesano"],
+    "pasos": [
+      "Mezclar la ricota bien seca con las nueces picadas medianas y abundante parmesano rallado.",
+      "Estirar la masa fina, distribuir porciones de relleno y cerrar dándoles forma de triángulo.",
+      "Hervir en abundante agua con sal y acompañar con una salsa simple de crema y un toque de pimienta."
+    ]
+  },
+  {
+    "id": "receta-90",
+    "nombre": "Revuelto de Hongos y Espárragos",
+    "categoria": "verdura",
+    "tiempo": "25 min",
+    "ingredientes": ["Champignones o portobellos", "Espárragos", "Ajo", "Huevo duro opcional o revuelto", "Aceite de oliva"],
+    "pasos": [
+      "Cortar la base leñosa de los espárragos y saltearlos enteros o en trozos con los hongos fileteados.",
+      "Añadir el ajo picado fino al final para evitar que se queme.",
+      "Emplatar los vegetales crocantes calientes y romper un huevo poché o ligar con huevo revuelto suave."
+    ]
+  },
+  {
+    "id": "receta-91",
+    "nombre": "Huevos Escoceses Criollos",
+    "categoria": "huevo",
+    "tiempo": "35 min",
+    "ingredientes": ["Huevos", "Carne picada de cerdo o vacuna condimentada", "Harina", "Pan rallado", "Aceite para freír"],
+    "pasos": [
+      "Hervir los huevos por 5 minutos para dejar la yema blanda. Pelar con extremo cuidado.",
+      "Envolver cada huevo por completo con una capa fina de carne picada bien sazonada.",
+      "Pasar por harina, huevo batido y pan rallado. Freír en aceite hondo hasta dorar bien la carne."
+    ]
+  },
+  {
+    "id": "receta-92",
+    "nombre": "Peceto a la Pomarola",
+    "categoria": "carne",
+    "tiempo": "65 min",
+    "ingredientes": ["Rodajas de peceto", "Cebolla", "Morrón verde", "Salsa de tomate fileto", "Vino blanco"],
+    "pasos": [
+      "Sellar las rodajas de peceto en una cacerola con aceite caliente. Retirar.",
+      "Saltear los vegetales cortados en tiras, verter el vino blanco y dejar evaporar.",
+      "Sumar el tomate triturado, reincorporar la carne y cocinar a fuego lento tapado por 40 minutos."
+    ]
+  },
+  {
+    "id": "receta-93",
+    "nombre": "Suprema Napolitana con Papas Fritas",
+    "categoria": "pollo",
+    "tiempo": "45 min",
+    "ingredientes": ["Suprema de pollo", "Pan rallado", "Salsa de tomate", "Jamón cocido", "Muzzarella", "Papas"],
+    "pasos": [
+      "Preparar la milanesa de pechuga y cocinarla frita o al horno hasta que dore.",
+      "Cubrir con una feta de jamón, salsa de tomate sazonada y una buena porción de muzzarella.",
+      "Llevar al horno fuerte a derretir el queso y servir con un generoso plato de papas fritas."
+    ]
+  },
+  {
+    "id": "receta-94",
+    "nombre": "Pescado en Escabeche",
+    "categoria": "pescado",
+    "tiempo": "45 min",
+    "ingredientes": ["Filets de pescado firmes", "Cebolla", "Zanahoria", "Vinagre de alcohol", "Aceite", "Laurel"],
+    "pasos": [
+      "Pasar el pescado por harina y freírlo ligeramente. Reservar en una fuente profunda.",
+      "Cocinar en partes iguales de aceite y vinagre la cebolla en plumas, la zanahoria en rodajas finas y el laurel.",
+      "Volcar todo el escabeche hirviendo arriba del pescado frito y dejar enfriar (ideal comer al día siguiente)."
+    ]
+  },
+  {
+    "id": "receta-95",
+    "nombre": "Fideos con Salsa Bolognesa de Lentejas",
+    "categoria": "pasta",
+    "tiempo": "40 min",
+    "ingredientes": ["Fideos secos", "Lentejas cocidas", "Salsa de tomate", "Zanahoria", "Cebolla", "Apio"],
+    "pasos": [
+      "Hacer un sofrito tradicional con cebolla, apio y zanahoria picados sumamente finos.",
+      "Añadir el puré de tomates y las lentejas cocidas, simulando la textura de la carne picada.",
+      "Cocinar la salsa 20 minutos a fuego bajo y servir bien caliente sobre los fideos recién colados."
+    ]
+  },
+  {
+    "id": "receta-96",
+    "nombre": "Tortilla de Espinaca y Choclo",
+    "categoria": "verdura",
+    "tiempo": "30 min",
+    "ingredientes": ["Espinaca cocida y escurrida", "Choclo desgranado (lata)", "Huevos", "Cebolla de verdeo", "Queso cremoso"],
+    "pasos": [
+      "Saltear la cebolla de verdeo y mezclar con la espinaca picada y los granos de choclo.",
+      "Batir los huevos e incorporar los vegetales junto con cubos pequeños de queso cremoso.",
+      "Cuajar la tortilla en una sartén caliente vuelta y vuelta manteniendo el interior húmedo."
+    ]
+  },
+  {
+    "id": "receta-97",
+    "nombre": "Huevos Revueltos Trufados con Tostadas",
+    "categoria": "huevo",
+    "tiempo": "15 min",
+    "ingredientes": ["Huevos", "Aceite de trufa (unas gotas)", "Manteca", "Pan de molde artesanal"],
+    "pasos": [
+      "Batir los huevos con sal marina fina.",
+      "Derretir manteca a fuego mínimo, volcar los huevos y revolver constantemente con espátula logrando una crema.",
+      "Retirar antes de que sequen, añadir unas pocas gotas de aceite de trufa y servir sobre el pan tostado."
+    ]
+  },
+  {
+    "id": "receta-98",
+    "nombre": "Riñoncitos al Jerez",
+    "categoria": "carne",
+    "tiempo": "40 min",
+    "ingredientes": ["Riñones de ternera", "Vino de Jerez o Oporto", "Cebolla", "Ajo", "Caldo de carne"],
+    "pasos": [
+      "Limpiar los riñones quitando la grasa, cortarlos en rodajas y blanquearlos en agua hirviendo con vinagre.",
+      "Saltear cebolla y ajo, agregar los riñones y dorar a fuego vivo.",
+      "Verter el vino de Jerez, dejar evaporar el alcohol, sumar un toque de caldo y espesar la salsa."
+    ]
+  },
+  {
+    "id": "receta-99",
+    "nombre": "Pollo al Disco de Arado",
+    "categoria": "pollo",
+    "tiempo": "65 min",
+    "ingredientes": ["Pollo trozado con piel", "Abundante cebolla", "Morrones de tres colores", "Cerveza rubia", "Crema de leche"],
+    "pasos": [
+      "Calentar el disco, sellar las piezas de pollo hasta que desprendan su grasa y queden doradas. Reservar.",
+      "En esa misma grasa cocinar los vegetales cortados grandes. Reincorporar el pollo.",
+      "Ahogar con la cerveza, dejar reducir el líquido a la mitad y suavizar con crema de leche antes de servir."
+    ]
+  },
+  {
+    "id": "receta-100",
+    "nombre": "Arroz Negro con Sepia",
+    "categoria": "pescado",
+    "tiempo": "50 min",
+    "ingredientes": ["Arroz de grano corto", "Sepia o calamar", "Tinta de calamar (bolsitas)", "Caldo de pescado concentrado", "Alioli para acompañar"],
+    "pasos": [
+      "Limpiar y cortar la sepia en dados, saltearla en una paella con aceite de oliva y ajo picado.",
+      "Agregar el arroz, verter la tinta disuelta en un poco de caldo caliente y remover para teñir el grano.",
+      "Ir sumando el resto del caldo sin tocar mucho el arroz. Cocinar 18 minutos y servir junto a una cucharada de alioli."
+    ]
+  }
+]
