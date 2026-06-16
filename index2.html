@@ -1275,7 +1275,7 @@ footer a { color: rgba(255,255,255,0.6); }
     <div class="ia-hero-card">
       <h2>¿Qué tenés en casa?</h2>
       <p>Contame qué ingredientes tenés y Gemini te sugiere recetas argentinas caseras que podés hacer ahora mismo.</p>
-      <div class="ia-powered">✨ Potenciado por Google Gemini 2.5 Flash — gratis</div>
+      <div class="ia-powered">✨ Potenciado por Google Gemini 1.5 Flash — gratis</div>
     </div>
 
     <!-- API KEY SETUP -->
@@ -1775,13 +1775,13 @@ Respondé SOLO en JSON válido, sin texto extra, sin markdown. Formato:
     }
 
     const data = await res.json();
-    const texto = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
-    let clean = texto.replace(/```json|```/g, '').trim();
-    // Limpiar JSON más agresivamente
-    clean = clean.replace(/^[^\[]*/, '').replace(/[^\]]*$/, '');
-    clean = clean.replace(/([a-z_]+):/g, '"$1":');
-    clean = clean.replace(/: ([a-zA-Z0-9_]+)([,\]\}])/g, ': "$1"$2');
-    const recetas = JSON.parse(clean);
+    // Concatenar todos los parts (Gemini 2.5 puede devolver thinking + text)
+    const partes = data.candidates?.[0]?.content?.parts || [];
+    const texto = partes.map(p => p.text || '').join('');
+    // Extraer el array JSON con regex — ignorar cualquier texto antes y después
+    const match = texto.match(/\[\s*\{[\s\S]*\}\s*\]/);
+    if (!match) throw new Error('Gemini no devolvió un JSON válido. Intentá de nuevo.');
+    const recetas = JSON.parse(match[0]);
     renderResultsIA(recetas);
 
   } catch (err) {
