@@ -174,7 +174,6 @@ body {
     radial-gradient(circle at 85% 20%, rgba(255,255,255,0.06) 0%, transparent 40%);
   pointer-events: none;
 }
-/* Texture lines */
 .hero-pattern::after {
   content: '';
   position: absolute;
@@ -1275,7 +1274,7 @@ footer a { color: rgba(255,255,255,0.6); }
     <div class="ia-hero-card">
       <h2>¿Qué tenés en casa?</h2>
       <p>Contame qué ingredientes tenés y Gemini te sugiere recetas argentinas caseras que podés hacer ahora mismo.</p>
-      <div class="ia-powered">✨ Potenciado por Google Gemini 1.5 Flash — gratis</div>
+      <div class="ia-powered">✨ Potenciado por Google Gemini 2.5 Flash — gratis</div>
     </div>
 
     <!-- API KEY SETUP -->
@@ -1407,7 +1406,7 @@ footer a { color: rgba(255,255,255,0.6); }
 
 <!-- FOOTER -->
 <footer>
-  <p>La Cocina Argentina · Menú mensual con IA · <a href="https://aistudio.google.com" target="_blank">Gemini 1.5 Flash</a> (gratis)</p>
+  <p>La Cocina Argentina · Menú mensual con IA · <a href="https://aistudio.google.com" target="_blank">Gemini 2.5 Flash</a> (gratis)</p>
   <p style="margin-top:4px">Desplegado en <a href="https://pages.github.com" target="_blank">GitHub Pages</a> · Sin servidor · Sin costo</p>
 </footer>
 
@@ -1471,7 +1470,7 @@ const HOY = new Date();
 let mesVista = new Date(HOY.getFullYear(), HOY.getMonth(), 1);
 let filtroActivo = "todos";
 let ingredientes = [];
-let popupRecetaActual = null; // id o objeto
+let popupRecetaActual = null;
 let favs = JSON.parse(localStorage.getItem('favs') || '{}');
 let GEMINI_KEY = localStorage.getItem('gemini_key') || '';
 
@@ -1486,7 +1485,6 @@ function showSection(id, btn) {
   document.getElementById('sec-' + id).classList.add('active');
   if (btn) {
     btn.classList.add('active');
-    // sincronizar nav-link y tab-btn
     document.querySelectorAll('.tab-btn, .nav-link').forEach(b => {
       if (b !== btn && b.getAttribute('onclick') === btn.getAttribute('onclick')) b.classList.add('active');
     });
@@ -1565,7 +1563,6 @@ function abrirPopup(rId, turno) {
   if (!r) return;
   popupRecetaActual = { r, id };
 
-  const catColors = { pollo:'#d4890a', carne:'#b5291c', pescado:'#1a5c9a', verdura:'#237d38', pasta:'#6b30b8', huevo:'#c07800' };
   const catNames  = { pollo:'Pollo', carne:'Carne roja', pescado:'Pescado/Mar', verdura:'Vegetariano', pasta:'Pasta', huevo:'Tarta/Huevo' };
 
   document.getElementById('popColorBar').className = `popup-color-bar ${r.categoria}`;
@@ -1573,18 +1570,19 @@ function abrirPopup(rId, turno) {
   document.getElementById('popTitle').textContent = r.nombre;
   document.getElementById('popTiempoTxt').textContent = r.tiempo;
 
-  // Favorito
   const favBtn = document.getElementById('popFavBtn');
+  favBtn.style.display = '';
   if (favs[id]) { favBtn.textContent = '★ Guardada'; favBtn.classList.add('fav'); }
   else { favBtn.innerHTML = '☆ Guardar'; favBtn.classList.remove('fav'); }
 
-  // Ingredientes
   document.getElementById('popIngs').innerHTML = r.ingredientes
     .map(i => `<span class="ing-chip-display">${i}</span>`).join('');
 
-  // Pasos
   document.getElementById('popPasos').innerHTML = r.pasos
     .map((p, i) => `<li class="paso-item"><div class="paso-num">${i+1}</div><div class="paso-txt">${p}</div></li>`).join('');
+
+  // Restaurar título de sección paso a paso
+  document.querySelector('.popup-section:last-child .popup-section-title').style.display = '';
 
   document.getElementById('popupOverlay').classList.add('visible');
   document.body.style.overflow = 'hidden';
@@ -1608,17 +1606,16 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrarPopup(
 function toggleFavPopup() {
   if (!popupRecetaActual) return;
   const { r, id } = popupRecetaActual;
-  const key = id;
-  if (favs[key]) {
-    delete favs[key];
+  if (favs[id]) {
+    delete favs[id];
     toast('Receta quitada de favoritos');
   } else {
-    favs[key] = { ...r, _id: key };
+    favs[id] = { ...r, _id: id };
     toast('⭐ Receta guardada en favoritos');
   }
   localStorage.setItem('favs', JSON.stringify(favs));
   const favBtn = document.getElementById('popFavBtn');
-  if (favs[key]) { favBtn.textContent = '★ Guardada'; favBtn.classList.add('fav'); }
+  if (favs[id]) { favBtn.textContent = '★ Guardada'; favBtn.classList.add('fav'); }
   else { favBtn.innerHTML = '☆ Guardar'; favBtn.classList.remove('fav'); }
   renderCalendario();
 }
@@ -1633,6 +1630,7 @@ function renderFavoritos() {
     return;
   }
   empty.style.display = 'none';
+  window._favsRecetas = favs;
   grid.innerHTML = keys.map(k => {
     const r = favs[k];
     return recetaCardHTML(r, k, true);
@@ -1693,237 +1691,3 @@ function initApiKeyUI() {
   if (GEMINI_KEY) {
     const inp = document.getElementById('apiKeyInput');
     if (inp) inp.value = GEMINI_KEY;
-    const st = document.getElementById('apiStatus');
-    st.textContent = '✓ API Key configurada';
-    st.className = 'api-status ok';
-  }
-}
-
-// ════════════════════════════════════════
-//  GENERAR RECETAS CON GEMINI
-// ════════════════════════════════════════
-async function generarRecetas() {
-  if (!GEMINI_KEY) {
-    toast('⚠️ Primero guardá tu API Key de Gemini');
-    document.getElementById('apiKeyInput')?.focus();
-    return;
-  }
-  if (!ingredientes.length) {
-    toast('⚠️ Agregá al menos un ingrediente');
-    document.getElementById('ingInput').focus();
-    return;
-  }
-
-  const btn = document.getElementById('btnGenerar');
-  btn.classList.add('loading');
-  btn.disabled = true;
-
-  const cantidad = document.getElementById('selCantidad').value;
-  const tiempo   = document.getElementById('selTiempo').value;
-  const tipo     = document.getElementById('selTipo').value;
-
-  const prompt = `Sos un cocinero argentino casero experto en cocina criolla. El usuario tiene estos ingredientes disponibles: ${ingredientes.join(', ')}.
-
-Sugerí exactamente ${cantidad} recetas caseras argentinas típicas (milanesas, empanadas, tortillas, tartas, bifes, pastas, sopas, guisos, etc.) que se puedan hacer ${tiempo !== 'sin límite' ? `en ${tiempo}` : ''} ${tipo !== 'cualquier tipo' ? `para ${tipo}` : ''}.
-
-Priorizá recetas simples para una pareja trabajadora. Usá ingredientes fáciles de conseguir en Argentina.
-
-Respondé SOLO con un JSON válido sin texto extra, sin bloques de código, sin comillas adicionales. Formato exacto:
-[
-  {
-    "nombre": "Nombre de la receta",
-    "categoria": "pollo|carne|pescado|pasta|verdura|huevo",
-    "tiempo": "X min",
-    "ingredientes": ["ingrediente 1", "ingrediente 2", "ingrediente 3"],
-    "pasos": ["Paso 1 detallado.", "Paso 2 detallado.", "Paso 3 detallado.", "Paso 4.", "Paso 5."]
-  }
-]`;
-
-  const resultDiv = document.getElementById('iaResults');
-  resultDiv.innerHTML = `
-    <div class="ia-results-header">
-      <div><div class="ia-results-title">Generando recetas...</div><div class="ia-results-sub">Consultando Gemini con ${ingredientes.length} ingredientes</div></div>
-    </div>
-    <div class="skeleton-grid">
-      ${Array(parseInt(cantidad)).fill(`
-        <div class="skeleton-card">
-          <div class="skeleton-top"></div>
-          <div class="skeleton-body">
-            <div class="skeleton-line"></div>
-            <div class="skeleton-line w70"></div>
-            <div class="skeleton-line w50"></div>
-          </div>
-        </div>`).join('')}
-    </div>`;
-
-  try {
-    const res = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_KEY}`,
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          contents: [{ parts: [{ text: prompt }] }],
-          generationConfig: { temperature: 0.7, maxOutputTokens: 2048 },
-          thinkingConfig: { thinkingBudget: 0 }
-        })
-      }
-    );
-
-    if (!res.ok) {
-      const err = await res.json();
-      throw new Error(err.error?.message || `HTTP ${res.status}`);
-    }
-
-    const data = await res.json();
-    const texto = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
-    const clean = texto.replace(/```json|```/g, '').trim();
-    const recetas = JSON.parse(clean);
-    renderResultsIA(recetas);
-
-  } catch (err) {
-    resultDiv.innerHTML = `
-      <div class="state-msg">
-        <div class="state-icon">⚠️</div>
-        <h3>No se pudo conectar con Gemini</h3>
-        <p>${err.message.includes('API key') ? 'La API Key no es válida. Verificá que la copiaste correctamente desde aistudio.google.com' : 'Error: ' + err.message}</p>
-      </div>`;
-  } finally {
-    btn.classList.remove('loading');
-    btn.disabled = false;
-  }
-}
-
-function renderResultsIA(recetas) {
-  const div = document.getElementById('iaResults');
-  if (!recetas?.length) {
-    div.innerHTML = `<div class="state-msg"><div class="state-icon">🍽️</div><h3>Sin resultados</h3><p>Intentá con más ingredientes o cambiá los filtros.</p></div>`;
-    return;
-  }
-
-  const cardsHTML = recetas.map((r, i) => {
-    const id = 'ia_' + Date.now() + '_' + i;
-    r._id = id;
-    return recetaCardHTML(r, id, false);
-  }).join('');
-
-  div.innerHTML = `
-    <div class="ia-results-header">
-      <div>
-        <div class="ia-results-title">✨ ${recetas.length} recetas sugeridas</div>
-        <div class="ia-results-sub">Basadas en: ${ingredientes.join(', ')}</div>
-      </div>
-      <button class="btn-lista" onclick="generarListaCompras(${JSON.stringify(recetas).replace(/"/g,'&quot;')})">🛒 Lista de compras</button>
-    </div>
-    <div class="recetas-grid">${cardsHTML}</div>`;
-
-  // Attach click handlers (necesario porque usamos innerHTML)
-  recetas.forEach((r, i) => {
-    const id = 'ia_' + (div.querySelector('.receta-card')?.dataset?.idx || 0);
-  });
-
-  // Guardar recetas IA en window para onclick
-  window._iaRecetas = recetas;
-}
-
-function recetaCardHTML(r, id, isFav) {
-  const cat = r.categoria || 'verdura';
-  const faved = favs[id] ? 'fav' : '';
-  const favIcon = favs[id] ? '★' : '☆';
-  return `<div class="receta-card" onclick="abrirPopup(window._iaRecetas?.find(x=>x._id==='${id}') || window.RECETAS_BASE?.['${id}'] || ${JSON.stringify(r).replace(/"/g,'&quot;')}, '')">
-    <div class="receta-card-top ${cat}">
-      <svg class="receta-cat-icon ${cat}"><use href="#icon-${cat}"/></svg>
-      <button class="receta-card-fav ${faved}" onclick="event.stopPropagation(); toggleFavCard('${id}', ${JSON.stringify(r).replace(/"/g,'&quot;')}, this)" title="Guardar en favoritos">${favIcon}</button>
-    </div>
-    <div class="receta-card-body">
-      <div class="receta-card-nombre">${r.nombre}</div>
-      <div class="receta-card-meta">
-        <span class="rcmeta"><svg><use href="#icon-clock"/></svg> ${r.tiempo}</span>
-        <span class="rcmeta"><svg><use href="#icon-chef"/></svg> 2 porc.</span>
-      </div>
-      <div class="receta-card-tags">
-        ${r.ingredientes.slice(0,3).map(i=>`<span class="r-tag">${i}</span>`).join('')}
-      </div>
-    </div>
-  </div>`;
-}
-
-function toggleFavCard(id, r, btn) {
-  if (favs[id]) {
-    delete favs[id];
-    btn.textContent = '☆';
-    btn.classList.remove('fav');
-    toast('Receta quitada de favoritos');
-  } else {
-    favs[id] = { ...r, _id: id };
-    btn.textContent = '★';
-    btn.classList.add('fav');
-    toast('⭐ Guardada en favoritos');
-  }
-  localStorage.setItem('favs', JSON.stringify(favs));
-  renderCalendario();
-}
-
-// ════════════════════════════════════════
-//  LISTA DE COMPRAS IA
-// ════════════════════════════════════════
-function generarListaCompras(recetasStr) {
-  const recetas = typeof recetasStr === 'string' ? JSON.parse(recetasStr) : recetasStr;
-  const todos = [...new Set(recetas.flatMap(r => r.ingredientes))].sort();
-  const categorias = {
-    'Carnes y proteínas': todos.filter(i => /pollo|carne|bife|churrasco|milanesa|pescado|merluza|atún|chorizo|jamón|salmon/i.test(i)),
-    'Verduras': todos.filter(i => /papa|zapallo|zanahoria|cebolla|morrón|espinaca|tomate|lechuga|apio|verdeo|zapallito/i.test(i)),
-    'Lácteos': todos.filter(i => /queso|leche|crema|manteca|mozzarella|ricota/i.test(i)),
-    'Almacén': todos.filter(i => /fideos|arroz|harina|pan|tapa|tapas|porotos|garbanzos|lata/i.test(i)),
-    'Otros': todos.filter(i => !/(pollo|carne|bife|churrasco|milanesa|pescado|merluza|atún|chorizo|jamón|salmon|papa|zapallo|zanahoria|cebolla|morrón|espinaca|tomate|lechuga|apio|verdeo|zapallito|queso|leche|crema|manteca|mozzarella|ricota|fideos|arroz|harina|pan|tapa|tapas|porotos|garbanzos|lata)/i.test(i))
-  };
-
-  const popup = document.getElementById('popupOverlay');
-  const box = document.getElementById('popupBox');
-
-  document.getElementById('popColorBar').className = 'popup-color-bar verdura';
-  document.getElementById('popTipo').textContent = '🛒 Lista de compras';
-  document.getElementById('popTitle').textContent = `Para ${recetas.length} recetas`;
-  document.getElementById('popTiempoTxt').textContent = `${todos.length} ingredientes`;
-  document.getElementById('popFavBtn').style.display = 'none';
-
-  const ings = document.getElementById('popIngs');
-  ings.innerHTML = Object.entries(categorias).filter(([,v])=>v.length).map(([cat, items]) =>
-    `<div style="width:100%;margin-bottom:10px">
-      <div style="font-size:0.68rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#888;margin-bottom:6px">${cat}</div>
-      <div style="display:flex;flex-wrap:wrap;gap:5px">${items.map(i=>`<span class="ing-chip-display">${i}</span>`).join('')}</div>
-    </div>`
-  ).join('');
-
-  document.getElementById('popPasos').innerHTML = '';
-  document.querySelector('.popup-section:last-child .popup-section-title').style.display = 'none';
-
-  popup.classList.add('visible');
-  document.body.style.overflow = 'hidden';
-}
-
-// ════════════════════════════════════════
-//  TOAST
-// ════════════════════════════════════════
-let toastTimeout;
-function toast(msg) {
-  const el = document.getElementById('toast');
-  el.textContent = msg;
-  el.classList.add('show');
-  clearTimeout(toastTimeout);
-  toastTimeout = setTimeout(() => el.classList.remove('show'), 2800);
-}
-
-// ════════════════════════════════════════
-//  HELPERS GLOBALES para onclick en HTML
-// ════════════════════════════════════════
-window.RECETAS_BASE = RECETAS_BASE;
-
-// ════════════════════════════════════════
-//  INIT
-// ════════════════════════════════════════
-renderCalendario();
-initApiKeyUI();
-</script>
-</body>
-</html>
