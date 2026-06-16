@@ -1,0 +1,26 @@
+[
+  {
+    "id": "clasico-argentino",
+    "label": "Clásico Argentino",
+    "file": "clasico-argentino.txt",
+    "descripcion": "Recetas criollas tradicionales: milanesas, empanadas, pucheros, asados"
+  },
+  {
+    "id": "rapido-30min",
+    "label": "Rápido — menos de 30 min",
+    "file": "rapido-30min.txt",
+    "descripcion": "Recetas express para días con poco tiempo"
+  },
+  {
+    "id": "saludable",
+    "label": "Saludable y nutritivo",
+    "file": "saludable.txt",
+    "descripcion": "Recetas equilibradas, bajas en grasa y ricas en verduras"
+  },
+  {
+    "id": "familiar",
+    "label": "Para toda la familia",
+    "file": "familiar.txt",
+    "descripcion": "Recetas simples que gustan a chicos y grandes"
+  }
+]
