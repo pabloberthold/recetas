@@ -7,10 +7,18 @@ Tiempo máximo: {{TIEMPO}}
 Tipo de comida: {{TIPO}}
 
 ESTILO DE RECETAS:
-- Priorizá platos emblemáticos de la cocina argentina: milanesas, empanadas, bifes, pucheros, guisos, tartas, tortillas, fideos con tuco, locro, carbonada, matambre, etc.
+- Priorizá platos emblemáticos: milanesas, empanadas, bifes, pucheros, guisos, tartas, tortillas, fideos con tuco, locro, carbonada, matambre, etc.
 - Usá técnicas simples: hervir, freír, hornear, saltear
 - Los condimentos deben ser típicos argentinos: chimichurri, pimentón, comino, orégano, perejil
-- Las porciones son para 2 personas trabajadoras con hambre real
+- Las porciones base son para 2 personas
+
+IMPORTANTE — CANTIDADES:
+Cada ingrediente DEBE incluir la cantidad exacta para 2 personas. Ejemplos:
+- "500g de carne picada" en lugar de "carne picada"
+- "2 pechugas de pollo (300g c/u)" en lugar de "pollo"
+- "3 papas medianas (600g)" en lugar de "papas"
+- "1 taza de arroz (200g)" en lugar de "arroz"
+- "2 huevos" en lugar de "huevos"
 
 RESTRICCIONES:
 - Ingredientes fáciles de conseguir en cualquier almacén o supermercado argentino
@@ -23,7 +31,7 @@ Respondé SOLO con el siguiente JSON válido, sin texto adicional, sin bloques d
     "nombre": "Nombre del plato",
     "categoria": "pollo|carne|pescado|pasta|verdura|huevo",
     "tiempo": "X min",
-    "ingredientes": ["ingrediente 1", "ingrediente 2"],
+    "ingredientes": ["500g de carne picada", "2 cebollas medianas", "1 morrón rojo"],
     "pasos": ["Paso 1.", "Paso 2.", "Paso 3.", "Paso 4.", "Paso 5."]
   }
 ]
