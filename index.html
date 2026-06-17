@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Menú mensual de cocina argentina con recetas caseras y sugerencias por IA">
-<title>La Cocina Argentina — Menú Mensual</title>
+<title>La Cocina de Karinita!</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Inter:wght@300;400;500;600&family=Caveat:wght@500&display=swap" rel="stylesheet">
@@ -41,6 +41,42 @@
   <symbol id="icon-huevo" viewBox="0 0 32 32">
     <ellipse cx="16" cy="18" rx="11" ry="12" fill="currentColor"/>
     <ellipse cx="16" cy="20" rx="6" ry="6" fill="#FFF176" opacity=".9"/>
+  </symbol>
+  <symbol id="icon-chica" viewBox="0 0 80 80">
+    <!-- cara -->
+    <circle cx="40" cy="28" r="18" fill="#FDBCB4"/>
+    <!-- cabello largo -->
+    <path d="M22 22 Q18 10 30 8 Q40 4 50 8 Q62 10 58 22 Q62 30 58 48 Q52 56 40 58 Q28 56 22 48 Q18 30 22 22Z" fill="#8B4513"/>
+    <path d="M22 22 Q16 35 18 50 Q20 58 24 62" fill="none" stroke="#8B4513" stroke-width="4" stroke-linecap="round"/>
+    <path d="M58 22 Q64 35 62 50 Q60 58 56 62" fill="none" stroke="#8B4513" stroke-width="4" stroke-linecap="round"/>
+    <!-- cara encima del pelo -->
+    <circle cx="40" cy="30" r="16" fill="#FDBCB4"/>
+    <!-- ojos -->
+    <ellipse cx="34" cy="27" rx="2.5" ry="3" fill="#3d2b1f"/>
+    <ellipse cx="46" cy="27" rx="2.5" ry="3" fill="#3d2b1f"/>
+    <circle cx="35" cy="26" r="0.8" fill="white"/>
+    <circle cx="47" cy="26" r="0.8" fill="white"/>
+    <!-- cejas -->
+    <path d="M31 23 Q34 21.5 37 23" fill="none" stroke="#6b3a1f" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M43 23 Q46 21.5 49 23" fill="none" stroke="#6b3a1f" stroke-width="1.5" stroke-linecap="round"/>
+    <!-- sonrisa -->
+    <path d="M33 35 Q40 41 47 35" fill="none" stroke="#c0392b" stroke-width="2" stroke-linecap="round"/>
+    <!-- mejillas -->
+    <circle cx="31" cy="33" r="4" fill="#ffb3a7" opacity="0.5"/>
+    <circle cx="49" cy="33" r="4" fill="#ffb3a7" opacity="0.5"/>
+    <!-- nariz -->
+    <path d="M39 31 Q40 34 41 31" fill="none" stroke="#c9956c" stroke-width="1.2" stroke-linecap="round"/>
+    <!-- cuerpo con delantal -->
+    <path d="M26 58 Q20 62 18 76 L62 76 Q60 62 54 58 Q47 55 40 55 Q33 55 26 58Z" fill="#e74c3c"/>
+    <path d="M32 58 Q40 64 48 58" fill="none" stroke="white" stroke-width="2"/>
+    <!-- tenedor mano derecha -->
+    <line x1="62" y1="50" x2="72" y2="76" stroke="#aaa" stroke-width="3" stroke-linecap="round"/>
+    <line x1="60" y1="50" x2="60" y2="58" stroke="#aaa" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="63" y1="50" x2="63" y2="58" stroke="#aaa" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="66" y1="50" x2="66" y2="58" stroke="#aaa" stroke-width="1.8" stroke-linecap="round"/>
+    <!-- aretes -->
+    <circle cx="24" cy="33" r="2.5" fill="#f1c40f"/>
+    <circle cx="56" cy="33" r="2.5" fill="#f1c40f"/>
   </symbol>
   <symbol id="icon-star" viewBox="0 0 24 24">
     <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="currentColor"/>
@@ -79,6 +115,7 @@
   --azul:        #1a5c9a;
   --violeta-lt:  #f0eafc;
   --violeta:     #6b30b8;
+  --marron:      #6b3a1f;
   --shadow-xs:   0 1px 3px rgba(0,0,0,0.07);
   --shadow-sm:   0 2px 8px rgba(0,0,0,0.09);
   --shadow-md:   0 6px 24px rgba(0,0,0,0.13);
@@ -101,6 +138,40 @@ body {
 }
 
 /* ── NAV ── */
+/* ── LOGO ── */
+.nav-logo-svg {
+  width: 32px; height: 32px;
+  display: block;
+}
+.hero-logo-wrap {
+  margin-bottom: 14px;
+  position: relative;
+  z-index: 1;
+}
+.hero-logo-svg {
+  width: 90px; height: 90px;
+  filter: drop-shadow(0 4px 16px rgba(0,0,0,0.3));
+}
+/* Botón lista semanal */
+.btn-semana-lista {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 18px;
+  background: var(--marron);
+  color: #fff;
+  border: none;
+  border-radius: var(--r-sm);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: var(--shadow-xs);
+  white-space: nowrap;
+}
+.btn-semana-lista:hover { opacity: 0.88; transform: translateY(-1px); }
+
 .nav {
   position: sticky;
   top: 0;
@@ -1187,12 +1258,14 @@ footer a { color: rgba(255,255,255,0.6); }
 <!-- HERO -->
 <div class="hero">
   <div class="hero-pattern"></div>
-  <div class="hero-eyebrow">Para una pareja que cocina bien y rápido</div>
-  <h1>Menú mensual de<br><em>cocina argentina</em></h1>
+  <div class="hero-logo-wrap">
+    <svg class="hero-logo-svg"><use href="#icon-chica"/></svg>
+  </div>
+  <div class="hero-eyebrow">¡Bienvenida a tu rincón culinario!</div>
+  <h1>La Cocina de<br><em>Karinita!</em></h1>
   <p class="hero-sub">Recetas caseras típicas, simples y nutritivas. Con IA para aprovechar lo que tenés en la heladera.</p>
   <div class="hero-badges">
     <span class="hbadge">⏱ Máx. 45 min</span>
-    <span class="hbadge">👫 2 porciones</span>
     <span class="hbadge">🛒 Ingredientes fáciles</span>
     <span class="hbadge">🤖 Potenciado por Gemini</span>
   </div>
@@ -1256,7 +1329,10 @@ footer a { color: rgba(255,255,255,0.6); }
     <div class="cal-nav-row">
       <button class="cal-nav-btn" onclick="cambiarMes(-1)" title="Mes anterior">◀</button>
       <h2 class="cal-mes-titulo" id="calTitulo"></h2>
-      <button class="cal-nav-btn" onclick="cambiarMes(1)" title="Mes siguiente">▶</button>
+      <div style="display:flex;gap:8px;align-items:center">
+        <button class="btn-semana-lista" onclick="listaComprasSemana()">🛒 Lista de la semana</button>
+        <button class="cal-nav-btn" onclick="cambiarMes(1)" title="Mes siguiente">▶</button>
+      </div>
     </div>
     <div class="cal-dow-row">
       <div class="cal-dow">Dom</div><div class="cal-dow">Lun</div>
@@ -1275,15 +1351,15 @@ footer a { color: rgba(255,255,255,0.6); }
     <div class="ia-hero-card">
       <h2>¿Qué tenés en casa?</h2>
       <p>Contame qué ingredientes tenés y Gemini te sugiere recetas argentinas caseras que podés hacer ahora mismo.</p>
-      <div class="ia-powered">✨ Potenciado por Google Gemini 1.5 Flash — gratis</div>
+      <div class="ia-powered">✨ Potenciado por Google Gemini</div>
     </div>
 
     <!-- API KEY SETUP -->
     <div class="api-setup" id="apiSetup" style="display:none">
       <div class="api-setup-icon">🔑</div>
       <div class="api-setup-content">
-        <h3>Configurar API Key de Gemini (gratis)</h3>
-        <p>Conseguí tu clave en <a href="https://aistudio.google.com" target="_blank">aistudio.google.com</a> → "Get API Key" → es gratis, sin tarjeta. Se guarda solo en tu navegador.</p>
+        <h3>Configurar API Key de Gemini</h3>
+        <p>Conseguí tu clave en <a href="https://aistudio.google.com" target="_blank">aistudio.google.com</a> → "Get API Key" → Se guarda solo en tu navegador.</p>
         <div class="api-key-row">
           <input type="password" class="api-key-input" id="apiKeyInput" placeholder="AIzaSy...">
           <button class="btn-save-key" onclick="guardarApiKey()">Guardar</button>
@@ -1406,8 +1482,12 @@ footer a { color: rgba(255,255,255,0.6); }
         <span class="popup-meta-badge" id="popTiempo">
           <svg><use href="#icon-clock"/></svg> <span id="popTiempoTxt"></span>
         </span>
-        <span class="popup-meta-badge">
-          <svg><use href="#icon-chef"/></svg> 2 porciones
+        <span class="popup-meta-badge" style="padding:0 6px;gap:0">
+          <svg style="margin-right:4px"><use href="#icon-chef"/></svg>
+          <input type="number" id="popPorciones" value="2" min="1" max="20"
+            style="width:36px;border:none;background:transparent;font-family:inherit;font-size:0.74px;color:var(--ink2);text-align:center;outline:none;font-size:0.74rem"
+            onchange="actualizarPorciones()"
+          > pers.
         </span>
         <button class="popup-fav-btn" id="popFavBtn" onclick="toggleFavPopup()">★ Guardar</button>
       </div>
@@ -1430,8 +1510,8 @@ footer a { color: rgba(255,255,255,0.6); }
 
 <!-- FOOTER -->
 <footer>
-  <p>La Cocina Argentina · Menú mensual con IA · <a href="https://aistudio.google.com" target="_blank">Gemini 1.5 Flash</a> (gratis)</p>
-  <p style="margin-top:4px">Desplegado en <a href="https://pages.github.com" target="_blank">GitHub Pages</a> · Sin servidor · Sin costo</p>
+  <p>La Cocina de Karinita! · Potenciada por <a href="https://aistudio.google.com" target="_blank">Google Gemini</a></p>
+  <p style="margin-top:4px">Desplegado en <a href="https://pages.github.com" target="_blank">GitHub Pages</a></p>
 </footer>
 
 <script>
@@ -1602,11 +1682,16 @@ function abrirPopup(rId, turno) {
   else { favBtn.innerHTML = '☆ Guardar'; favBtn.classList.remove('fav'); }
 
   // Ingredientes
-  document.getElementById('popIngs').innerHTML = r.ingredientes
-    .map(i => `<span class="ing-chip-display">${i}</span>`).join('');
+  // Guardar ingredientes base para rescalar
+  window._popIngBase = r.ingredientes;
+  window._popPasosBase = r.pasos;
+  // Reset a 2 porciones
+  const porcinput = document.getElementById('popPorciones');
+  if (porcinput) porcinput.value = 2;
+  renderIngConPorciones(r.ingredientes, 2);
 
   // Pasos
-  document.getElementById('popPasos').innerHTML = r.pasos
+  document.getElementById('popPasos').innerHTML = (r.pasos || [])
     .map((p, i) => `<li class="paso-item"><div class="paso-num">${i+1}</div><div class="paso-txt">${p}</div></li>`).join('');
 
   document.getElementById('popupOverlay').classList.add('visible');
@@ -1951,6 +2036,115 @@ function toast(msg) {
 //  HELPERS GLOBALES para onclick en HTML
 // ════════════════════════════════════════
 window.RECETAS_BASE = RECETAS_BASE;
+
+// ════════════════════════════════════════
+//  PORCIONES
+// ════════════════════════════════════════
+function actualizarPorciones() {
+  const n = parseInt(document.getElementById('popPorciones').value) || 2;
+  if (!window._popIngBase) return;
+  renderIngConPorciones(window._popIngBase, n);
+}
+
+function renderIngConPorciones(ingredientes, porciones) {
+  const base = 2; // base siempre 2 porciones
+  const factor = porciones / base;
+
+  const html = ingredientes.map(ing => {
+    // Intentar escalar cantidades numéricas dentro del string
+    const scaled = ing.replace(/(\d+(?:[.,]\d+)?)/g, (match) => {
+      const num = parseFloat(match.replace(',', '.'));
+      const resultado = num * factor;
+      // Mostrar sin decimales si es entero, si no 1 decimal
+      const display = resultado % 1 === 0 ? resultado : resultado.toFixed(1);
+      return `<strong style="color:var(--verde)">${display}</strong>`;
+    });
+    return `<span class="ing-chip-display">${scaled}</span>`;
+  }).join('');
+
+  document.getElementById('popIngs').innerHTML = html;
+}
+
+// ════════════════════════════════════════
+//  LISTA DE COMPRAS SEMANAL (desde calendario)
+// ════════════════════════════════════════
+function listaComprasSemana() {
+  const anio = mesVista.getFullYear();
+  const mes  = mesVista.getMonth();
+  const hoyDia = HOY.getDate();
+  // Obtener días de la semana actual
+  const diaSemana = HOY.getDay(); // 0=dom
+  const lunesOffset = diaSemana === 0 ? -6 : 1 - diaSemana;
+  const lunes = new Date(HOY);
+  lunes.setDate(HOY.getDate() + lunesOffset);
+
+  // Recopilar recetas de los 7 días de la semana
+  const recetasSet = [];
+  for (let i = 0; i < 7; i++) {
+    const d = new Date(lunes);
+    d.setDate(lunes.getDate() + i);
+    const dia = d.getDate();
+    const menu = MENU_DIA[dia] || MENU_DIA[((dia-1)%30)+1];
+    if (!menu) continue;
+    ['a','c'].forEach(k => {
+      const r = RECETAS_BASE[menu[k]];
+      if (r) recetasSet.push({ nombre: r.nombre, ings: r.ingredientes, turno: k==='a'?'Almuerzo':'Cena', dia: d.toLocaleDateString('es-AR', {weekday:'long'}) });
+    });
+  }
+
+  if (!recetasSet.length) {
+    toast('No hay recetas para esta semana');
+    return;
+  }
+
+  // Armar lista de ingredientes únicos
+  const todos = [...new Set(recetasSet.flatMap(r => r.ings))].sort();
+  const categorias = {
+    '🥩 Carnes y proteínas': todos.filter(i => /pollo|carne|bife|churrasco|milanesa|pescado|merluza|atún|chorizo|jamón|salmon|pechuga|muslo|filet/i.test(i)),
+    '🥬 Verduras y frutas':  todos.filter(i => /papa|zapallo|zanahoria|cebolla|morrón|espinaca|tomate|lechuga|apio|verdeo|zapallito|limón|ajo/i.test(i)),
+    '🧀 Lácteos':            todos.filter(i => /queso|leche|crema|manteca|mozzarella|ricota/i.test(i)),
+    '🍝 Almacén':            todos.filter(i => /fideos|arroz|harina|pan|tapa|tapas|porotos|garbanzos|lata|caldo|aceite|tomate en/i.test(i)),
+    '🧂 Condimentos':        todos.filter(i => /sal|pimienta|orégano|pimentón|comino|perejil|laurel|ajo|vinagre|chimichurri/i.test(i)),
+    '🥚 Otros':              todos.filter(i => !/(pollo|carne|bife|churrasco|milanesa|pescado|merluza|atún|chorizo|jamón|salmon|pechuga|muslo|filet|papa|zapallo|zanahoria|cebolla|morrón|espinaca|tomate|lechuga|apio|verdeo|zapallito|limón|ajo|queso|leche|crema|manteca|mozzarella|ricota|fideos|arroz|harina|pan|tapa|tapas|porotos|garbanzos|lata|caldo|aceite|sal|pimienta|orégano|pimentón|comino|perejil|laurel|vinagre|chimichurri)/i.test(i))
+  };
+
+  // Mostrar en popup
+  document.getElementById('popColorBar').className = 'popup-color-bar verdura';
+  document.getElementById('popTipo').textContent = '📅 Semana actual';
+  document.getElementById('popTitle').textContent = '🛒 Lista de compras semanal';
+  document.getElementById('popTiempoTxt').textContent = `${recetasSet.length} recetas · ${todos.length} ingredientes`;
+  document.getElementById('popFavBtn').style.display = 'none';
+  document.querySelector('.popup-meta-badge:nth-child(2)').style.display = 'none';
+
+  // Menú de la semana
+  const menuHtml = recetasSet.map(r =>
+    `<div style="display:flex;gap:8px;align-items:baseline;margin-bottom:3px">
+      <span style="font-size:0.65rem;color:var(--ink3);min-width:70px;text-transform:capitalize">${r.dia}</span>
+      <span style="font-size:0.7rem;color:var(--ink3);min-width:50px">${r.turno}</span>
+      <span style="font-size:0.78rem;font-weight:500">${r.nombre}</span>
+    </div>`
+  ).join('');
+
+  document.getElementById('popIngs').innerHTML =
+    `<div style="width:100%;margin-bottom:16px">
+      <div style="font-size:0.68rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#888;margin-bottom:8px">Menú de la semana</div>
+      ${menuHtml}
+    </div>` +
+    Object.entries(categorias).filter(([,v]) => v.length).map(([cat, items]) =>
+      `<div style="width:100%;margin-bottom:10px">
+        <div style="font-size:0.68rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#888;margin-bottom:6px">${cat}</div>
+        <div style="display:flex;flex-wrap:wrap;gap:5px">${items.map(i=>`<span class="ing-chip-display">${i}</span>`).join('')}</div>
+      </div>`
+    ).join('');
+
+  document.getElementById('popPasos').innerHTML = '';
+  document.querySelectorAll('.popup-section-title').forEach(el => {
+    if (el.textContent.includes('Paso a paso')) el.parentElement.style.display = 'none';
+  });
+
+  document.getElementById('popupOverlay').classList.add('visible');
+  document.body.style.overflow = 'hidden';
+}
 
 // ════════════════════════════════════════
 //  INIT
